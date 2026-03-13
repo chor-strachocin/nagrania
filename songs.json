@@ -396,7 +396,7 @@
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ tenor-ile-razy.mp3"
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/tenor-ile-razy.mp3"
     },
     {
       "label": "Bas",
@@ -450,13 +450,13 @@
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-bas.mp3"
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-tenor.mp3"
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-bas.mp3"
     },
     {
       "label": "Sopran",

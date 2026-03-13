@@ -483,6 +483,67 @@
       "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_4.mp3"
     }
   ]
+},
+
+{
+  "id": "odszedl-pasterz",
+  "title": "Odszedł Pasterz od nas",
+  "composer": "Łukasz Mac",
+  "tags": [
+    "pasyjne",
+    "wielki piątek",
+    "Triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-alt.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-bas.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_2.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_3.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_4.mp3"
+    },
+    {
+      "label": "",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/163.%20Odszed%C5%82%20Pasterz%20od%20nas%20%E2%80%93%20Wielki%20Tydzie%C5%84.mp3"
+    }
+  ]
 }
 	
 	

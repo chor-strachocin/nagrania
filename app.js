@@ -91,6 +91,10 @@
             .toLowerCase();
     }
 
+    function getNormalizedTags(song) {
+        return (song.tags || []).map(t => normalizeTag(t));
+    }
+
     // ==================== SORTING ====================
     function compareTracks(a, b) {
         const groupA = a.type === 'mix' ? 1 : 0;
@@ -104,6 +108,10 @@
         const orderB = voiceOrder[b.voice] ?? 999;
 
         return orderA - orderB;
+    }
+
+    function compareSongs(a, b) {
+        return a.title.localeCompare(b.title, 'pl', { sensitivity: 'base' });
     }
 
     // ==================== LOAD DATA ====================
@@ -140,7 +148,7 @@
             const btn = document.createElement('button');
             btn.className = 'filter-btn';
             btn.dataset.voice = voice;
-            btn.textContent = `${info.emoji} \({info.label}`;
+            btn.textContent = `${info.emoji} ${info.label}`;
             dom.voiceFilters.appendChild(btn);
         });
 
@@ -151,7 +159,7 @@
             allTagBtn.textContent = 'Wszystkie';
             dom.tagFilters.appendChild(allTagBtn);
 
-            Array.from(tagsSet).sort().forEach(tag => {
+            Array.from(tagsSet).sort((a, b) => a.localeCompare(b, 'pl')).forEach(tag => {
                 const btn = document.createElement('button');
                 btn.className = 'filter-btn';
                 btn.dataset.tag = tag;
@@ -165,7 +173,7 @@
 
     // ==================== FILTERING LOGIC ====================
     function getFilteredSongs() {
-        return songsData.map(song => {
+        const filtered = songsData.map(song => {
             if (currentFilters.search) {
                 const q = currentFilters.search.toLowerCase();
                 const match = song.title.toLowerCase().includes(q) ||
@@ -176,7 +184,7 @@
 
             if (currentFilters.tag && currentFilters.tag !== 'all') {
                 const normalizedFilterTag = normalizeTag(currentFilters.tag);
-                const songNormalizedTags = (song.tags || []).map(t => normalizeTag(t));
+                const songNormalizedTags = getNormalizedTags(song);
                 if (!songNormalizedTags.includes(normalizedFilterTag)) return null;
             }
 
@@ -201,10 +209,12 @@
             if (tracks.length === 0) return null;
 
             return { ...song, tracks };
-        }).filter(Boolean)
+        }).filter(Boolean);
 
-        // ✅ SORTOWANIE UTWORÓW PO TYTULE
-        .sort((a, b) => a.title.localeCompare(b.title, 'pl', { sensitivity: 'base' }));
+        // Sortowanie utworów alfabetycznie po tytule
+        filtered.sort(compareSongs);
+
+        return filtered;
     }
 
     // ==================== RENDER ====================
@@ -235,22 +245,22 @@
                     currentTrack.track.file === track.file;
                 const playingClass = isPlaying ? 'playing' : '';
                 const typeBadge = track.type !== 'single'
-                    ? `<span class="track-type-badge \){track.type}">\({track.type}</span>`
+                    ? `<span class="track-type-badge ${track.type}">${track.type}</span>`
                     : '';
                 const description = track.description
-                    ? `<div class="track-description">\){track.description}</div>`
+                    ? `<div class="track-description">${track.description}</div>`
                     : '';
 
                 return `
-                    <div class="track-item \({playingClass}"
-                         data-song-id="\){song.id}"
+                    <div class="track-item ${playingClass}"
+                         data-song-id="${song.id}"
                          data-file="${track.file}"
-                         onclick="window.choirApp.playTrack('${song.id}', '\({track.file}')">
-                        <div class="track-icon \){iconClass}">
-                            \({isPlaying ? '⏸' : emoji}
+                         onclick="window.choirApp.playTrack('${song.id}', '${track.file}')">
+                        <div class="track-icon ${iconClass}">
+                            ${isPlaying ? '⏸' : emoji}
                         </div>
                         <div class="track-info">
-                            <div class="track-label">\){track.label}</div>
+                            <div class="track-label">${track.label}</div>
                             ${description}
                         </div>
                         ${typeBadge}
@@ -259,18 +269,18 @@
             }).join('');
 
             const tagsHtml = (song.tags || []).map(t =>
-                `<span class="tag">\({normalizeTag(t)}</span>`
+                `<span class="tag">${normalizeTag(t)}</span>`
             ).join('');
 
             return `
                 <div class="song-card">
                     <div class="song-header">
-                        <div class="song-title">\){song.title}</div>
-                        \({song.composer ? `<div class="song-composer">\){song.composer}</div>` : ''}
-                        <div class="song-tags">\({tagsHtml}</div>
+                        <div class="song-title">${song.title}</div>
+                        ${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
+                        <div class="song-tags">${tagsHtml}</div>
                     </div>
                     <div class="track-list">
-                        \){tracksHtml}
+                        ${tracksHtml}
                     </div>
                 </div>
             `;
@@ -313,7 +323,7 @@
 
     function playPrevNext(direction) {
         if (!currentTrack || playableTracksList.length === 0) return;
-$
+
         const idx = playableTracksList.findIndex(
             item => item.song.id === currentTrack.song.id &&
                 item.track.file === currentTrack.track.file
@@ -340,7 +350,7 @@ $
         let searchTimeout;
         dom.search.addEventListener('input', () => {
             clearTimeout(searchTimeout);
- $           searchTimeout = setTimeout(() => {
+            searchTimeout = setTimeout(() => {
                 currentFilters.search = dom.search.value.trim();
                 render();
             }, 200);

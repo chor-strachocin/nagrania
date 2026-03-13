@@ -193,6 +193,66 @@
       "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_5.mp3"
     }
   ]
+},
+
+{
+  "id": "chrystus-zmartwychwstal-jest-2025",
+  "title": "Chrystus zmartwychwstał jest (opowieść o zmartwychwstaniu)",
+  "composer": "Krzysztof Stępień",
+  "tags": [
+    "triduum 2026",
+    "wielkanoc"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-sopran.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-alt.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-bas.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_2.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_3.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_4.mp3"
+    }
+  ]
 }
 	
 	

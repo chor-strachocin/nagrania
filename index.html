@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chór – Materiały do nauki</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🎵 Materiały do nauki</h1>
+            <p class="subtitle">Wybierz swój głos i ćwicz</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Search -->
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Szukaj utworu, kompozytora...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <h3>Głos:</h3>
+                <div class="filter-buttons" id="voice-filters">
+                    <button class="filter-btn active" data-voice="all">Wszystkie</button>
+                    <!-- dynamicznie generowane -->
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Typ nagrania:</h3>
+                <div class="filter-buttons" id="type-filters">
+                    <button class="filter-btn active" data-type="all">Wszystkie</button>
+                    <button class="filter-btn" data-type="single">Pojedyncze głosy</button>
+                    <button class="filter-btn" data-type="mix">Miksy</button>
+                    <button class="filter-btn" data-type="unisono">Unisono</button>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3>Tagi:</h3>
+                <div class="filter-buttons" id="tag-filters">
+                    <!-- dynamicznie generowane -->
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="hide-unisono">
+                    <span>Ukryj jednogłosowe (unisono)</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Songs grid -->
+        <div class="songs-grid" id="songs-grid">
+            <!-- dynamicznie generowane -->
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <p>😔 Nie znaleziono nagrań pasujących do filtrów</p>
+        </div>
+    </main>
+
+    <!-- Global audio player -->
+    <div class="audio-player" id="audio-player">
+        <div class="player-info">
+            <span class="player-title" id="player-title">-</span>
+            <span class="player-track" id="player-track">-</span>
+        </div>
+        <div class="player-controls">
+            <button class="player-btn" id="player-prev" title="Poprzedni">⏮</button>
+            <button class="player-btn player-btn-main" id="player-play" title="Play/Pause">▶</button>
+            <button class="player-btn" id="player-next" title="Następny">⏭</button>
+        </div>
+        <div class="player-progress">
+            <span id="player-current-time">0:00</span>
+            <input type="range" id="player-seek" min="0" max="100" value="0">
+            <span id="player-duration">0:00</span>
+        </div>
+        <div class="player-volume">
+            <span>🔊</span>
+            <input type="range" id="player-volume" min="0" max="100" value="80">
+        </div>
+        <button class="player-close" id="player-close">✕</button>
+    </div>
+
+    <audio id="audio-element"></audio>
+
+    <script src="app.js"></script>
+</body>
+</html>

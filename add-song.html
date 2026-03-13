@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj utwór – Generator JSON</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0f0f13; color: #e8e8f0; padding: 24px; }
+        h1 { margin-bottom: 24px; color: #fff; }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; margin-bottom: 4px; color: #8888a0; font-size: 0.85rem; }
+        input, select, textarea {
+            width: 100%; padding: 10px; background: #1a1a24; border: 1px solid #2a2a3a;
+            border-radius: 8px; color: #e8e8f0; font-size: 0.9rem; font-family: inherit;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #6c5ce7; }
+        button {
+            padding: 10px 24px; background: #6c5ce7; color: #fff; border: none;
+            border-radius: 8px; cursor: pointer; font-size: 0.9rem; margin-right: 8px;
+            margin-top: 8px;
+        }
+        button:hover { background: #a29bfe; }
+        button.secondary { background: #2a2a3a; }
+        button.danger { background: #e74c3c; }
+        .tracks-container { margin: 16px 0; }
+        .track-entry {
+            background: #1a1a24; padding: 16px; border-radius: 8px;
+            margin-bottom: 12px; border: 1px solid #2a2a3a;
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+        }
+        .track-entry .full-width { grid-column: 1 / -1; }
+        .output {
+            margin-top: 24px; padding: 20px; background: #1a1a24;
+            border-radius: 8px; border: 1px solid #2a2a3a;
+        }
+        pre {
+            white-space: pre-wrap; word-break: break-all; font-size: 0.8rem;
+            color: #51cf66; max-height: 400px; overflow-y: auto;
+        }
+        .help { color: #8888a0; font-size: 0.8rem; margin-top: 4px; }
+        .copy-msg { color: #51cf66; font-size: 0.85rem; display: none; margin-left: 8px; }
+    </style>
+</head>
+<body>
+    <h1>🎵 Dodaj utwór</h1>
+    <p style="color: #8888a0; margin-bottom: 24px;">
+        Wypełnij formularz, skopiuj wygenerowany JSON i wklej do <code>songs.json</code>.
+    </p>
+
+    <div class="form-group">
+        <label>ID (slug, np. "gloria")</label>
+        <input type="text" id="song-id" placeholder="gloria-vivaldi">
+    </div>
+
+    <div class="form-group">
+        <label>Tytuł</label>
+        <input type="text" id="song-title" placeholder="Gloria in excelsis Deo">
+    </div>
+
+    <div class="form-group">
+        <label>Kompozytor</label>
+        <input type="text" id="song-composer" placeholder="Vivaldi">
+    </div>
+
+    <div class="form-group">
+        <label>Tagi (oddzielone przecinkami)</label>
+        <input type="text" id="song-tags" placeholder="liturgia, adwent, łaciński">
+    </div>
+
+    <div class="form-group">
+        <label>Folder audio (ścieżka bazowa / R2 URL)</label>
+        <input type="text" id="audio-base" placeholder="https://twoj-bucket.r2.dev/gloria">
+        <p class="help">Pliki będą jako: https://twoj-bucket.r2.dev/gloria/soprano.mp3</p>
+    </div>
+
+    <h2 style="margin: 24px 0 12px;">Ścieżki (tracks)</h2>
+    <div class="tracks-container" id="tracks-container">
+        <!-- dynamic -->
+    </div>
+
+    <button onclick="addTrack()">+ Dodaj ścieżkę</button>
+    <button class="secondary" onclick="addCommonTracks()">+ Dodaj SATB</button>
+
+    <div class="output">
+        <button onclick="generate()">Generuj JSON</button>
+        <button class="secondary" onclick="copyJson()">Kopiuj</button>
+        <span class="copy-msg" id="copy-msg">✓ Skopiowano!</span>
+        <pre id="json-output">// JSON pojawi się tutaj</pre>
+    </div>
+
+    <script>
+        let trackCount = 0;
+
+        function addTrack(voice = '', type = 'single', filename = '', label = '', description = '') {
+            trackCount++;
+            const html = `
+                <div class="track-entry" id="track-${trackCount}">
+                    <div>
+                        <label>Głos</label>
+                        <select class="track-voice">
+                            <option value="soprano" ${voice === 'soprano' ? 'selected' : ''}>Sopran</option>
+                            <option value="soprano1" ${voice === 'soprano1' ? 'selected' : ''}>Sopran 1</option>
+                            <option value="soprano2" ${voice === 'soprano2' ? 'selected' : ''}>Sopran 2</option>
+                            <option value="alto" ${voice === 'alto' ? 'selected' : ''}>Alt</option>
+                            <option value="alto1" ${voice === 'alto1' ? 'selected' : ''}>Alt 1</option>
+                            <option value="alto2" ${voice === 'alto2' ? 'selected' : ''}>Alt 2</option>
+                            <option value="tenor" ${voice === 'tenor' ? 'selected' : ''}>Tenor</option>
+                            <option value="tenor1" ${voice === 'tenor1' ? 'selected' : ''}>Tenor 1</option>
+                            <option value="tenor2" ${voice === 'tenor2' ? 'selected' : ''}>Tenor 2</option>
+                            <option value="bass" ${voice === 'bass' ? 'selected' : ''}>Bas</option>
+                            <option value="bass1" ${voice === 'bass1' ? 'selected' : ''}>Bas 1</option>
+                            <option value="bass2" ${voice === 'bass2' ? 'selected' : ''}>Bas 2</option>
+                            <option value="unisono" ${voice === 'unisono' ? 'selected' : ''}>Unisono</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Typ</label>
+                        <select class="track-type">
+                            <option value="single" ${type === 'single' ? 'selected' : ''}>Pojedynczy głos</option>
+                            <option value="mix" ${type === 'mix' ? 'selected' : ''}>Mix</option>
+                            <option value="unisono" ${type === 'unisono' ? 'selected' : ''}>Unisono</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Nazwa pliku</label>
+                        <input type="text" class="track-file" placeholder="soprano.mp3" value="${filename}">
+                    </div>
+                    <div>
+                        <label>Etykieta</label>
+                        <input type="text" class="track-label" placeholder="Sopran" value="${label}">
+                    </div>
+                    <div>
+                        <label>Opis (opcjonalny)</label>
+                        <input type="text" class="track-desc" placeholder="Bas 70% L, reszta 30% R" value="${description}">
+                    </div>
+                    <div style="display:flex;align-items:end;">
+                        <button class="danger" onclick="document.getElementById('track-${trackCount}').remove()">✕</button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('tracks-container').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addCommonTracks() {
+            addTrack('soprano', 'single', 'soprano.mp3', 'Sopran');
+            addTrack('alto', 'single', 'alto.mp3', 'Alt');
+            addTrack('tenor', 'single', 'tenor.mp3', 'Tenor');
+            addTrack('bass', 'single', 'bass.mp3', 'Bas');
+        }
+
+        function generate() {
+            const basePath = document.getElementById('audio-base').value.replace(/\/$/, '');
+            const entries = document.querySelectorAll('.track-entry');
+
+            const tracks = Array.from(entries).map(entry => {
+                const track = {
+                    label: entry.querySelector('.track-label').value,
+                    voice: entry.querySelector('.track-voice').value,
+                    type: entry.querySelector('.track-type').value,
+                    file: basePath + '/' + entry.querySelector('.track-file').value
+                };
+                const desc = entry.querySelector('.track-desc').value;
+                if (desc) track.description = desc;
+                return track;
+            });
+
+            const tags = document.getElementById('song-tags').value
+                .split(',').map(t => t.trim()).filter(Boolean);
+
+            const song = {
+                id: document.getElementById('song-id').value,
+                title: document.getElementById('song-title').value,
+                composer: document.getElementById('song-composer').value,
+                tags: tags,
+                tracks: tracks
+            };
+
+            document.getElementById('json-output').textContent = JSON.stringify(song, null, 2);
+        }
+
+        function copyJson() {
+            const text = document.getElementById('json-output').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const msg = document.getElementById('copy-msg');
+                msg.style.display = 'inline';
+                setTimeout(() => msg.style.display = 'none', 2000);
+            });
+        }
+
+        // Start with empty SATB
+        addCommonTracks();
+    </script>
+</body>
+</html>

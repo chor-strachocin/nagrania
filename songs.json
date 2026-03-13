@@ -1,0 +1,82 @@
+{
+  "songs": [
+    {
+      "id": "gloria",
+      "title": "Gloria in excelsis Deo",
+      "composer": "Vivaldi",
+      "tags": ["liturgia", "adwent", "łaciński"],
+      "tracks": [
+        {
+          "label": "Sopran",
+          "voice": "soprano",
+          "type": "single",
+          "file": "https://example.com/audio/gloria/soprano.mp3"
+        },
+        {
+          "label": "Alt",
+          "voice": "alto",
+          "type": "single",
+          "file": "https://example.com/audio/gloria/alto.mp3"
+        },
+        {
+          "label": "Tenor",
+          "voice": "tenor",
+          "type": "single",
+          "file": "https://example.com/audio/gloria/tenor.mp3"
+        },
+        {
+          "label": "Bas",
+          "voice": "bass",
+          "type": "single",
+          "file": "https://example.com/audio/gloria/bass.mp3"
+        },
+        {
+          "label": "Mix (Bas wyróżniony)",
+          "voice": "bass",
+          "type": "mix",
+          "description": "Bas 70% L, reszta 30% R",
+          "file": "https://example.com/audio/gloria/mix-bass.mp3"
+        },
+        {
+          "label": "Unisono",
+          "voice": "unisono",
+          "type": "unisono",
+          "file": "https://example.com/audio/gloria/unisono.mp3"
+        }
+      ]
+    },
+    {
+      "id": "ave-maria",
+      "title": "Ave Maria",
+      "composer": "Bach/Gounod",
+      "tags": ["maryjny", "koncert"],
+      "tracks": [
+        {
+          "label": "Sopran 1",
+          "voice": "soprano1",
+          "type": "single",
+          "file": "https://example.com/audio/ave-maria/soprano1.mp3"
+        },
+        {
+          "label": "Sopran 2",
+          "voice": "soprano2",
+          "type": "single",
+          "file": "https://example.com/audio/ave-maria/soprano2.mp3"
+        },
+        {
+          "label": "Alt",
+          "voice": "alto",
+          "type": "single",
+          "file": "https://example.com/audio/ave-maria/alto.mp3"
+        },
+        {
+          "label": "Mix (Sopran 1 wyróżniony)",
+          "voice": "soprano1",
+          "type": "mix",
+          "description": "S1 70% L, reszta 30% R",
+          "file": "https://example.com/audio/ave-maria/mix-soprano1.mp3"
+        }
+      ]
+    }
+  ]
+}

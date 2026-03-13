@@ -4,7 +4,7 @@
       "id": "ludu-moj-ludu-2025",
       "title": "Ludu mój, ludu",
       "composer": "Krzysztof Stępień",
-      "tags": ["pasyjne", "triduum"],
+      "tags": ["pasyjne", "triduum", "triduum 2026"],
       "tracks": [
 
         {
@@ -29,40 +29,35 @@
           "label": "Sopran (mix)",
           "voice": "soprano",
           "type": "mix",
-          "description": "Sopran 70% L, reszta 30% R",
           "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_1.mp3"
         },
 		{
           "label": "Alt (mix)",
           "voice": "alto",
           "type": "mix",
-          "description": "Alt 70% L, reszta 30% R",
           "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_3.mp3"
         },
 		{
           "label": "Tenor (mix)",
           "voice": "tenor",
           "type": "mix",
-          "description": "Tenor 70% L, reszta 30% R",
           "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_4.mp3"
         },	
 		{
           "label": "Bas (mix)",
           "voice": "bass",
           "type": "mix",
-          "description": "Bas 70% L, reszta 30% R",
           "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_5.mp3"
         }
       ]
     },
-	
 	{
 	  "id": "chwala-badz-ojcu-i-synowi",
 	  "title": "Chwała bądź Ojcu i Synowi",
 	  "composer": "Krzysztof Stępień",
 	  "tags": [
-		"Triduum 2026",
-		"Triduum"
+		"triduum 2026",
+		"triduum"
 	  ],
 	  "tracks": [
 		{
@@ -114,6 +109,95 @@
 		  "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi%20bas.mp3"
 		}
 	  ]
-	}
+	},
+	
+	{
+  "id": "oto-dzien-wesela-pelen",
+  "title": "Oto dzień wesela pełen",
+  "composer": "Henri Chalet",
+  "tags": [
+    "Triduum 2026",
+    "Wielkanoc"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran 1",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/s-1-oto-dzien-wesela-pelen.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/alt-oto-dzien-wesela-pelen.mp3"
+    },
+    {
+      "label": "Tenor 1",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-tenor-1.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/ oto-dzien-wesela-pelen-bas.mp3"
+    },
+    {
+      "label": "Sopran 2",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/s-2-oto-dzien-wesela-pelen.mp3"
+    },
+    {
+      "label": "Sopran 1",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/ Oto_dzien_wesela_pd_1.mp3"
+    },
+    {
+      "label": "Tenor 2",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-tenor-2.mp3"
+    },
+    {
+      "label": "Sopran 2",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/ Oto_dzien_wesela_pd_2.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_3.mp3"
+    },
+    {
+      "label": "Tenor 1",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_4.mp3"
+    },
+    {
+      "label": "Tenor 2",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_6.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_5.mp3"
+    }
+  ]
+}
+	
+	
+	
+	
+	
   ]
 }

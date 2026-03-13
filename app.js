@@ -53,6 +53,23 @@
         unisono: { emoji: '👥', label: 'Unisono', cssClass: 'unisono' }
     };
 
+    // Kolejność głosów do sortowania
+    const voiceOrder = {
+        soprano: 0,
+        soprano1: 1,
+        soprano2: 2,
+        alto: 10,
+        alto1: 11,
+        alto2: 12,
+        tenor: 20,
+        tenor1: 21,
+        tenor2: 22,
+        bass: 30,
+        bass1: 31,
+        bass2: 32,
+        unisono: 100
+    };
+
     function getVoiceInfo(voice) {
         return voiceConfig[voice] || { emoji: '🎵', label: voice, cssClass: 'mix' };
     }
@@ -65,6 +82,23 @@
     function getTrackEmoji(track) {
         if (track.type === 'mix') return '🎛️';
         return getVoiceInfo(track.voice).emoji;
+    }
+
+    // ==================== SORTING FUNCTION ====================
+    function compareTracks(a, b) {
+        // Grupa 0: single i unisono; Grupa 1: mix
+        const groupA = a.type === 'mix' ? 1 : 0;
+        const groupB = b.type === 'mix' ? 1 : 0;
+
+        if (groupA !== groupB) {
+            return groupA - groupB; // najpierw single/unisono, potem miksy
+        }
+
+        // W ramach grupy sortuj po głosie
+        const orderA = voiceOrder[a.voice] ?? 999;
+        const orderB = voiceOrder[b.voice] ?? 999;
+
+        return orderA - orderB;
     }
 
     // ==================== LOAD DATA ====================
@@ -83,7 +117,6 @@
 
     // ==================== BUILD DYNAMIC FILTERS ====================
     function buildFilters() {
-        // Collect all voices
         const voices = new Set();
         const tags = new Set();
 
@@ -92,7 +125,6 @@
             (song.tags || []).forEach(t => tags.add(t));
         });
 
-        // Voice filter buttons
         const sorted = Array.from(voices).sort((a, b) => {
             const order = ['soprano', 'soprano1', 'soprano2', 'alto', 'alto1', 'alto2', 'tenor', 'tenor1', 'tenor2', 'bass', 'bass1', 'bass2', 'unisono'];
             return (order.indexOf(a) === -1 ? 99 : order.indexOf(a)) - (order.indexOf(b) === -1 ? 99 : order.indexOf(b));
@@ -107,7 +139,6 @@
             dom.voiceFilters.appendChild(btn);
         });
 
-        // Tag filter buttons
         if (tags.size > 0) {
             const allTagBtn = document.createElement('button');
             allTagBtn.className = 'filter-btn active';
@@ -130,7 +161,6 @@
     // ==================== FILTERING LOGIC ====================
     function getFilteredSongs() {
         return songsData.map(song => {
-            // filter search
             if (currentFilters.search) {
                 const q = currentFilters.search.toLowerCase();
                 const match = song.title.toLowerCase().includes(q) ||
@@ -139,30 +169,28 @@
                 if (!match) return null;
             }
 
-            // filter tag
             if (currentFilters.tag && currentFilters.tag !== 'all') {
                 if (!(song.tags || []).includes(currentFilters.tag)) return null;
             }
 
-            // filter tracks
             let tracks = song.tracks.filter(track => {
-                // voice filter
                 if (currentFilters.voice !== 'all') {
                     if (track.voice !== currentFilters.voice) return false;
                 }
 
-                // type filter
                 if (currentFilters.type !== 'all') {
                     if (track.type !== currentFilters.type) return false;
                 }
 
-                // hide unisono
                 if (currentFilters.hideUnisono && track.type === 'unisono') {
                     return false;
                 }
 
                 return true;
             });
+
+            // SORTOWANIE TRACKÓW
+            tracks.sort(compareTracks);
 
             if (tracks.length === 0) return null;
 
@@ -174,7 +202,6 @@
     function render() {
         const filtered = getFilteredSongs();
 
-        // Build flat list for prev/next navigation
         playableTracksList = [];
         filtered.forEach(song => {
             song.tracks.forEach(track => {
@@ -249,7 +276,6 @@
         const track = song.tracks.find(t => t.file === file);
         if (!track) return;
 
-        // If same track, toggle pause
         if (currentTrack &&
             currentTrack.song.id === songId &&
             currentTrack.track.file === file) {
@@ -273,7 +299,7 @@
         dom.playerPlay.textContent = '⏸';
         dom.audioPlayer.classList.add('visible');
 
-        render(); // update playing state visuals
+        render();
     }
 
     function playPrevNext(direction) {
@@ -302,7 +328,6 @@
 
     // ==================== EVENT LISTENERS ====================
     function initEvents() {
-        // Search
         let searchTimeout;
         dom.search.addEventListener('input', () => {
             clearTimeout(searchTimeout);
@@ -312,7 +337,6 @@
             }, 200);
         });
 
-        // Voice filter clicks
         dom.voiceFilters.addEventListener('click', e => {
             const btn = e.target.closest('.filter-btn');
             if (!btn) return;
@@ -322,7 +346,6 @@
             render();
         });
 
-        // Type filter clicks
         dom.typeFilters.addEventListener('click', e => {
             const btn = e.target.closest('.filter-btn');
             if (!btn) return;
@@ -332,7 +355,6 @@
             render();
         });
 
-        // Tag filter clicks
         dom.tagFilters.addEventListener('click', e => {
             const btn = e.target.closest('.filter-btn');
             if (!btn) return;
@@ -342,13 +364,11 @@
             render();
         });
 
-        // Hide unisono
         dom.hideUnisono.addEventListener('change', () => {
             currentFilters.hideUnisono = dom.hideUnisono.checked;
             render();
         });
 
-        // Player controls
         dom.playerPlay.addEventListener('click', () => {
             if (dom.audioElement.paused) {
                 dom.audioElement.play();
@@ -370,20 +390,17 @@
             render();
         });
 
-        // Seek
         dom.playerSeek.addEventListener('input', () => {
             if (dom.audioElement.duration) {
                 dom.audioElement.currentTime = (dom.playerSeek.value / 100) * dom.audioElement.duration;
             }
         });
 
-        // Volume
         dom.playerVolume.addEventListener('input', () => {
             dom.audioElement.volume = dom.playerVolume.value / 100;
         });
         dom.audioElement.volume = 0.8;
 
-        // Audio element events
         dom.audioElement.addEventListener('timeupdate', () => {
             if (dom.audioElement.duration) {
                 const pct = (dom.audioElement.currentTime / dom.audioElement.duration) * 100;
@@ -396,9 +413,8 @@
             dom.playerDuration.textContent = formatTime(dom.audioElement.duration);
         });
 
-        dom.audioElement.addEventListener('ended', () => {
-            playPrevNext(1);
-        });
+        // ❌ USUNIĘTE: auto-next po zakończeniu
+        // dom.audioElement.addEventListener('ended', () => { playPrevNext(1); });
 
         dom.audioElement.addEventListener('play', () => {
             dom.playerPlay.textContent = '⏸';
@@ -409,7 +425,6 @@
             dom.playerPlay.textContent = '▶';
         });
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', e => {
             if (e.target.tagName === 'INPUT') return;
 
@@ -432,7 +447,6 @@
         });
     }
 
-    // ==================== EXPOSE & INIT ====================
     window.choirApp = { playTrack };
 
     initEvents();

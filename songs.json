@@ -538,7 +538,7 @@
       "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_4.mp3"
     },
     {
-      "label": "",
+      "label": "Sopran",
       "voice": "soprano",
       "type": "single",
       "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/163.%20Odszed%C5%82%20Pasterz%20od%20nas%20%E2%80%93%20Wielki%20Tydzie%C5%84.mp3"
@@ -580,6 +580,43 @@
       "voice": "bass",
       "type": "mix",
       "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_4.mp3"
+    }
+  ]
+},
+
+{
+  "id": "otrzyjcie-juz-lzy-placzacy",
+  "title": "Otrzyjcie juz łzy płaczący",
+  "composer": "Henryk Jan Botor",
+  "tags": [
+    "wielkanoc",
+    "wigilia paschalna",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_3.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_4.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_5.mp3"
     }
   ]
 }

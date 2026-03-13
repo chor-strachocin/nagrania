@@ -253,6 +253,236 @@
       "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_4.mp3"
     }
   ]
+},
+
+{
+  "id": "piesn-o-zmartwychwstaniu",
+  "title": "Pieśń o zmartwychwstaniu (Trzeciego dnia Chrystus Pan zmartwychpowstał)",
+  "composer": "Jakub Blycharz",
+  "tags": [
+    "wielkanoc",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-alt.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-bas.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_2.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_3.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_4.mp3"
+    }
+  ]
+},
+
+{
+  "id": "to-co-odkrywacie",
+  "title": "To, co odkrywacie w Chlebie",
+  "composer": "Jan Krutul",
+  "tags": [
+    "eucharystyczne",
+    "wielki piątek",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-sopran-.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-alt-.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-tenor-.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-bas.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_2.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_3.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_4.mp3"
+    }
+  ]
+},
+
+{
+  "id": "ile-razy-to-cialo-spozywamy",
+  "title": "Ile razy to Ciało spożywamy",
+  "composer": "Tomasz Kozubek",
+  "tags": [
+    "eucharystyczne",
+    "wielki czwartek",
+    "Triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-to-cialo-spozywamy-sopran.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-alt.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ tenor-ile-razy.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-bas.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_2.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_3.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_4.mp3"
+    }
+  ]
+},
+
+{
+  "id": "tak-bowiem-bog",
+  "title": "Tak bowiem Bóg",
+  "composer": "Piotr Pałka",
+  "tags": [
+    "wielki piątek",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-alt.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-bas.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-tenor.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_2.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_3.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_4.mp3"
+    }
+  ]
 }
 	
 	

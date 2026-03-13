@@ -87,12 +87,8 @@
     function normalizeTag(tag) {
         return tag
             .toLowerCase()
-            .replace(/[^a-z0-9ąćęłńóśźżàâäéèêëïîôùûüÿœæ]/gi, '') // tylko litery i cyfry
-            .toLowerCase(); // jeszcze raz dla pewności po polskich znakach
-    }
-
-    function getNormalizedTags(song) {
-        return (song.tags || []).map(t => normalizeTag(t));
+            .replace(/[^a-z0-9ąćęłńóśźżàâäéèêëïîôùûüÿœæ]/gi, '')
+            .toLowerCase();
     }
 
     // ==================== SORTING ====================
@@ -144,7 +140,7 @@
             const btn = document.createElement('button');
             btn.className = 'filter-btn';
             btn.dataset.voice = voice;
-            btn.textContent = `${info.emoji} ${info.label}`;
+            btn.textContent = `${info.emoji} \({info.label}`;
             dom.voiceFilters.appendChild(btn);
         });
 
@@ -180,7 +176,7 @@
 
             if (currentFilters.tag && currentFilters.tag !== 'all') {
                 const normalizedFilterTag = normalizeTag(currentFilters.tag);
-                const songNormalizedTags = getNormalizedTags(song);
+                const songNormalizedTags = (song.tags || []).map(t => normalizeTag(t));
                 if (!songNormalizedTags.includes(normalizedFilterTag)) return null;
             }
 
@@ -205,7 +201,10 @@
             if (tracks.length === 0) return null;
 
             return { ...song, tracks };
-        }).filter(Boolean);
+        }).filter(Boolean)
+
+        // ✅ SORTOWANIE UTWORÓW PO TYTULE
+        .sort((a, b) => a.title.localeCompare(b.title, 'pl', { sensitivity: 'base' }));
     }
 
     // ==================== RENDER ====================
@@ -236,22 +235,22 @@
                     currentTrack.track.file === track.file;
                 const playingClass = isPlaying ? 'playing' : '';
                 const typeBadge = track.type !== 'single'
-                    ? `<span class="track-type-badge ${track.type}">${track.type}</span>`
+                    ? `<span class="track-type-badge \){track.type}">\({track.type}</span>`
                     : '';
                 const description = track.description
-                    ? `<div class="track-description">${track.description}</div>`
+                    ? `<div class="track-description">\){track.description}</div>`
                     : '';
 
                 return `
-                    <div class="track-item ${playingClass}"
-                         data-song-id="${song.id}"
+                    <div class="track-item \({playingClass}"
+                         data-song-id="\){song.id}"
                          data-file="${track.file}"
-                         onclick="window.choirApp.playTrack('${song.id}', '${track.file}')">
-                        <div class="track-icon ${iconClass}">
-                            ${isPlaying ? '⏸' : emoji}
+                         onclick="window.choirApp.playTrack('${song.id}', '\({track.file}')">
+                        <div class="track-icon \){iconClass}">
+                            \({isPlaying ? '⏸' : emoji}
                         </div>
                         <div class="track-info">
-                            <div class="track-label">${track.label}</div>
+                            <div class="track-label">\){track.label}</div>
                             ${description}
                         </div>
                         ${typeBadge}
@@ -259,20 +258,19 @@
                 `;
             }).join('');
 
-            // Wyświetlaj znormalizowane tagi
             const tagsHtml = (song.tags || []).map(t =>
-                `<span class="tag">${normalizeTag(t)}</span>`
+                `<span class="tag">\({normalizeTag(t)}</span>`
             ).join('');
 
             return `
                 <div class="song-card">
                     <div class="song-header">
-                        <div class="song-title">${song.title}</div>
-                        ${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
-                        <div class="song-tags">${tagsHtml}</div>
+                        <div class="song-title">\){song.title}</div>
+                        \({song.composer ? `<div class="song-composer">\){song.composer}</div>` : ''}
+                        <div class="song-tags">\({tagsHtml}</div>
                     </div>
                     <div class="track-list">
-                        ${tracksHtml}
+                        \){tracksHtml}
                     </div>
                 </div>
             `;
@@ -315,7 +313,7 @@
 
     function playPrevNext(direction) {
         if (!currentTrack || playableTracksList.length === 0) return;
-
+$
         const idx = playableTracksList.findIndex(
             item => item.song.id === currentTrack.song.id &&
                 item.track.file === currentTrack.track.file
@@ -342,7 +340,7 @@
         let searchTimeout;
         dom.search.addEventListener('input', () => {
             clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
+ $           searchTimeout = setTimeout(() => {
                 currentFilters.search = dom.search.value.trim();
                 render();
             }, 200);

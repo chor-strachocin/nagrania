@@ -544,6 +544,44 @@
       "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/163.%20Odszed%C5%82%20Pasterz%20od%20nas%20%E2%80%93%20Wielki%20Tydzie%C5%84.mp3"
     }
   ]
+},
+
+{
+  "id": "widzialem-wode-z-glebi-chrystusowych-ran",
+  "title": "Widziałem wodę z głębi Chrystusowych ran",
+  "composer": "Yves Castagnet",
+  "tags": [
+    "aspersja",
+    "wielkanoc",
+    "wigilia paschalna",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_2.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_3.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_4.mp3"
+    }
+  ]
 }
 	
 	

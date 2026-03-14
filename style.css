@@ -25,7 +25,6 @@
     --player-bg: #1a1a28;
     --radius: 12px;
     --radius-sm: 8px;
-    --toolbar-height: 70px;
 }
 
 body {
@@ -94,19 +93,17 @@ header h1 {
 .toolbar-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 16px 20px;
+    padding: 12px 20px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: flex-start;
+    gap: 12px;
+    align-items: center;
 }
 
 /* Search */
 .search-bar {
     position: relative;
     flex: 1;
-    min-width: 200px;
-    max-width: 400px;
+    min-width: 0;
 }
 
 .search-bar input {
@@ -140,9 +137,9 @@ header h1 {
     pointer-events: none;
 }
 
-/* Hamburger button */
+/* Hamburger button - ALWAYS VISIBLE */
 .hamburger {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
@@ -153,11 +150,13 @@ header h1 {
     border-radius: var(--radius-sm);
     cursor: pointer;
     padding: 12px;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, background 0.2s;
+    flex-shrink: 0;
 }
 
 .hamburger:hover {
     border-color: var(--accent);
+    background: var(--bg-card-hover);
 }
 
 .hamburger span {
@@ -167,6 +166,11 @@ header h1 {
     background: var(--text);
     border-radius: 1px;
     transition: transform 0.2s, opacity 0.2s;
+}
+
+.hamburger.active {
+    background: var(--accent);
+    border-color: var(--accent);
 }
 
 .hamburger.active span:nth-child(1) {
@@ -181,22 +185,62 @@ header h1 {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Filters */
+/* Active filters count badge */
+.hamburger-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 20px;
+    height: 20px;
+    background: var(--accent);
+    color: var(--text-bright);
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+.hamburger-wrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Filters - ALWAYS in drawer/panel */
 .filters {
-    flex: 1;
-    min-width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    max-width: 90vw;
+    height: 100vh;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border);
+    padding: 0;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+}
+
+.filters.open {
+    transform: translateX(0);
 }
 
 .filters-header {
-    display: none;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 12px;
+    padding: 16px 20px;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 4px;
+    background: var(--bg-card);
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .filters-header span {
@@ -224,11 +268,18 @@ header h1 {
     background: var(--bg-card-hover);
 }
 
+.filters-content {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+}
+
 .filter-group {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .filter-group h3 {
@@ -237,23 +288,21 @@ header h1 {
     color: var(--text-dim);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-right: 4px;
-    white-space: nowrap;
 }
 
 .filter-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
 }
 
 .filter-btn {
-    padding: 6px 14px;
+    padding: 8px 16px;
     background: var(--bg-filter);
     border: 1px solid var(--border);
     border-radius: 20px;
     color: var(--text-dim);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-family: inherit;
     cursor: pointer;
     transition: all 0.2s;
@@ -282,15 +331,16 @@ header h1 {
 .checkbox-label {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     cursor: pointer;
-    color: var(--text-dim);
-    font-size: 0.85rem;
+    color: var(--text);
+    font-size: 0.9rem;
+    padding: 8px 0;
 }
 
 .checkbox-label input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     accent-color: var(--accent);
     cursor: pointer;
 }
@@ -298,14 +348,13 @@ header h1 {
 /* Active filters indicator */
 .active-filters {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
     background: rgba(108, 92, 231, 0.1);
     border: 1px solid var(--accent);
     border-radius: var(--radius-sm);
-    margin-top: 4px;
+    margin-top: auto;
 }
 
 .active-filters > span {
@@ -318,18 +367,18 @@ header h1 {
 .active-filters-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
 }
 
 .active-filter-tag {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 10px;
+    padding: 6px 12px;
     background: var(--accent);
     color: var(--text-bright);
-    border-radius: 14px;
-    font-size: 0.75rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
     font-weight: 500;
 }
 
@@ -338,10 +387,12 @@ header h1 {
     border: none;
     color: inherit;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1;
     opacity: 0.7;
     transition: opacity 0.15s;
+    padding: 0;
+    margin-left: 2px;
 }
 
 .active-filter-tag button:hover {
@@ -349,16 +400,16 @@ header h1 {
 }
 
 .clear-filters {
-    padding: 4px 12px;
+    padding: 10px 16px;
     background: transparent;
     border: 1px solid var(--accent);
-    border-radius: 14px;
+    border-radius: var(--radius-sm);
     color: var(--accent-light);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-family: inherit;
     cursor: pointer;
     transition: all 0.2s;
-    margin-left: auto;
+    text-align: center;
 }
 
 .clear-filters:hover {
@@ -372,79 +423,12 @@ header h1 {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
-    z-index: 99;
+    z-index: 150;
     backdrop-filter: blur(4px);
 }
 
 .filters-overlay.visible {
     display: block;
-}
-
-/* ==================== MOBILE STYLES ==================== */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-
-    .toolbar-inner {
-        flex-wrap: nowrap;
-        padding: 12px 16px;
-    }
-
-    .search-bar {
-        max-width: none;
-    }
-
-    .filters {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 85%;
-        max-width: 360px;
-        height: 100vh;
-        background: var(--bg-card);
-        border-left: 1px solid var(--border);
-        padding: 20px;
-        overflow-y: auto;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        z-index: 200;
-    }
-
-    .filters.open {
-        transform: translateX(0);
-    }
-
-    .filters-header {
-        display: flex;
-    }
-
-    .filter-group {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .filter-group:last-of-type {
-        border-bottom: none;
-    }
-
-    .filter-group h3 {
-        font-size: 0.7rem;
-        margin-bottom: 2px;
-    }
-
-    .active-filters {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .clear-filters {
-        margin-left: 0;
-        margin-top: 8px;
-    }
 }
 
 /* ==================== MAIN ==================== */
@@ -779,6 +763,10 @@ main {
         font-size: 1.5rem;
     }
 
+    .toolbar-inner {
+        padding: 10px 16px;
+    }
+
     main {
         padding: 20px 16px;
     }
@@ -818,12 +806,15 @@ main {
 }
 
 @media (max-width: 400px) {
-    .filter-buttons {
-        gap: 6px;
+    .songs-grid {
+        gap: 16px;
     }
 
-    .filter-btn {
-        padding: 5px 12px;
-        font-size: 0.8rem;
+    .song-header {
+        padding: 14px 16px 10px;
+    }
+
+    .track-list {
+        padding: 10px 12px;
     }
 }

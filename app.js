@@ -35,6 +35,7 @@
         playerVolume: document.getElementById('player-volume'),
         playerClose: document.getElementById('player-close'),
         hamburger: document.getElementById('hamburger'),
+        hamburgerBadge: document.getElementById('hamburger-badge'),
         filters: document.getElementById('filters'),
         filtersClose: document.getElementById('filters-close'),
         filtersOverlay: document.getElementById('filters-overlay'),
@@ -176,7 +177,7 @@
         });
     }
 
-    // ==================== MOBILE MENU ====================
+    // ==================== DRAWER ====================
     function openFiltersDrawer() {
         dom.filters.classList.add('open');
         dom.filtersOverlay.classList.add('visible');
@@ -191,7 +192,26 @@
         document.body.style.overflow = '';
     }
 
-    // ==================== ACTIVE FILTERS DISPLAY ====================
+    // ==================== ACTIVE FILTERS ====================
+    function countActiveFilters() {
+        let count = 0;
+        if (currentFilters.voice && currentFilters.voice !== 'all') count++;
+        if (currentFilters.type && currentFilters.type !== 'all') count++;
+        if (currentFilters.tag && currentFilters.tag !== 'all') count++;
+        if (currentFilters.hideUnisono) count++;
+        return count;
+    }
+
+    function updateHamburgerBadge() {
+        const count = countActiveFilters();
+        if (count > 0) {
+            dom.hamburgerBadge.textContent = count;
+            dom.hamburgerBadge.style.display = 'flex';
+        } else {
+            dom.hamburgerBadge.style.display = 'none';
+        }
+    }
+
     function updateActiveFiltersDisplay() {
         const activeFilters = [];
 
@@ -212,6 +232,8 @@
         if (currentFilters.hideUnisono) {
             activeFilters.push({ type: 'hideUnisono', label: 'Ukryte unisono', value: true });
         }
+
+        updateHamburgerBadge();
 
         if (activeFilters.length === 0) {
             dom.activeFilters.style.display = 'none';
@@ -541,13 +563,13 @@
             updateUrl();
             updateActiveFiltersDisplay();
             render();
-            closeFiltersDrawer();
         });
 
         // Click on tag in song card
         dom.songsGrid.addEventListener('click', e => {
             const tag = e.target.closest('.tag');
             if (!tag) return;
+            e.stopPropagation();
             const tagValue = tag.dataset.tag;
             if (tagValue) {
                 currentFilters.tag = tagValue;

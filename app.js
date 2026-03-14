@@ -33,7 +33,14 @@
         playerCurrentTime: document.getElementById('player-current-time'),
         playerDuration: document.getElementById('player-duration'),
         playerVolume: document.getElementById('player-volume'),
-        playerClose: document.getElementById('player-close')
+        playerClose: document.getElementById('player-close'),
+        hamburger: document.getElementById('hamburger'),
+        filters: document.getElementById('filters'),
+        filtersClose: document.getElementById('filters-close'),
+        filtersOverlay: document.getElementById('filters-overlay'),
+        activeFilters: document.getElementById('active-filters'),
+        activeFiltersList: document.getElementById('active-filters-list'),
+        clearFilters: document.getElementById('clear-filters')
     };
 
     // ==================== VOICE CONFIG ====================
@@ -54,18 +61,10 @@
     };
 
     const voiceOrder = {
-        soprano: 0,
-        soprano1: 1,
-        soprano2: 2,
-        alto: 10,
-        alto1: 11,
-        alto2: 12,
-        tenor: 20,
-        tenor1: 21,
-        tenor2: 22,
-        bass: 30,
-        bass1: 31,
-        bass2: 32,
+        soprano: 0, soprano1: 1, soprano2: 2,
+        alto: 10, alto1: 11, alto2: 12,
+        tenor: 20, tenor1: 21, tenor2: 22,
+        bass: 30, bass1: 31, bass2: 32,
         unisono: 100
     };
 
@@ -99,19 +98,176 @@
     function compareTracks(a, b) {
         const groupA = a.type === 'mix' ? 1 : 0;
         const groupB = b.type === 'mix' ? 1 : 0;
-
-        if (groupA !== groupB) {
-            return groupA - groupB;
-        }
-
+        if (groupA !== groupB) return groupA - groupB;
         const orderA = voiceOrder[a.voice] ?? 999;
         const orderB = voiceOrder[b.voice] ?? 999;
-
         return orderA - orderB;
     }
 
     function compareSongs(a, b) {
         return a.title.localeCompare(b.title, 'pl', { sensitivity: 'base' });
+    }
+
+    // ==================== URL PARAMS ====================
+    function getUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            tag: params.get('tag'),
+            voice: params.get('voice'),
+            type: params.get('type'),
+            search: params.get('search') || params.get('q')
+        };
+    }
+
+    function updateUrl() {
+        const params = new URLSearchParams();
+
+        if (currentFilters.tag && currentFilters.tag !== 'all') {
+            params.set('tag', currentFilters.tag);
+        }
+        if (currentFilters.voice && currentFilters.voice !== 'all') {
+            params.set('voice', currentFilters.voice);
+        }
+        if (currentFilters.type && currentFilters.type !== 'all') {
+            params.set('type', currentFilters.type);
+        }
+        if (currentFilters.search) {
+            params.set('q', currentFilters.search);
+        }
+
+        const newUrl = params.toString()
+            ? `${window.location.pathname}?${params.toString()}`
+            : window.location.pathname;
+
+        window.history.replaceState({}, '', newUrl);
+    }
+
+    function applyUrlParams() {
+        const params = getUrlParams();
+
+        if (params.tag) {
+            const normalizedTag = normalizeTag(params.tag);
+            currentFilters.tag = normalizedTag;
+            setActiveFilterButton(dom.tagFilters, 'tag', normalizedTag);
+        }
+
+        if (params.voice) {
+            currentFilters.voice = params.voice;
+            setActiveFilterButton(dom.voiceFilters, 'voice', params.voice);
+        }
+
+        if (params.type) {
+            currentFilters.type = params.type;
+            setActiveFilterButton(dom.typeFilters, 'type', params.type);
+        }
+
+        if (params.search) {
+            currentFilters.search = params.search;
+            dom.search.value = params.search;
+        }
+    }
+
+    function setActiveFilterButton(container, dataAttr, value) {
+        container.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset[dataAttr] === value) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    // ==================== MOBILE MENU ====================
+    function openFiltersDrawer() {
+        dom.filters.classList.add('open');
+        dom.filtersOverlay.classList.add('visible');
+        dom.hamburger.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeFiltersDrawer() {
+        dom.filters.classList.remove('open');
+        dom.filtersOverlay.classList.remove('visible');
+        dom.hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // ==================== ACTIVE FILTERS DISPLAY ====================
+    function updateActiveFiltersDisplay() {
+        const activeFilters = [];
+
+        if (currentFilters.voice && currentFilters.voice !== 'all') {
+            const info = getVoiceInfo(currentFilters.voice);
+            activeFilters.push({ type: 'voice', label: `Głos: ${info.label}`, value: currentFilters.voice });
+        }
+
+        if (currentFilters.type && currentFilters.type !== 'all') {
+            const labels = { single: 'Pojedyncze', mix: 'Miksy', unisono: 'Unisono' };
+            activeFilters.push({ type: 'type', label: `Typ: ${labels[currentFilters.type] || currentFilters.type}`, value: currentFilters.type });
+        }
+
+        if (currentFilters.tag && currentFilters.tag !== 'all') {
+            activeFilters.push({ type: 'tag', label: `Tag: ${currentFilters.tag}`, value: currentFilters.tag });
+        }
+
+        if (currentFilters.hideUnisono) {
+            activeFilters.push({ type: 'hideUnisono', label: 'Ukryte unisono', value: true });
+        }
+
+        if (activeFilters.length === 0) {
+            dom.activeFilters.style.display = 'none';
+            return;
+        }
+
+        dom.activeFilters.style.display = 'flex';
+        dom.activeFiltersList.innerHTML = activeFilters.map(f => `
+            <span class="active-filter-tag">
+                ${f.label}
+                <button data-filter-type="${f.type}" aria-label="Usuń filtr">✕</button>
+            </span>
+        `).join('');
+    }
+
+    function clearSingleFilter(filterType) {
+        switch (filterType) {
+            case 'voice':
+                currentFilters.voice = 'all';
+                setActiveFilterButton(dom.voiceFilters, 'voice', 'all');
+                break;
+            case 'type':
+                currentFilters.type = 'all';
+                setActiveFilterButton(dom.typeFilters, 'type', 'all');
+                break;
+            case 'tag':
+                currentFilters.tag = 'all';
+                setActiveFilterButton(dom.tagFilters, 'tag', 'all');
+                break;
+            case 'hideUnisono':
+                currentFilters.hideUnisono = false;
+                dom.hideUnisono.checked = false;
+                break;
+        }
+        updateUrl();
+        updateActiveFiltersDisplay();
+        render();
+    }
+
+    function clearAllFilters() {
+        currentFilters.voice = 'all';
+        currentFilters.type = 'all';
+        currentFilters.tag = 'all';
+        currentFilters.hideUnisono = false;
+        currentFilters.search = '';
+
+        dom.search.value = '';
+        dom.hideUnisono.checked = false;
+
+        setActiveFilterButton(dom.voiceFilters, 'voice', 'all');
+        setActiveFilterButton(dom.typeFilters, 'type', 'all');
+        setActiveFilterButton(dom.tagFilters, 'tag', 'all');
+
+        updateUrl();
+        updateActiveFiltersDisplay();
+        render();
     }
 
     // ==================== LOAD DATA ====================
@@ -121,6 +277,8 @@
             const data = await resp.json();
             songsData = data.songs || [];
             buildFilters();
+            applyUrlParams();
+            updateActiveFiltersDisplay();
             render();
         } catch (e) {
             console.error('Błąd ładowania songs.json:', e);
@@ -192,28 +350,21 @@
                 if (currentFilters.voice !== 'all') {
                     if (track.voice !== currentFilters.voice) return false;
                 }
-
                 if (currentFilters.type !== 'all') {
                     if (track.type !== currentFilters.type) return false;
                 }
-
                 if (currentFilters.hideUnisono && track.type === 'unisono') {
                     return false;
                 }
-
                 return true;
             });
 
             tracks.sort(compareTracks);
-
             if (tracks.length === 0) return null;
-
             return { ...song, tracks };
         }).filter(Boolean);
 
-        // Sortowanie utworów alfabetycznie po tytule
         filtered.sort(compareSongs);
-
         return filtered;
     }
 
@@ -268,9 +419,10 @@
                 `;
             }).join('');
 
-            const tagsHtml = (song.tags || []).map(t =>
-                `<span class="tag">${normalizeTag(t)}</span>`
-            ).join('');
+            const tagsHtml = (song.tags || []).map(t => {
+                const normalized = normalizeTag(t);
+                return `<span class="tag" data-tag="${normalized}">${normalized}</span>`;
+            }).join('');
 
             return `
                 <div class="song-card">
@@ -309,15 +461,12 @@
         }
 
         currentTrack = { song, track };
-
         dom.audioElement.src = file;
         dom.audioElement.play().catch(() => { });
-
         dom.playerTitle.textContent = song.title;
         dom.playerTrack.textContent = track.label + (track.description ? ` (${track.description})` : '');
         dom.playerPlay.textContent = '⏸';
         dom.audioPlayer.classList.add('visible');
-
         render();
     }
 
@@ -347,47 +496,101 @@
 
     // ==================== EVENT LISTENERS ====================
     function initEvents() {
+        // Search
         let searchTimeout;
         dom.search.addEventListener('input', () => {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
                 currentFilters.search = dom.search.value.trim();
+                updateUrl();
                 render();
             }, 200);
         });
 
+        // Voice filter
         dom.voiceFilters.addEventListener('click', e => {
             const btn = e.target.closest('.filter-btn');
             if (!btn) return;
             dom.voiceFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentFilters.voice = btn.dataset.voice;
+            updateUrl();
+            updateActiveFiltersDisplay();
             render();
         });
 
+        // Type filter
         dom.typeFilters.addEventListener('click', e => {
             const btn = e.target.closest('.filter-btn');
             if (!btn) return;
             dom.typeFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentFilters.type = btn.dataset.type;
+            updateUrl();
+            updateActiveFiltersDisplay();
             render();
         });
 
+        // Tag filter
         dom.tagFilters.addEventListener('click', e => {
             const btn = e.target.closest('.filter-btn');
             if (!btn) return;
             dom.tagFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentFilters.tag = btn.dataset.tag;
+            updateUrl();
+            updateActiveFiltersDisplay();
             render();
+            closeFiltersDrawer();
         });
 
+        // Click on tag in song card
+        dom.songsGrid.addEventListener('click', e => {
+            const tag = e.target.closest('.tag');
+            if (!tag) return;
+            const tagValue = tag.dataset.tag;
+            if (tagValue) {
+                currentFilters.tag = tagValue;
+                setActiveFilterButton(dom.tagFilters, 'tag', tagValue);
+                updateUrl();
+                updateActiveFiltersDisplay();
+                render();
+            }
+        });
+
+        // Hide unisono
         dom.hideUnisono.addEventListener('change', () => {
             currentFilters.hideUnisono = dom.hideUnisono.checked;
+            updateActiveFiltersDisplay();
             render();
         });
 
+        // Hamburger menu
+        dom.hamburger.addEventListener('click', () => {
+            if (dom.filters.classList.contains('open')) {
+                closeFiltersDrawer();
+            } else {
+                openFiltersDrawer();
+            }
+        });
+
+        dom.filtersClose.addEventListener('click', closeFiltersDrawer);
+        dom.filtersOverlay.addEventListener('click', closeFiltersDrawer);
+
+        // Active filters - remove single
+        dom.activeFiltersList.addEventListener('click', e => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            const filterType = btn.dataset.filterType;
+            if (filterType) {
+                clearSingleFilter(filterType);
+            }
+        });
+
+        // Clear all filters
+        dom.clearFilters.addEventListener('click', clearAllFilters);
+
+        // Player controls
         dom.playerPlay.addEventListener('click', () => {
             if (dom.audioElement.paused) {
                 dom.audioElement.play();
@@ -441,6 +644,7 @@
             dom.playerPlay.textContent = '▶';
         });
 
+        // Keyboard shortcuts
         document.addEventListener('keydown', e => {
             if (e.target.tagName === 'INPUT') return;
 
@@ -459,7 +663,17 @@
                         dom.audioElement.currentTime = Math.min(dom.audioElement.duration, dom.audioElement.currentTime + 5);
                     }
                     break;
+                case 'Escape':
+                    closeFiltersDrawer();
+                    break;
             }
+        });
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', () => {
+            applyUrlParams();
+            updateActiveFiltersDisplay();
+            render();
         });
     }
 

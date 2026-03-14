@@ -16,51 +16,75 @@
         </div>
     </header>
 
+    <!-- Sticky toolbar -->
+    <div class="toolbar" id="toolbar">
+        <div class="toolbar-inner">
+            <!-- Search -->
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="Szukaj utworu, kompozytora...">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <!-- Hamburger button (mobile) -->
+            <button class="hamburger" id="hamburger" aria-label="Otwórz filtry">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Filters (desktop: visible, mobile: hidden in drawer) -->
+            <div class="filters" id="filters">
+                <div class="filters-header">
+                    <span>Filtry</span>
+                    <button class="filters-close" id="filters-close" aria-label="Zamknij filtry">✕</button>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Głos:</h3>
+                    <div class="filter-buttons" id="voice-filters">
+                        <button class="filter-btn active" data-voice="all">Wszystkie</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Typ nagrania:</h3>
+                    <div class="filter-buttons" id="type-filters">
+                        <button class="filter-btn active" data-type="all">Wszystkie</button>
+                        <button class="filter-btn" data-type="single">Pojedyncze głosy</button>
+                        <button class="filter-btn" data-type="mix">Miksy</button>
+                        <button class="filter-btn" data-type="unisono">Unisono</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Tagi:</h3>
+                    <div class="filter-buttons" id="tag-filters">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="hide-unisono">
+                        <span>Ukryj jednogłosowe (unisono)</span>
+                    </label>
+                </div>
+
+                <!-- Active filters indicator -->
+                <div class="active-filters" id="active-filters" style="display: none;">
+                    <span>Aktywne filtry:</span>
+                    <div class="active-filters-list" id="active-filters-list"></div>
+                    <button class="clear-filters" id="clear-filters">Wyczyść wszystkie</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay for mobile drawer -->
+    <div class="filters-overlay" id="filters-overlay"></div>
+
     <main>
-        <!-- Search -->
-        <div class="search-bar">
-            <input type="text" id="search" placeholder="Szukaj utworu, kompozytora...">
-            <span class="search-icon">🔍</span>
-        </div>
-
-        <!-- Filters -->
-        <div class="filters">
-            <div class="filter-group">
-                <h3>Głos:</h3>
-                <div class="filter-buttons" id="voice-filters">
-                    <button class="filter-btn active" data-voice="all">Wszystkie</button>
-                    <!-- dynamicznie generowane -->
-                </div>
-            </div>
-
-            <div class="filter-group">
-                <h3>Typ nagrania:</h3>
-                <div class="filter-buttons" id="type-filters">
-                    <button class="filter-btn active" data-type="all">Wszystkie</button>
-                    <button class="filter-btn" data-type="single">Pojedyncze głosy</button>
-                    <button class="filter-btn" data-type="mix">Miksy</button>
-                    <button class="filter-btn" data-type="unisono">Unisono</button>
-                </div>
-            </div>
-
-            <div class="filter-group">
-                <h3>Tagi:</h3>
-                <div class="filter-buttons" id="tag-filters">
-                    <!-- dynamicznie generowane -->
-                </div>
-            </div>
-
-            <div class="filter-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="hide-unisono">
-                    <span>Ukryj jednogłosowe (unisono)</span>
-                </label>
-            </div>
-        </div>
-
         <!-- Songs grid -->
         <div class="songs-grid" id="songs-grid">
-            <!-- dynamicznie generowane -->
         </div>
 
         <!-- Empty state -->

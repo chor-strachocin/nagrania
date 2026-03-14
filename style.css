@@ -25,6 +25,7 @@
     --player-bg: #1a1a28;
     --radius: 12px;
     --radius-sm: 8px;
+    --toolbar-height: 70px;
 }
 
 body {
@@ -79,27 +80,43 @@ header h1 {
     font-weight: 300;
 }
 
-/* Main */
-main {
+/* ==================== TOOLBAR (Sticky) ==================== */
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.toolbar-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 24px 20px;
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-start;
 }
 
 /* Search */
 .search-bar {
     position: relative;
-    margin-bottom: 24px;
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
 }
 
 .search-bar input {
     width: 100%;
-    padding: 14px 20px 14px 48px;
-    background: var(--bg-card);
+    padding: 12px 16px 12px 44px;
+    background: var(--bg-filter);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     color: var(--text);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-family: inherit;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -116,52 +133,127 @@ main {
 
 .search-icon {
     position: absolute;
-    left: 16px;
+    left: 14px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.1rem;
+    font-size: 1rem;
     pointer-events: none;
+}
+
+/* Hamburger button */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    padding: 12px;
+    transition: border-color 0.2s;
+}
+
+.hamburger:hover {
+    border-color: var(--accent);
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: 1px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Filters */
 .filters {
-    background: var(--bg-card);
+    flex: 1;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.filters-header {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+}
+
+.filters-header span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-bright);
+}
+
+.filters-close {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-filter);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-bottom: 32px;
+    border-radius: 50%;
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.filters-close:hover {
+    background: var(--bg-card-hover);
 }
 
 .filter-group {
-    margin-bottom: 16px;
-}
-
-.filter-group:last-child {
-    margin-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
 }
 
 .filter-group h3 {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-dim);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 10px;
+    margin-right: 4px;
+    white-space: nowrap;
 }
 
 .filter-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
 }
 
 .filter-btn {
-    padding: 6px 16px;
+    padding: 6px 14px;
     background: var(--bg-filter);
     border: 1px solid var(--border);
     border-radius: 20px;
     color: var(--text-dim);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-family: inherit;
     cursor: pointer;
     transition: all 0.2s;
@@ -193,7 +285,7 @@ main {
     gap: 8px;
     cursor: pointer;
     color: var(--text-dim);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -201,6 +293,165 @@ main {
     height: 18px;
     accent-color: var(--accent);
     cursor: pointer;
+}
+
+/* Active filters indicator */
+.active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(108, 92, 231, 0.1);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    margin-top: 4px;
+}
+
+.active-filters > span {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.active-filters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.active-filter-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: var(--accent);
+    color: var(--text-bright);
+    border-radius: 14px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.active-filter-tag button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+}
+
+.active-filter-tag button:hover {
+    opacity: 1;
+}
+
+.clear-filters {
+    padding: 4px 12px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    border-radius: 14px;
+    color: var(--accent-light);
+    font-size: 0.75rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: auto;
+}
+
+.clear-filters:hover {
+    background: var(--accent);
+    color: var(--text-bright);
+}
+
+/* Overlay */
+.filters-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+    backdrop-filter: blur(4px);
+}
+
+.filters-overlay.visible {
+    display: block;
+}
+
+/* ==================== MOBILE STYLES ==================== */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .toolbar-inner {
+        flex-wrap: nowrap;
+        padding: 12px 16px;
+    }
+
+    .search-bar {
+        max-width: none;
+    }
+
+    .filters {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 85%;
+        max-width: 360px;
+        height: 100vh;
+        background: var(--bg-card);
+        border-left: 1px solid var(--border);
+        padding: 20px;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 200;
+    }
+
+    .filters.open {
+        transform: translateX(0);
+    }
+
+    .filters-header {
+        display: flex;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .filter-group:last-of-type {
+        border-bottom: none;
+    }
+
+    .filter-group h3 {
+        font-size: 0.7rem;
+        margin-bottom: 2px;
+    }
+
+    .active-filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .clear-filters {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+}
+
+/* ==================== MAIN ==================== */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px;
 }
 
 /* Songs Grid */
@@ -256,6 +507,13 @@ main {
     color: var(--text-dim);
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.tag:hover {
+    background: var(--accent);
+    color: var(--text-bright);
 }
 
 /* Track list inside song card */
@@ -519,6 +777,10 @@ main {
 
     header h1 {
         font-size: 1.5rem;
+    }
+
+    main {
+        padding: 20px 16px;
     }
 
     .songs-grid {

@@ -4,7 +4,7 @@
       "id": "ludu-moj-ludu-2025",
       "title": "Ludu mój, ludu",
       "composer": "Krzysztof Stępień",
-      "tags": ["pasyjne", "triduum", "triduum 2026"],
+      "tags": ["pasyjne", "triduum", "triduum 2026", "wielki piątek"],
       "tracks": [
 
         {
@@ -57,7 +57,7 @@
 	  "composer": "Krzysztof Stępień",
 	  "tags": [
 		"triduum 2026",
-		"triduum"
+		"triduum", "wigilia paschalna"
 	  ],
 	  "tracks": [
 		{
@@ -117,7 +117,7 @@
   "composer": "Henri Chalet",
   "tags": [
     "triduum 2026",
-    "wielkanoc"
+    "wielkanoc", "wigilia paschalna"
   ],
   "tracks": [
     {
@@ -201,7 +201,7 @@
   "composer": "Krzysztof Stępień",
   "tags": [
     "triduum 2026",
-    "wielkanoc"
+    "wielkanoc", "wigilia paschalna"
   ],
   "tracks": [
     {
@@ -261,7 +261,7 @@
   "composer": "Jakub Blycharz",
   "tags": [
     "wielkanoc",
-    "triduum 2026"
+    "triduum 2026", "wigilia paschalna"
   ],
   "tracks": [
     {
@@ -617,6 +617,161 @@
       "voice": "bass",
       "type": "mix",
       "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_5.mp3"
+    }
+  ]
+},
+
+{
+  "id": "chwala-nasza-jest-krzyz",
+  "title": "Chwałą naszą jest Krzyż",
+  "composer": "Leon Pęcherek / Krzysztof Stępień",
+  "tags": [
+    "wielki czwartek",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/sopran-chwala-nasza-jest-krzyz.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/alt-chwala-nasza-jest-krzyz.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/tenor-chwala-nasza-jest-krzyz.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/bas-chwala-nasza-jest-krzyz.mp3"
+    }
+  ]
+},
+
+{
+  "id": "kyrie-xi",
+  "title": "Kyrie XI \"Orbis Factor\"",
+  "composer": "Krzysztof Stępień",
+  "tags": [
+    "wielki czwartek",
+    "triduum 2026",
+    "części stałe"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/kyrie-xi-sopran.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/kyrie-xi-alt.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/kyrie-xi-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/kyrie-xi-bas.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/mix-kyrie-xi-sopran.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/mix-kyrie-xi-alt.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/mix-kyrie-xi-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/mix-kyrie-xi-bas.mp3"
+    }
+  ]
+},
+
+{
+  "id": "chwala-tobie-krolo-wiekow-kozubek",
+  "title": "Chwała Tobie, Królu wieków",
+  "composer": "Tomasz Kozubek",
+  "tags": [
+    "wielki czwartek",
+    "wielki piątek",
+    "wielki post",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/sopran-chwala-tobie-krolu-wiekow-.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/alt-chwala-tobie-krolu-wiekow.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/tenor-chwala-tobie-krolu-wiekow.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/bas-chwala-tobie-krolu-wiekow.mp3"
+    }
+  ]
+},
+
+{
+  "id": "sanctus-xii",
+  "title": "Sanctus XII",
+  "composer": "chorał grogoriański",
+  "tags": [
+    "części stałe",
+    "Triduum 2026",
+    "wielki czwartek",
+    "wigilia paschalna"
+  ],
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Sanctus%20XII/sanctus-xii.mp3"
     }
   ]
 }

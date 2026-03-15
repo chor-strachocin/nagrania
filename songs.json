@@ -1043,6 +1043,17 @@
     "eucharystyczne",
     "Triduum 2026"
   ],
+  "sheets": {
+	  "pages": [
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-1.png",
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-2.png"
+	  ],
+	  "mobilePages": [
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-mobile-1.png",
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-mobile-2.png",
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-mobile-3.png"
+	  ]
+  },	
   "tracks": [
     {
       "label": "Sopran",

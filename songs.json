@@ -119,6 +119,14 @@
     "triduum 2026",
     "wielkanoc", "wigilia paschalna"
   ],
+  "sheets": {
+	  "pages": [
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/oto-dzien-wesela-pelen-0.jpg",
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/oto-dzien-wesela-pelen-1.jpg",
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/oto-dzien-wesela-pelen-2.jpg"
+	  ]
+  },
+
   "tracks": [
     {
       "label": "Sopran 1",
@@ -629,6 +637,11 @@
     "wielki czwartek",
     "triduum 2026"
   ],
+  "sheets": {
+	  "pages": [
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/chwala-nasza-jest-krzyz.jpg"
+	  ]
+  },
   "tracks": [
     {
       "label": "Sopran",
@@ -728,6 +741,11 @@
     "wielki post",
     "triduum 2026"
   ],
+  "sheets": {
+	  "pages": [
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/chwala-tobie-krolu-wiekow-tkk.jpg"
+	  ]
+  },
   "tracks": [
     {
       "label": "Sopran",

@@ -8,6 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0f0f13; color: #e8e8f0; padding: 24px; }
         h1 { margin-bottom: 24px; color: #fff; }
+        h2 { margin: 24px 0 12px; color: #a29bfe; font-size: 1.2rem; }
         .form-group { margin-bottom: 16px; }
         label { display: block; margin-bottom: 4px; color: #8888a0; font-size: 0.85rem; }
         input, select, textarea {
@@ -30,6 +31,19 @@
             display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
         }
         .track-entry .full-width { grid-column: 1 / -1; }
+        .sheets-section {
+            background: #1a1a24; padding: 16px; border-radius: 8px;
+            margin: 16px 0; border: 1px solid #2a2a3a;
+        }
+        .sheet-pages-list {
+            display: flex; flex-direction: column; gap: 8px; margin-top: 12px;
+        }
+        .sheet-page-entry {
+            display: flex; gap: 8px; align-items: center;
+        }
+        .sheet-page-entry input {
+            flex: 1;
+        }
         .output {
             margin-top: 24px; padding: 20px; background: #1a1a24;
             border-radius: 8px; border: 1px solid #2a2a3a;
@@ -40,6 +54,15 @@
         }
         .help { color: #8888a0; font-size: 0.8rem; margin-top: 4px; }
         .copy-msg { color: #51cf66; font-size: 0.85rem; display: none; margin-left: 8px; }
+        .info-box {
+            background: rgba(108, 92, 231, 0.1);
+            border: 1px solid #6c5ce7;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            color: #a29bfe;
+        }
     </style>
 </head>
 <body>
@@ -70,17 +93,52 @@
 
     <div class="form-group">
         <label>Folder audio (ścieżka bazowa / R2 URL)</label>
-        <input type="text" id="audio-base" placeholder="https://twoj-bucket.r2.dev/gloria">
-        <p class="help">Pliki będą jako: https://twoj-bucket.r2.dev/gloria/soprano.mp3</p>
+        <input type="text" id="audio-base" placeholder="https://pub-xxx.r2.dev/gloria">
+        <p class="help">Pliki będą jako: https://pub-xxx.r2.dev/gloria/soprano.mp3</p>
     </div>
 
-    <h2 style="margin: 24px 0 12px;">Ścieżki (tracks)</h2>
+    <h2>Ścieżki audio (tracks)</h2>
     <div class="tracks-container" id="tracks-container">
         <!-- dynamic -->
     </div>
 
     <button onclick="addTrack()">+ Dodaj ścieżkę</button>
     <button class="secondary" onclick="addCommonTracks()">+ Dodaj SATB</button>
+
+    <h2>Nuty (opcjonalnie)</h2>
+    <div class="sheets-section">
+        <div class="info-box">
+            ℹ️ Wszystkie nuty przechowuj w folderze <strong>Nuty/</strong> w R2.<br>
+            Przykład: <code>https://pub-xxx.r2.dev/Nuty/gloria-1.jpg</code>
+        </div>
+
+        <div class="form-group">
+            <label>
+                <input type="checkbox" id="has-sheets" onchange="toggleSheetsInputs()">
+                Ten utwór ma nuty
+            </label>
+        </div>
+
+        <div id="sheets-inputs" style="display: none;">
+            <div class="form-group">
+                <label>Nazwa bazowa (np. "gloria")</label>
+                <input type="text" id="sheets-basename" placeholder="gloria">
+                <p class="help">Pliki powinny nazywać się: gloria-1.jpg, gloria-2.jpg, gloria-3.jpg...</p>
+            </div>
+
+            <div class="form-group">
+                <label>Liczba stron</label>
+                <input type="number" id="sheets-count" placeholder="3" min="1" value="1" onchange="generateSheetPages()">
+            </div>
+
+            <p style="color: #8888a0; font-size: 0.85rem; margin-bottom: 8px;">Wygenerowane linki (możesz edytować):</p>
+            <div class="sheet-pages-list" id="sheet-pages-list">
+                <!-- dynamic -->
+            </div>
+
+            <button class="secondary" onclick="generateSheetPages()">🔄 Regeneruj linki</button>
+        </div>
+    </div>
 
     <div class="output">
         <button onclick="generate()">Generuj JSON</button>
@@ -92,6 +150,7 @@
     <script>
         let trackCount = 0;
 
+        // ==================== TRACKS ====================
         function addTrack(voice = '', type = 'single', filename = '', label = '', description = '') {
             trackCount++;
             const html = `
@@ -149,6 +208,35 @@
             addTrack('bass', 'single', 'bass.mp3', 'Bas');
         }
 
+        // ==================== SHEETS ====================
+        function toggleSheetsInputs() {
+            const checked = document.getElementById('has-sheets').checked;
+            document.getElementById('sheets-inputs').style.display = checked ? 'block' : 'none';
+            if (checked) {
+                generateSheetPages();
+            }
+        }
+
+        function generateSheetPages() {
+            const basename = document.getElementById('sheets-basename').value || 'song';
+            const count = parseInt(document.getElementById('sheets-count').value) || 1;
+            const container = document.getElementById('sheet-pages-list');
+
+            container.innerHTML = '';
+
+            for (let i = 0; i <= count; i++) {
+                const url = `https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/${basename}-${i}.jpg`;
+                const html = `
+                    <div class="sheet-page-entry">
+                        <input type="text" class="sheet-page-url" value="${url}" placeholder="URL strony ${i}">
+                        <button class="danger" onclick="this.parentElement.remove()">✕</button>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            }
+        }
+
+        // ==================== GENERATE JSON ====================
         function generate() {
             const basePath = document.getElementById('audio-base').value.replace(/\/$/, '');
             const entries = document.querySelectorAll('.track-entry');
@@ -172,9 +260,22 @@
                 id: document.getElementById('song-id').value,
                 title: document.getElementById('song-title').value,
                 composer: document.getElementById('song-composer').value,
-                tags: tags,
-                tracks: tracks
+                tags: tags
             };
+
+            // Add sheets if enabled
+            if (document.getElementById('has-sheets').checked) {
+                const pageInputs = document.querySelectorAll('.sheet-page-url');
+                const pages = Array.from(pageInputs)
+                    .map(input => input.value.trim())
+                    .filter(Boolean);
+
+                if (pages.length > 0) {
+                    song.sheets = { pages: pages };
+                }
+            }
+
+            song.tracks = tracks;
 
             document.getElementById('json-output').textContent = JSON.stringify(song, null, 2);
         }
@@ -188,7 +289,7 @@
             });
         }
 
-        // Start with empty SATB
+        // Start with SATB tracks
         addCommonTracks();
     </script>
 </body>

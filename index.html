@@ -122,6 +122,35 @@
     </div>
 
     <audio id="audio-element"></audio>
+	    <!-- Sheet music viewer modal -->
+    <div class="sheets-modal" id="sheets-modal">
+        <div class="sheets-modal-content">
+            <div class="sheets-modal-header">
+                <span class="sheets-modal-title" id="sheets-modal-title">Nuty</span>
+                <button class="sheets-modal-close" id="sheets-modal-close" aria-label="Zamknij">✕</button>
+            </div>
+            <div class="sheets-modal-body">
+                <div class="sheets-controls">
+                    <button class="sheets-btn" id="sheets-prev" aria-label="Poprzednia strona">◀</button>
+                    <span class="sheets-counter" id="sheets-counter">1 / 1</span>
+                    <button class="sheets-btn" id="sheets-next" aria-label="Następna strona">▶</button>
+                </div>
+                <div class="sheets-image-container" id="sheets-image-container">
+                    <img id="sheets-image" src="" alt="Nuty">
+                </div>
+                <div class="sheets-pagination" id="sheets-pagination">
+                    <!-- dots generated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audio-element"></audio>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
 
     <script src="app.js"></script>
 </body>

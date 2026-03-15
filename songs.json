@@ -3,7 +3,7 @@
     {
       "id": "ludu-moj-ludu-2025",
       "title": "Ludu mój, ludu",
-      "composer": "Krzysztof Stępień",
+      "composer": "trad. / Krzysztof Stępień",
       "tags": ["pasyjne", "triduum", "triduum 2026", "wielki piątek"],
       "tracks": [
 
@@ -198,7 +198,7 @@
 {
   "id": "chrystus-zmartwychwstal-jest-2025",
   "title": "Chrystus zmartwychwstał jest (opowieść o zmartwychwstaniu)",
-  "composer": "Krzysztof Stępień",
+  "composer": "trad. / Krzysztof Stępień",
   "tags": [
     "triduum 2026",
     "wielkanoc", "wigilia paschalna"
@@ -488,7 +488,7 @@
 {
   "id": "odszedl-pasterz",
   "title": "Odszedł Pasterz od nas",
-  "composer": "Łukasz Mac",
+  "composer": "Wojciech Lewkowicz / Łukasz Mac",
   "tags": [
     "pasyjne",
     "wielki piątek",
@@ -587,7 +587,7 @@
 {
   "id": "otrzyjcie-juz-lzy-placzacy",
   "title": "Otrzyjcie juz łzy płaczący",
-  "composer": "Henryk Jan Botor",
+  "composer": "trad. / Henryk Jan Botor",
   "tags": [
     "wielkanoc",
     "wigilia paschalna",
@@ -660,7 +660,7 @@
 {
   "id": "kyrie-xi",
   "title": "Kyrie XI \"Orbis Factor\"",
-  "composer": "Krzysztof Stępień",
+  "composer": "chorał gregoriański / Krzysztof Stępień",
   "tags": [
     "wielki czwartek",
     "triduum 2026",
@@ -759,7 +759,7 @@
 {
   "id": "sanctus-xii",
   "title": "Sanctus XII",
-  "composer": "chorał grogoriański",
+  "composer": "chorał gregoriański",
   "tags": [
     "części stałe",
     "Triduum 2026",
@@ -774,7 +774,295 @@
       "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Sanctus%20XII/sanctus-xii.mp3"
     }
   ]
+},
+
+{
+  "id": "uczta-baranka",
+  "title": "Uczta Baranka (Oto Boży Baranek)",
+  "composer": "Jakub Blycharz",
+  "tags": [
+    "wielki czwartek",
+    "eucharystyczne",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "ubi-caritas-gjejlo",
+  "title": "Ubi Caritas",
+  "composer": "Ola Gjejlo",
+  "tags": [
+    "wielki czwartek",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran 1",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_3.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_4.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_6.mp3"
+    },
+    {
+      "label": "Sopran 2",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_2.mp3"
+    },
+    {
+      "label": "Sopran 1",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-soprano-1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-bass.mp3"
+    },
+    {
+      "label": "Sopran 2",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-soprano-2.mp3"
+    }
+  ]
+},
+
+{
+  "id": "amen-po-doksologii",
+  "title": "Amen po doksologii",
+  "composer": "Zdzisław Bernat / Krzysztof Stępień",
+  "tags": [
+    "triduum 2026",
+    "wielki czwartek",
+    "wigilia paschalna",
+    "części stałe"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran 1",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-soprano-1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-bass.mp3"
+    },
+    {
+      "label": "Sopran 2",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-soprano-2.mp3"
+    },
+    {
+      "label": "Sopran 1",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-soprano-1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-bass.mp3"
+    },
+    {
+      "label": "Sopran 2",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-soprano-2.mp3"
+    }
+  ]
+},
+
+{
+  "id": "zblizam-sie-w-pokorze",
+  "title": "Zbliżam się w pokorze",
+  "composer": "chorał gregoriański",
+  "tags": [
+    "triduum 2026",
+    "wielki czwartek"
+  ],
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Zbli%C5%BCam%20si%C4%99%20w%20pokorze/283.%20Zbli%C5%BCam%20si%C4%99%20w%20pokorze%20%E2%80%93%20Pie%C5%9Bni%20Eucharystyczne.mp3"
+    }
+  ]
+},
+
+{
+  "id": "slaw-jezyku-tajemnice",
+  "title": "Sław, języku, tajemnicę",
+  "composer": "chorał gregoriański",
+  "tags": [
+    "wielki czwartek",
+    "triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/S%C5%82aw%20j%C4%99zyku%20tajemnic%C4%99/160.%20S%C5%82aw%2C%20j%C4%99zyku%2C%20tajemnic%C4%99%20%E2%80%93%20Wielki%20Tydzie%C5%84.mp3"
+    }
+  ]
+},
+
+{
+  "id": "anima-christi",
+  "title": "Anima Christi",
+  "composer": "Marco Frisina",
+  "tags": [
+    "wielki czwartek",
+    "eucharystyczne",
+    "Triduum 2026"
+  ],
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_2.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_3.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_4.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_5.mp3"
+    },
+    {
+      "label": "Sopran + zwrotki solo",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_1.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/anima-christi-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/anima-christi-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/anima-christi-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/anima-christi-bass.mp3"
+    }
+  ]
 }
+
+
 	
 	
 	

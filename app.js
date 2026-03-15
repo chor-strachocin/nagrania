@@ -446,18 +446,31 @@
                 return `<span class="tag" data-tag="${normalized}">${normalized}</span>`;
             }).join('');
 
-            return `
-                <div class="song-card">
-                    <div class="song-header">
-                        <div class="song-title">${song.title}</div>
-                        ${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
-                        <div class="song-tags">${tagsHtml}</div>
-                    </div>
-                    <div class="track-list">
-                        ${tracksHtml}
-                    </div>
-                </div>
-            `;
+            // W funkcji render(), w mapowaniu song → HTML, dodaj przed zamknięciem .song-card:
+
+		const footerHtml = song.sheets && song.sheets.pages && song.sheets.pages.length > 0
+			? `
+				<div class="song-footer">
+					<button class="show-sheets-btn" onclick="window.choirApp.openSheets(${JSON.stringify(song).replace(/"/g, '&quot;')})">
+						📄 Pokaż nuty (${song.sheets.pages.length} str.)
+					</button>
+				</div>
+			`
+			: '';
+
+		return `
+			<div class="song-card">
+				<div class="song-header">
+					<div class="song-title">${song.title}</div>
+					${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
+					<div class="song-tags">${tagsHtml}</div>
+				</div>
+				<div class="track-list">
+					${tracksHtml}
+				</div>
+				${footerHtml}
+			</div>
+		`;
         }).join('');
     }
 
@@ -666,31 +679,50 @@
             dom.playerPlay.textContent = '▶';
         });
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', e => {
-            if (e.target.tagName === 'INPUT') return;
+		// Keyboard shortcuts
+		document.addEventListener('keydown', e => {
+			if (e.target.tagName === 'INPUT') return;
 
-            switch (e.code) {
-                case 'Space':
-                    e.preventDefault();
-                    dom.playerPlay.click();
-                    break;
-                case 'ArrowLeft':
-                    if (dom.audioElement.duration) {
-                        dom.audioElement.currentTime = Math.max(0, dom.audioElement.currentTime - 5);
-                    }
-                    break;
-                case 'ArrowRight':
-                    if (dom.audioElement.duration) {
-                        dom.audioElement.currentTime = Math.min(dom.audioElement.duration, dom.audioElement.currentTime + 5);
-                    }
-                    break;
-                case 'Escape':
-                    closeFiltersDrawer();
-                    break;
-            }
-        });
+			// Najpierw obsłuż nuty JEŻELI są otwarte
+			if (currentSheets) {
+				switch (e.code) {
+					case 'Escape':
+						e.preventDefault();
+						e.stopPropagation();
+						closeSheets();
+						return;
+					case 'ArrowLeft':
+						e.preventDefault();
+						prevSheet();
+						return;
+					case 'ArrowRight':
+						e.preventDefault();
+						nextSheet();
+						return;
+				}
+			}
 
+			// Dopiero później reszta skrótów
+			switch (e.code) {
+				case 'Space':
+					e.preventDefault();
+					dom.playerPlay.click();
+					break;
+				case 'ArrowLeft':
+					if (dom.audioElement.duration) {
+						dom.audioElement.currentTime = Math.max(0, dom.audioElement.currentTime - 5);
+					}
+					break;
+				case 'ArrowRight':
+					if (dom.audioElement.duration) {
+						dom.audioElement.currentTime = Math.min(dom.audioElement.duration, dom.audioElement.currentTime + 5);
+					}
+					break;
+				case 'Escape':
+					closeFiltersDrawer();
+					break;
+			}
+		});
         // Handle browser back/forward
         window.addEventListener('popstate', () => {
             applyUrlParams();
@@ -699,7 +731,133 @@
         });
     }
 
-    window.choirApp = { playTrack };
+        // ==================== SHEET MUSIC VIEWER ====================
+    let currentSheets = null;
+    let currentSheetPage = 0;
+    let sheetZoomed = false;
+
+    const sheetsDom = {
+        modal: document.getElementById('sheets-modal'),
+        modalTitle: document.getElementById('sheets-modal-title'),
+        modalClose: document.getElementById('sheets-modal-close'),
+        image: document.getElementById('sheets-image'),
+        imageContainer: document.getElementById('sheets-image-container'),
+        counter: document.getElementById('sheets-counter'),
+        prev: document.getElementById('sheets-prev'),
+        next: document.getElementById('sheets-next'),
+        pagination: document.getElementById('sheets-pagination')
+    };
+
+    function openSheets(song) {
+        if (!song.sheets || !song.sheets.pages || song.sheets.pages.length === 0) return;
+
+        currentSheets = song.sheets.pages;
+        currentSheetPage = 0;
+
+        sheetsDom.modalTitle.textContent = `${song.title} – Nuty`;
+        sheetsDom.modal.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+
+        renderSheet();
+        renderSheetPagination();
+    }
+
+    function closeSheets() {
+        sheetsDom.modal.classList.remove('visible');
+        document.body.style.overflow = '';
+        currentSheets = null;
+        sheetZoomed = false;
+    }
+
+    function renderSheet() {
+        if (!currentSheets) return;
+
+        const page = currentSheets[currentSheetPage];
+        sheetsDom.image.src = page;
+        sheetsDom.counter.textContent = `${currentSheetPage + 1} / ${currentSheets.length}`;
+
+        sheetsDom.prev.disabled = currentSheetPage === 0;
+        sheetsDom.next.disabled = currentSheetPage === currentSheets.length - 1;
+
+        // Update dots
+        document.querySelectorAll('.sheets-dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSheetPage);
+        });
+
+        // Reset zoom
+        sheetsDom.image.classList.remove('zoomed');
+        sheetZoomed = false;
+    }
+
+    function renderSheetPagination() {
+        if (!currentSheets) return;
+
+        sheetsDom.pagination.innerHTML = currentSheets.map((_, i) => 
+            `<div class="sheets-dot ${i === currentSheetPage ? 'active' : ''}" data-page="${i}"></div>`
+        ).join('');
+    }
+
+    function nextSheet() {
+        if (currentSheetPage < currentSheets.length - 1) {
+            currentSheetPage++;
+            renderSheet();
+        }
+    }
+
+    function prevSheet() {
+        if (currentSheetPage > 0) {
+            currentSheetPage--;
+            renderSheet();
+        }
+    }
+
+    function toggleSheetZoom() {
+        sheetZoomed = !sheetZoomed;
+        sheetsDom.image.classList.toggle('zoomed', sheetZoomed);
+    }
+
+    // Event listeners for sheets
+    sheetsDom.modalClose.addEventListener('click', closeSheets);
+    sheetsDom.modal.addEventListener('click', (e) => {
+        if (e.target === sheetsDom.modal) closeSheets();
+    });
+    sheetsDom.prev.addEventListener('click', prevSheet);
+    sheetsDom.next.addEventListener('click', nextSheet);
+    sheetsDom.image.addEventListener('click', toggleSheetZoom);
+
+    sheetsDom.pagination.addEventListener('click', (e) => {
+        const dot = e.target.closest('.sheets-dot');
+        if (dot) {
+            currentSheetPage = parseInt(dot.dataset.page);
+            renderSheet();
+        }
+    });
+
+
+    // Touch swipe support
+    let touchStartX = 0;
+    sheetsDom.imageContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    });
+
+    sheetsDom.imageContainer.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) { // threshold
+            if (diff > 0) {
+                nextSheet(); // swipe left = next
+            } else {
+                prevSheet(); // swipe right = prev
+            }
+        }
+    });
+
+    // Expose for song cards
+    window.choirApp = { 
+        playTrack,
+        openSheets 
+    };
 
     initEvents();
     loadSongs();

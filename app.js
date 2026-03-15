@@ -87,6 +87,10 @@
         unisono: 100
     };
 
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
     function getVoiceInfo(voice) {
         return voiceConfig[voice] || { emoji: '🎵', label: voice, cssClass: 'mix' };
     }
@@ -469,18 +473,45 @@
     }
 
     let currentSheetsSong = null;
+    let currentSheetPages = [];
     let currentSheetPage = 0;
     let sheetZoomed = false;
+
+    function getMobileUrl(url) {
+        const lastDot = url.lastIndexOf('.');
+        if (lastDot === -1) return url + '-mobile';
+        return url.substring(0, lastDot) + '-mobile' + url.substring(lastDot);
+    }
+
+    function getSheetPages(song) {
+        if (!song.sheets || !song.sheets.pages) return [];
+
+        const pages = song.sheets.pages;
+
+        if (isMobile() && song.sheets.mobilePages && song.sheets.mobilePages.length > 0) {
+            return song.sheets.mobilePages;
+        }
+
+        if (isMobile()) {
+            return pages.map(url => getMobileUrl(url));
+        }
+
+        return pages;
+    }
 
     function openSheets(songId) {
         const song = songsData.find(s => s.id === songId);
         if (!song || !song.sheets || !song.sheets.pages || song.sheets.pages.length === 0) return;
+
         currentSheetsSong = song;
+        currentSheetPages = getSheetPages(song);
         currentSheetPage = 0;
         sheetZoomed = false;
+
         dom.sheetsModalTitle.textContent = song.title + ' – Nuty';
         dom.sheetsModal.classList.add('visible');
         document.body.style.overflow = 'hidden';
+
         renderSheet();
         renderSheetsPagination();
         renderSheetsTracks();
@@ -491,29 +522,46 @@
         dom.sheetsModal.classList.remove('visible');
         document.body.style.overflow = '';
         currentSheetsSong = null;
+        currentSheetPages = [];
         sheetZoomed = false;
         dom.sheetsImage.classList.remove('zoomed');
     }
 
-    function renderSheet() {
+    function handleSheetImageError() {
         if (!currentSheetsSong) return;
-        const pages = currentSheetsSong.sheets.pages;
-        const page = pages[currentSheetPage];
+
+        const currentUrl = dom.sheetsImage.src;
+        const originalPages = currentSheetsSong.sheets.pages;
+
+        if (currentUrl.includes('-mobile')) {
+            const originalUrl = originalPages[currentSheetPage];
+            if (originalUrl && currentUrl !== originalUrl) {
+                dom.sheetsImage.src = originalUrl;
+            }
+        }
+    }
+
+    function renderSheet() {
+        if (!currentSheetsSong || currentSheetPages.length === 0) return;
+
+        const page = currentSheetPages[currentSheetPage];
         dom.sheetsImage.src = page;
         dom.sheetsImage.classList.remove('zoomed');
         sheetZoomed = false;
-        dom.sheetsCounter.textContent = `${currentSheetPage + 1} / ${pages.length}`;
+
+        dom.sheetsCounter.textContent = `${currentSheetPage + 1} / ${currentSheetPages.length}`;
         dom.sheetsPrev.disabled = currentSheetPage === 0;
-        dom.sheetsNext.disabled = currentSheetPage === pages.length - 1;
+        dom.sheetsNext.disabled = currentSheetPage === currentSheetPages.length - 1;
+
         document.querySelectorAll('.sheets-dot').forEach((dot, i) => {
             dot.classList.toggle('active', i === currentSheetPage);
         });
     }
 
     function renderSheetsPagination() {
-        if (!currentSheetsSong) return;
-        const pages = currentSheetsSong.sheets.pages;
-        dom.sheetsPagination.innerHTML = pages.map((_, i) =>
+        if (!currentSheetsSong || currentSheetPages.length === 0) return;
+
+        dom.sheetsPagination.innerHTML = currentSheetPages.map((_, i) =>
             `<div class="sheets-dot ${i === currentSheetPage ? 'active' : ''}" data-page="${i}"></div>`
         ).join('');
     }
@@ -534,15 +582,15 @@
     }
 
     function nextSheet() {
-        if (!currentSheetsSong) return;
-        if (currentSheetPage < currentSheetsSong.sheets.pages.length - 1) {
+        if (!currentSheetsSong || currentSheetPages.length === 0) return;
+        if (currentSheetPage < currentSheetPages.length - 1) {
             currentSheetPage++;
             renderSheet();
         }
     }
 
     function prevSheet() {
-        if (!currentSheetsSong) return;
+        if (!currentSheetsSong || currentSheetPages.length === 0) return;
         if (currentSheetPage > 0) {
             currentSheetPage--;
             renderSheet();
@@ -718,6 +766,7 @@
         dom.sheetsPrev.addEventListener('click', prevSheet);
         dom.sheetsNext.addEventListener('click', nextSheet);
         dom.sheetsImage.addEventListener('click', toggleSheetZoom);
+        dom.sheetsImage.addEventListener('error', handleSheetImageError);
 
         dom.sheetsPagination.addEventListener('click', e => {
             const dot = e.target.closest('.sheets-dot');
@@ -826,6 +875,20 @@
             applyUrlParams();
             updateActiveFiltersDisplay();
             render();
+        });
+
+        window.addEventListener('resize', () => {
+            if (currentSheetsSong && dom.sheetsModal.classList.contains('visible')) {
+                const newPages = getSheetPages(currentSheetsSong);
+                if (JSON.stringify(newPages) !== JSON.stringify(currentSheetPages)) {
+                    currentSheetPages = newPages;
+                    if (currentSheetPage >= currentSheetPages.length) {
+                        currentSheetPage = currentSheetPages.length - 1;
+                    }
+                    renderSheet();
+                    renderSheetsPagination();
+                }
+            }
         });
     }
 

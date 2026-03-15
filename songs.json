@@ -1055,6 +1055,30 @@
 },
 
 {
+  "id": "gloria-piasecki",
+  "title": "Msza Polska - Gloria",
+  "composer": "Zbigniew Piasecki",
+  "tags": [
+    "triduum 2026",
+	"wigilia paschalna",
+    "wielki czwartek"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/gloria-piasecki.png"
+	  ]
+  },
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/gloria-piasecki-unisono.mp3"
+    }
+  ]
+},
+
+{
   "id": "slaw-jezyku-tajemnice",
   "title": "Sław, języku, tajemnicę",
   "composer": "chorał gregoriański",
@@ -1062,6 +1086,15 @@
     "wielki czwartek",
     "triduum 2026"
   ],
+   "sheets": {
+	  "pages": [
+		"/Nuty/slaw-jezyku-tajemnice-0.jpg",
+		"/Nuty/slaw-jezyku-tajemnice-1.jpg"
+	  ],
+	  "mobilePages": [
+		"/Nuty/slaw-jezyku-tajemnice-mobile.png"
+	  ]
+  },
   "tracks": [
     {
       "label": "Unisono",

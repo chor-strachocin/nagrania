@@ -406,7 +406,7 @@
             const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
             const footerHtml = hasSheets ? `
                 <div class="song-footer">
-                    <button class="show-sheets-btn" data-song-id="${song.id}">📄 Pokaż nuty (${song.sheets.pages.length} str.)</button>
+                    <button class="show-sheets-btn" data-song-id="${song.id}">📄 Pokaż nuty</button>
                 </div>
             ` : '';
             return `

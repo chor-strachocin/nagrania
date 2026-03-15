@@ -755,6 +755,9 @@
   "sheets": {
 	  "pages": [
 		"/Nuty/chwala-tobie-krolu-wiekow-tkk.jpg"
+	  ],
+	  "mobilePages": [
+		"/Nuty/chwala-tobie-krolu-wiekow-mobile.png"
 	  ]
   },
   "tracks": [
@@ -855,6 +858,10 @@
 		"/Nuty/ubi-caritas-gjejlo-0.jpg",
 		"/Nuty/ubi-caritas-gjejlo-1.jpg",
 		"/Nuty/ubi-caritas-gjejlo-2.jpg"
+	  ],
+	  "mobilePages": [
+		"/Nuty/ubi-caritas-gjejlo-mobile-1.png",
+		"/Nuty/ubi-caritas-gjejlo-mobile-2.png"
 	  ]
   },
   

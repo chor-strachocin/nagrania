@@ -388,6 +388,15 @@
     "wielki czwartek",
     "Triduum 2026"
   ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/ile-razy-to-cialo-spozywamy-1.png",
+		"/Nuty/ile-razy-to-cialo-spozywamy-2.png"
+	  ],
+	  "mobilePages": [
+		"/Nuty/ile-razy-to-cialo-spozywamy-mobile.png"
+	  ]
+  },
   "tracks": [
     {
       "label": "Sopran",
@@ -1030,6 +1039,11 @@
     "triduum 2026",
     "wielki czwartek"
   ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/zblizam-sie-w-pokorze.png"
+	  ]
+  },
   "tracks": [
     {
       "label": "Unisono",

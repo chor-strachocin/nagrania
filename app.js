@@ -862,8 +862,6 @@
         openSheets 
     };	
 
-    window.choirApp = { playTrack };
-
     initEvents();
     loadSongs();
 

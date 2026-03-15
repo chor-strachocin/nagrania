@@ -695,6 +695,49 @@
             }
         });
 
+   // Sheet modal listeners
+        dom.sheetsModalClose.addEventListener('click', closeSheets);
+        dom.sheetsModal.addEventListener('click', e => {
+            if (e.target === dom.sheetsModal) closeSheets();
+        });
+        dom.sheetsPrev.addEventListener('click', prevSheet);
+        dom.sheetsNext.addEventListener('click', nextSheet);
+        dom.sheetsImage.addEventListener('click', toggleSheetZoom);
+        dom.sheetsPagination.addEventListener('click', e => {
+            const dot = e.target.closest('.sheets-dot');
+            if (dot) {
+                currentSheetPage = parseInt(dot.dataset.page);
+                renderCurrentSheet();
+            }
+        });
+
+        // Keyboard
+        document.addEventListener('keydown', e => {
+            if (e.target.tagName === 'INPUT') return;
+
+            if (currentSheets) {
+                switch (e.code) {
+                    case 'Escape': closeSheets(); break;
+                    case 'ArrowLeft': prevSheet(); break;
+                    case 'ArrowRight': nextSheet(); break;
+                }
+            } else {
+                switch (e.code) {
+                    case 'Space':
+                        e.preventDefault();
+                        dom.playerPlay.click();
+                        break;
+                    case 'ArrowLeft':
+                        if (dom.audioElement.duration) dom.audioElement.currentTime = Math.max(0, dom.audioElement.currentTime - 5);
+                        break;
+                    case 'ArrowRight':
+                        if (dom.audioElement.duration) dom.audioElement.currentTime = Math.min(dom.audioElement.duration, dom.audioElement.currentTime + 5);
+                        break;
+                }
+            }
+        });
+
+
         // Handle browser back/forward
         window.addEventListener('popstate', () => {
             applyUrlParams();
@@ -756,231 +799,8 @@
         sheetZoomed = !sheetZoomed;
         dom.sheetsImage.classList.toggle('zoomed', sheetZoomed);
     }
-    // ==================== EVENT LISTENERS ====================
-    function initEvents() {
-        // Search
-        let searchTimeout;
-        dom.search.addEventListener('input', () => {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                currentFilters.search = dom.search.value.trim();
-                updateUrl();
-                render();
-            }, 200);
-        });
 
-        // Voice filter
-        dom.voiceFilters.addEventListener('click', e => {
-            const btn = e.target.closest('.filter-btn');
-            if (!btn) return;
-            dom.voiceFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilters.voice = btn.dataset.voice;
-            updateUrl();
-            updateActiveFiltersDisplay();
-            render();
-        });
 
-        // Type filter
-        dom.typeFilters.addEventListener('click', e => {
-            const btn = e.target.closest('.filter-btn');
-            if (!btn) return;
-            dom.typeFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilters.type = btn.dataset.type;
-            updateUrl();
-            updateActiveFiltersDisplay();
-            render();
-        });
-
-        // Tag filter
-        dom.tagFilters.addEventListener('click', e => {
-            const btn = e.target.closest('.filter-btn');
-            if (!btn) return;
-            dom.tagFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilters.tag = btn.dataset.tag;
-            updateUrl();
-            updateActiveFiltersDisplay();
-            render();
-        });
-
-        // Click on tag in song card
-        dom.songsGrid.addEventListener('click', e => {
-            const tag = e.target.closest('.tag');
-            if (!tag) return;
-            e.stopPropagation();
-            const tagValue = tag.dataset.tag;
-            if (tagValue) {
-                currentFilters.tag = tagValue;
-                setActiveFilterButton(dom.tagFilters, 'tag', tagValue);
-                updateUrl();
-                updateActiveFiltersDisplay();
-                render();
-            }
-        });
-
-        // Hide unisono
-        dom.hideUnisono.addEventListener('change', () => {
-            currentFilters.hideUnisono = dom.hideUnisono.checked;
-            updateActiveFiltersDisplay();
-            render();
-        });
-
-        // Hamburger menu
-        dom.hamburger.addEventListener('click', () => {
-            if (dom.filters.classList.contains('open')) {
-                closeFiltersDrawer();
-            } else {
-                openFiltersDrawer();
-            }
-        });
-
-        dom.filtersClose.addEventListener('click', closeFiltersDrawer);
-        dom.filtersOverlay.addEventListener('click', closeFiltersDrawer);
-
-        // Active filters - remove single
-        dom.activeFiltersList.addEventListener('click', e => {
-            const btn = e.target.closest('button');
-            if (!btn) return;
-            const filterType = btn.dataset.filterType;
-            if (filterType) {
-                clearSingleFilter(filterType);
-            }
-        });
-
-        // Clear all filters
-        dom.clearFilters.addEventListener('click', clearAllFilters);
-
-        // Player controls
-        dom.playerPlay.addEventListener('click', () => {
-            if (dom.audioElement.paused) {
-                dom.audioElement.play();
-                dom.playerPlay.textContent = '⏸';
-            } else {
-                dom.audioElement.pause();
-                dom.playerPlay.textContent = '▶';
-            }
-        });
-
-        dom.playerPrev.addEventListener('click', () => playPrevNext(-1));
-        dom.playerNext.addEventListener('click', () => playPrevNext(1));
-
-        dom.playerClose.addEventListener('click', () => {
-            dom.audioElement.pause();
-            dom.audioElement.src = '';
-            dom.audioPlayer.classList.remove('visible');
-            currentTrack = null;
-            render();
-        });
-
-        dom.playerSeek.addEventListener('input', () => {
-            if (dom.audioElement.duration) {
-                dom.audioElement.currentTime = (dom.playerSeek.value / 100) * dom.audioElement.duration;
-            }
-        });
-
-        dom.playerVolume.addEventListener('input', () => {
-            dom.audioElement.volume = dom.playerVolume.value / 100;
-        });
-        dom.audioElement.volume = 0.8;
-
-        dom.audioElement.addEventListener('timeupdate', () => {
-            if (dom.audioElement.duration) {
-                const pct = (dom.audioElement.currentTime / dom.audioElement.duration) * 100;
-                dom.playerSeek.value = pct;
-                dom.playerCurrentTime.textContent = formatTime(dom.audioElement.currentTime);
-            }
-        });
-
-        dom.audioElement.addEventListener('loadedmetadata', () => {
-            dom.playerDuration.textContent = formatTime(dom.audioElement.duration);
-        });
-
-        dom.audioElement.addEventListener('play', () => {
-            dom.playerPlay.textContent = '⏸';
-            render();
-        });
-
-        dom.audioElement.addEventListener('pause', () => {
-            dom.playerPlay.textContent = '▶';
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', e => {
-            if (e.target.tagName === 'INPUT') return;
-
-            switch (e.code) {
-                case 'Space':
-                    e.preventDefault();
-                    dom.playerPlay.click();
-                    break;
-                case 'ArrowLeft':
-                    if (dom.audioElement.duration) {
-                        dom.audioElement.currentTime = Math.max(0, dom.audioElement.currentTime - 5);
-                    }
-                    break;
-                case 'ArrowRight':
-                    if (dom.audioElement.duration) {
-                        dom.audioElement.currentTime = Math.min(dom.audioElement.duration, dom.audioElement.currentTime + 5);
-                    }
-                    break;
-                case 'Escape':
-                    closeFiltersDrawer();
-                    break;
-            }
-        });
-
-        // Handle browser back/forward
-        window.addEventListener('popstate', () => {
-            applyUrlParams();
-            updateActiveFiltersDisplay();
-            render();
-        });
-    }
-
-   // Sheet modal listeners
-        dom.sheetsModalClose.addEventListener('click', closeSheets);
-        dom.sheetsModal.addEventListener('click', e => {
-            if (e.target === dom.sheetsModal) closeSheets();
-        });
-        dom.sheetsPrev.addEventListener('click', prevSheet);
-        dom.sheetsNext.addEventListener('click', nextSheet);
-        dom.sheetsImage.addEventListener('click', toggleSheetZoom);
-        dom.sheetsPagination.addEventListener('click', e => {
-            const dot = e.target.closest('.sheets-dot');
-            if (dot) {
-                currentSheetPage = parseInt(dot.dataset.page);
-                renderCurrentSheet();
-            }
-        });
-
-        // Keyboard
-        document.addEventListener('keydown', e => {
-            if (e.target.tagName === 'INPUT') return;
-
-            if (currentSheets) {
-                switch (e.code) {
-                    case 'Escape': closeSheets(); break;
-                    case 'ArrowLeft': prevSheet(); break;
-                    case 'ArrowRight': nextSheet(); break;
-                }
-            } else {
-                switch (e.code) {
-                    case 'Space':
-                        e.preventDefault();
-                        dom.playerPlay.click();
-                        break;
-                    case 'ArrowLeft':
-                        if (dom.audioElement.duration) dom.audioElement.currentTime = Math.max(0, dom.audioElement.currentTime - 5);
-                        break;
-                    case 'ArrowRight':
-                        if (dom.audioElement.duration) dom.audioElement.currentTime = Math.min(dom.audioElement.duration, dom.audioElement.currentTime + 5);
-                        break;
-                }
-            }
-        });
-    }
 
     // ==================== FINAL EXPOSE ====================
     window.choirApp = {

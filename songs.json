@@ -1,4 +1,5 @@
 {
+  "baseUrl": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev",
   "songs": [
     {
       "id": "ludu-moj-ludu-2025",
@@ -11,43 +12,43 @@
           "label": "Alt",
           "voice": "alto",
           "type": "single",
-          "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/ludu%20m%C3%B3j%20ludu%202025%20alt.mp3"
+          "file": "/Ludu%20m%C3%B3j%2C%20ludu/ludu%20m%C3%B3j%20ludu%202025%20alt.mp3"
         },
         {
           "label": "Tenor",
           "voice": "tenor",
           "type": "single",
-          "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/ludu%20m%C3%B3j%20ludu%202025%20tenor.mp3"
+          "file": "/Ludu%20m%C3%B3j%2C%20ludu/ludu%20m%C3%B3j%20ludu%202025%20tenor.mp3"
         },
         {
           "label": "Bas",
           "voice": "bass",
           "type": "single",
-          "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/ludu%20m%C3%B3j%20ludu%202025%20bas.mp3"
+          "file": "/Ludu%20m%C3%B3j%2C%20ludu/ludu%20m%C3%B3j%20ludu%202025%20bas.mp3"
         },
         {
           "label": "Sopran (mix)",
           "voice": "soprano",
           "type": "mix",
-          "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_1.mp3"
+          "file": "/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_1.mp3"
         },
 		{
           "label": "Alt (mix)",
           "voice": "alto",
           "type": "mix",
-          "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_3.mp3"
+          "file": "/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_3.mp3"
         },
 		{
           "label": "Tenor (mix)",
           "voice": "tenor",
           "type": "mix",
-          "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_4.mp3"
+          "file": "/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_4.mp3"
         },	
 		{
           "label": "Bas (mix)",
           "voice": "bass",
           "type": "mix",
-          "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_5.mp3"
+          "file": "/Ludu%20m%C3%B3j%2C%20ludu/Ludu_m%C3%B3j%2C_ludu_pd_5.mp3"
         }
       ]
     },
@@ -64,49 +65,49 @@
 		  "label": "Sopran",
 		  "voice": "soprano",
 		  "type": "mix",
-		  "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_1.mp3"
+		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_1.mp3"
 		},
 		{
 		  "label": "Alt",
 		  "voice": "alto",
 		  "type": "mix",
-		  "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_2.mp3"
+		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_2.mp3"
 		},
 		{
 		  "label": "Tenor",
 		  "voice": "tenor",
 		  "type": "mix",
-		  "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_4.mp3"
+		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_4.mp3"
 		},
 		{
 		  "label": "Bas",
 		  "voice": "bass",
 		  "type": "mix",
-		  "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_5.mp3"
+		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_5.mp3"
 		},
 		{
 		  "label": "Sopran",
 		  "voice": "soprano",
 		  "type": "single",
-		  "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi.mp3"
+		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi.mp3"
 		},
 		{
 		  "label": "Alt",
 		  "voice": "alto",
 		  "type": "single",
-		  "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi%20alt.mp3"
+		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi%20alt.mp3"
 		},
 		{
 		  "label": "Tenor",
 		  "voice": "tenor",
 		  "type": "single",
-		  "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi%20tenor.mp3"
+		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi%20tenor.mp3"
 		},
 		{
 		  "label": "Bas",
 		  "voice": "bass",
 		  "type": "single",
-		  "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi%20bas.mp3"
+		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi%20bas.mp3"
 		}
 	  ]
 	},
@@ -121,9 +122,9 @@
   ],
   "sheets": {
 	  "pages": [
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/oto-dzien-wesela-pelen-0.jpg",
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/oto-dzien-wesela-pelen-1.jpg",
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/oto-dzien-wesela-pelen-2.jpg"
+		"/Nuty/oto-dzien-wesela-pelen-0.jpg",
+		"/Nuty/oto-dzien-wesela-pelen-1.jpg",
+		"/Nuty/oto-dzien-wesela-pelen-2.jpg"
 	  ]
   },
 
@@ -132,73 +133,73 @@
       "label": "Sopran 1",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/s-1-oto-dzien-wesela-pelen.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/s-1-oto-dzien-wesela-pelen.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/alt-oto-dzien-wesela-pelen.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/alt-oto-dzien-wesela-pelen.mp3"
     },
     {
       "label": "Tenor 1",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-tenor-1.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-tenor-1.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-bas.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-bas.mp3"
     },
     {
       "label": "Sopran 2",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/s-2-oto-dzien-wesela-pelen.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/s-2-oto-dzien-wesela-pelen.mp3"
     },
     {
       "label": "Sopran 1",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_1.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_1.mp3"
     },
     {
       "label": "Tenor 2",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-tenor-2.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-tenor-2.mp3"
     },
     {
       "label": "Sopran 2",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_2.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_2.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_3.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_3.mp3"
     },
     {
       "label": "Tenor 1",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_4.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_4.mp3"
     },
     {
       "label": "Tenor 2",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_6.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_6.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_5.mp3"
+      "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_5.mp3"
     }
   ]
 },
@@ -216,49 +217,49 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-sopran.mp3"
+      "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-sopran.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-alt.mp3"
+      "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-alt.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-tenor.mp3"
+      "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-bas.mp3"
+      "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-bas.mp3"
     },
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_1.mp3"
+      "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_2.mp3"
+      "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_2.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_3.mp3"
+      "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_3.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_4.mp3"
+      "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_4.mp3"
     }
   ]
 },
@@ -276,43 +277,43 @@
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-alt.mp3"
+      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-alt.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-tenor.mp3"
+      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-bas.mp3"
+      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-bas.mp3"
     },
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_1.mp3"
+      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_2.mp3"
+      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_2.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_3.mp3"
+      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_3.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_4.mp3"
+      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_4.mp3"
     }
   ]
 },
@@ -331,49 +332,49 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-sopran-.mp3"
+      "file": "/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-sopran-.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-alt-.mp3"
+      "file": "/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-alt-.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-tenor-.mp3"
+      "file": "/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-tenor-.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-bas.mp3"
+      "file": "/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-bas.mp3"
     },
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_1.mp3"
+      "file": "/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_2.mp3"
+      "file": "/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_2.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_3.mp3"
+      "file": "/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_3.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_4.mp3"
+      "file": "/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_4.mp3"
     }
   ]
 },
@@ -392,49 +393,49 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-to-cialo-spozywamy-sopran.mp3"
+      "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-to-cialo-spozywamy-sopran.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-alt.mp3"
+      "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-alt.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/tenor-ile-razy.mp3"
+      "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/tenor-ile-razy.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-bas.mp3"
+      "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-bas.mp3"
     },
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_1.mp3"
+      "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_2.mp3"
+      "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_2.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_3.mp3"
+      "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_3.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_4.mp3"
+      "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_4.mp3"
     }
   ]
 },
@@ -452,43 +453,43 @@
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-alt.mp3"
+      "file": "/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-alt.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-tenor.mp3"
+      "file": "/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-bas.mp3"
+      "file": "/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-bas.mp3"
     },
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_1.mp3"
+      "file": "/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_2.mp3"
+      "file": "/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_2.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_3.mp3"
+      "file": "/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_3.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_4.mp3"
+      "file": "/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_4.mp3"
     }
   ]
 },
@@ -507,49 +508,49 @@
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-alt.mp3"
+      "file": "/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-alt.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-tenor.mp3"
+      "file": "/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-bas.mp3"
+      "file": "/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-bas.mp3"
     },
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_1.mp3"
+      "file": "/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_2.mp3"
+      "file": "/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_2.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_3.mp3"
+      "file": "/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_3.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_4.mp3"
+      "file": "/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_4.mp3"
     },
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Odszed%C5%82%20Pasterz%20od%20nas/163.%20Odszed%C5%82%20Pasterz%20od%20nas%20%E2%80%93%20Wielki%20Tydzie%C5%84.mp3"
+      "file": "/Odszed%C5%82%20Pasterz%20od%20nas/163.%20Odszed%C5%82%20Pasterz%20od%20nas%20%E2%80%93%20Wielki%20Tydzie%C5%84.mp3"
     }
   ]
 },
@@ -569,25 +570,25 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_1.mp3"
+      "file": "/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_2.mp3"
+      "file": "/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_2.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_3.mp3"
+      "file": "/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_3.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_4.mp3"
+      "file": "/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_4.mp3"
     }
   ]
 },
@@ -606,25 +607,25 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_1.mp3"
+      "file": "/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_3.mp3"
+      "file": "/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_3.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_4.mp3"
+      "file": "/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_4.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_5.mp3"
+      "file": "/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_5.mp3"
     }
   ]
 },
@@ -639,7 +640,7 @@
   ],
   "sheets": {
 	  "pages": [
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/chwala-nasza-jest-krzyz.jpg"
+		"/Nuty/chwala-nasza-jest-krzyz.jpg"
 	  ]
   },
   "tracks": [
@@ -647,25 +648,25 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/sopran-chwala-nasza-jest-krzyz.mp3"
+      "file": "/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/sopran-chwala-nasza-jest-krzyz.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/alt-chwala-nasza-jest-krzyz.mp3"
+      "file": "/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/alt-chwala-nasza-jest-krzyz.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/tenor-chwala-nasza-jest-krzyz.mp3"
+      "file": "/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/tenor-chwala-nasza-jest-krzyz.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/bas-chwala-nasza-jest-krzyz.mp3"
+      "file": "/Chwa%C5%82%C4%85%20nasz%C4%85%20jest%20Krzy%C5%BC/bas-chwala-nasza-jest-krzyz.mp3"
     }
   ]
 },
@@ -681,8 +682,11 @@
   ],
   "sheets": {
 	  "pages": [
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/kyrie-xi-0.jpg",
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/kyrie-xi-1.jpg"
+		"/Nuty/kyrie-xi-0.jpg",
+		"/Nuty/kyrie-xi-1.jpg"
+	  ],
+	  "mobilePages": [
+		"/Nuty/kyrie-xi-mobile.png"
 	  ]
   },
   
@@ -691,49 +695,49 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/kyrie-xi-sopran.mp3"
+      "file": "/Kyrie%20XI/kyrie-xi-sopran.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/kyrie-xi-alt.mp3"
+      "file": "/Kyrie%20XI/kyrie-xi-alt.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/kyrie-xi-tenor.mp3"
+      "file": "/Kyrie%20XI/kyrie-xi-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/kyrie-xi-bas.mp3"
+      "file": "/Kyrie%20XI/kyrie-xi-bas.mp3"
     },
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/mix-kyrie-xi-sopran.mp3"
+      "file": "/Kyrie%20XI/mix-kyrie-xi-sopran.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/mix-kyrie-xi-alt.mp3"
+      "file": "/Kyrie%20XI/mix-kyrie-xi-alt.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/mix-kyrie-xi-tenor.mp3"
+      "file": "/Kyrie%20XI/mix-kyrie-xi-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Kyrie%20XI/mix-kyrie-xi-bas.mp3"
+      "file": "/Kyrie%20XI/mix-kyrie-xi-bas.mp3"
     }
   ]
 },
@@ -750,7 +754,7 @@
   ],
   "sheets": {
 	  "pages": [
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/chwala-tobie-krolu-wiekow-tkk.jpg"
+		"/Nuty/chwala-tobie-krolu-wiekow-tkk.jpg"
 	  ]
   },
   "tracks": [
@@ -758,25 +762,25 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/sopran-chwala-tobie-krolu-wiekow-.mp3"
+      "file": "/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/sopran-chwala-tobie-krolu-wiekow-.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/alt-chwala-tobie-krolu-wiekow.mp3"
+      "file": "/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/alt-chwala-tobie-krolu-wiekow.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/tenor-chwala-tobie-krolu-wiekow.mp3"
+      "file": "/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/tenor-chwala-tobie-krolu-wiekow.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/bas-chwala-tobie-krolu-wiekow.mp3"
+      "file": "/Chwa%C5%82a%20Tobie%2C%20Kr%C3%B3lu%20wiek%C3%B3w/bas-chwala-tobie-krolu-wiekow.mp3"
     }
   ]
 },
@@ -796,7 +800,7 @@
       "label": "Unisono",
       "voice": "unisono",
       "type": "unisono",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Sanctus%20XII/sanctus-xii.mp3"
+      "file": "/Sanctus%20XII/sanctus-xii.mp3"
     }
   ]
 },
@@ -815,25 +819,25 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-soprano.mp3"
+      "file": "/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-soprano.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-alto.mp3"
+      "file": "/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-alto.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-tenor.mp3"
+      "file": "/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-bass.mp3"
+      "file": "/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-bass.mp3"
     }
   ]
 },
@@ -848,9 +852,9 @@
   ],
   "sheets": {
 	  "pages": [
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/ubi-caritas-gjejlo-0.jpg",
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/ubi-caritas-gjejlo-1.jpg",
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/ubi-caritas-gjejlo-2.jpg"
+		"/Nuty/ubi-caritas-gjejlo-0.jpg",
+		"/Nuty/ubi-caritas-gjejlo-1.jpg",
+		"/Nuty/ubi-caritas-gjejlo-2.jpg"
 	  ]
   },
   
@@ -859,61 +863,61 @@
       "label": "Sopran 1",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_1.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_3.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_3.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_4.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_4.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_6.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_6.mp3"
     },
     {
       "label": "Sopran 2",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_2.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_2.mp3"
     },
     {
       "label": "Sopran 1",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-soprano-1.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-soprano-1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-alto.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-alto.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-tenor.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-bass.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-bass.mp3"
     },
     {
       "label": "Sopran 2",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-soprano-2.mp3"
+      "file": "/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-soprano-2.mp3"
     }
   ]
 },
@@ -930,7 +934,7 @@
   ],
   "sheets": {
 	  "pages": [
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/amen.jpg"
+		"/Nuty/amen.jpg"
 	  ]
   },
 
@@ -939,61 +943,61 @@
       "label": "Sopran 1",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-soprano-1.mp3"
+      "file": "/Amen/amen-soprano-1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-alto.mp3"
+      "file": "/Amen/amen-alto.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-tenor.mp3"
+      "file": "/Amen/amen-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-bass.mp3"
+      "file": "/Amen/amen-bass.mp3"
     },
     {
       "label": "Sopran 2",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/amen-soprano-2.mp3"
+      "file": "/Amen/amen-soprano-2.mp3"
     },
     {
       "label": "Sopran 1",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-soprano-1.mp3"
+      "file": "/Amen/mix-amen-soprano-1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-alto.mp3"
+      "file": "/Amen/mix-amen-alto.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-tenor.mp3"
+      "file": "/Amen/mix-amen-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-bass.mp3"
+      "file": "/Amen/mix-amen-bass.mp3"
     },
     {
       "label": "Sopran 2",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Amen/mix-amen-soprano-2.mp3"
+      "file": "/Amen/mix-amen-soprano-2.mp3"
     }
   ]
 },
@@ -1011,7 +1015,7 @@
       "label": "Unisono",
       "voice": "unisono",
       "type": "unisono",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Zbli%C5%BCam%20si%C4%99%20w%20pokorze/283.%20Zbli%C5%BCam%20si%C4%99%20w%20pokorze%20%E2%80%93%20Pie%C5%9Bni%20Eucharystyczne.mp3"
+      "file": "/Zbli%C5%BCam%20si%C4%99%20w%20pokorze/283.%20Zbli%C5%BCam%20si%C4%99%20w%20pokorze%20%E2%80%93%20Pie%C5%9Bni%20Eucharystyczne.mp3"
     }
   ]
 },
@@ -1029,7 +1033,7 @@
       "label": "Unisono",
       "voice": "unisono",
       "type": "unisono",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/S%C5%82aw%20j%C4%99zyku%20tajemnic%C4%99/160.%20S%C5%82aw%2C%20j%C4%99zyku%2C%20tajemnic%C4%99%20%E2%80%93%20Wielki%20Tydzie%C5%84.mp3"
+      "file": "/S%C5%82aw%20j%C4%99zyku%20tajemnic%C4%99/160.%20S%C5%82aw%2C%20j%C4%99zyku%2C%20tajemnic%C4%99%20%E2%80%93%20Wielki%20Tydzie%C5%84.mp3"
     }
   ]
 },
@@ -1045,13 +1049,13 @@
   ],
   "sheets": {
 	  "pages": [
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-1.png",
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-2.png"
+		"/Nuty/anima-christi-1.png",
+		"/Nuty/anima-christi-2.png"
 	  ],
 	  "mobilePages": [
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-mobile-1.png",
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-mobile-2.png",
-		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/anima-christi-mobile-3.png"
+		"/Nuty/anima-christi-mobile-1.png",
+		"/Nuty/anima-christi-mobile-2.png",
+		"/Nuty/anima-christi-mobile-3.png"
 	  ]
   },	
   "tracks": [
@@ -1059,55 +1063,55 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_2.mp3"
+      "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_2.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_3.mp3"
+      "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_3.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_4.mp3"
+      "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_4.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_5.mp3"
+      "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_5.mp3"
     },
     {
       "label": "Sopran + zwrotki solo",
       "voice": "soprano",
       "type": "mix",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_1.mp3"
+      "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_1.mp3"
     },
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/anima-christi-soprano.mp3"
+      "file": "/Anima%20Christi/anima-christi-soprano.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/anima-christi-alto.mp3"
+      "file": "/Anima%20Christi/anima-christi-alto.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/anima-christi-tenor.mp3"
+      "file": "/Anima%20Christi/anima-christi-tenor.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Anima%20Christi/anima-christi-bass.mp3"
+      "file": "/Anima%20Christi/anima-christi-bass.mp3"
     }
   ]
 }

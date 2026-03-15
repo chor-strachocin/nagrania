@@ -2,6 +2,7 @@
     'use strict';
 
     let songsData = [];
+    let baseUrl = '';
     let currentFilters = {
         voice: 'all',
         type: 'all',
@@ -86,6 +87,14 @@
         bass: 30, bass1: 31, bass2: 32,
         unisono: 100
     };
+
+    function resolveUrl(path) {
+        if (!path) return '';
+        if (path.startsWith('http://') || path.startsWith('https://')) {
+            return path;
+        }
+        return baseUrl + path;
+    }
 
     function isMobile() {
         return window.innerWidth <= 768;
@@ -277,6 +286,7 @@
         try {
             const resp = await fetch('songs.json?v=' + Date.now());
             const data = await resp.json();
+            baseUrl = data.baseUrl || '';
             songsData = data.songs || [];
             buildFilters();
             applyUrlParams();
@@ -396,7 +406,7 @@
             const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
             const footerHtml = hasSheets ? `
                 <div class="song-footer">
-                    <button class="show-sheets-btn" data-song-id="${song.id}">📄 Pokaż nuty</button>
+                    <button class="show-sheets-btn" data-song-id="${song.id}">📄 Pokaż nuty (${song.sheets.pages.length} str.)</button>
                 </div>
             ` : '';
             return `
@@ -428,7 +438,7 @@
         }
         currentSong = song;
         currentTrack = track;
-        dom.audioElement.src = file;
+        dom.audioElement.src = resolveUrl(file);
         dom.audioElement.play().catch(() => {});
         updatePlayerUI();
         updateSheetsPlayerUI();
@@ -476,14 +486,14 @@
     let currentSheetPages = [];
     let currentSheetPage = 0;
 
-    function getMobileUrl(url) {
-        const match = url.match(/^(.+)-(\d+)\.(\w+)$/);
+    function getMobileUrl(path) {
+        const match = path.match(/^(.+)-(\d+)\.(\w+)$/);
         if (match) {
             return `${match[1]}-mobile-${match[2]}.${match[3]}`;
         }
-        const lastDot = url.lastIndexOf('.');
-        if (lastDot === -1) return url + '-mobile';
-        return url.substring(0, lastDot) + '-mobile' + url.substring(lastDot);
+        const lastDot = path.lastIndexOf('.');
+        if (lastDot === -1) return path + '-mobile';
+        return path.substring(0, lastDot) + '-mobile' + path.substring(lastDot);
     }
 
     function getSheetPages(song) {
@@ -492,14 +502,14 @@
         const pages = song.sheets.pages;
 
         if (isMobile() && song.sheets.mobilePages && song.sheets.mobilePages.length > 0) {
-            return song.sheets.mobilePages;
+            return song.sheets.mobilePages.map(p => resolveUrl(p));
         }
 
         if (isMobile()) {
-            return pages.map(url => getMobileUrl(url));
+            return pages.map(p => resolveUrl(getMobileUrl(p)));
         }
 
-        return pages;
+        return pages.map(p => resolveUrl(p));
     }
 
     function openSheets(songId) {
@@ -531,10 +541,10 @@
         if (!currentSheetsSong) return;
 
         const currentUrl = dom.sheetsImage.src;
-        const originalPages = currentSheetsSong.sheets.pages;
 
         if (currentUrl.includes('-mobile')) {
-            const originalUrl = originalPages[currentSheetPage];
+            const originalPath = currentSheetsSong.sheets.pages[currentSheetPage];
+            const originalUrl = resolveUrl(originalPath);
             if (originalUrl && currentUrl !== originalUrl) {
                 dom.sheetsImage.src = originalUrl;
             }

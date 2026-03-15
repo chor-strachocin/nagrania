@@ -889,18 +889,18 @@ main {
 .sheets-image-container {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: #000;
     min-height: 0;
 }
 
 .sheets-image-container img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: auto;
     object-fit: contain;
-    cursor: zoom-in;
 }
 
 .sheets-image-container img.zoomed {
@@ -1039,7 +1039,6 @@ main {
         display: none;
     }
 
-    /* SHEETS MODAL - MOBILE OPTIMIZED */
     .sheets-modal-header {
         padding: 8px 12px;
         gap: 8px;
@@ -1077,6 +1076,12 @@ main {
 
     .sheets-image-container {
         flex: 1;
+        align-items: flex-start;
+    }
+
+    .sheets-image-container img {
+        width: 100%;
+        height: auto;
     }
 
     .sheets-pagination {
@@ -1089,7 +1094,6 @@ main {
         height: 8px;
     }
 
-    /* TRACKS - COMPACT HORIZONTAL SCROLL */
     .sheets-tracks {
         padding: 8px 12px;
         gap: 6px;
@@ -1114,7 +1118,6 @@ main {
         font-size: 0.9rem;
     }
 
-    /* SHEETS PLAYER - MINIMAL */
     .sheets-player {
         padding: 8px 12px;
         gap: 8px;

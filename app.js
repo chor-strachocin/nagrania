@@ -475,9 +475,12 @@
     let currentSheetsSong = null;
     let currentSheetPages = [];
     let currentSheetPage = 0;
-    let sheetZoomed = false;
 
     function getMobileUrl(url) {
+        const match = url.match(/^(.+)-(\d+)\.(\w+)$/);
+        if (match) {
+            return `${match[1]}-mobile-${match[2]}.${match[3]}`;
+        }
         const lastDot = url.lastIndexOf('.');
         if (lastDot === -1) return url + '-mobile';
         return url.substring(0, lastDot) + '-mobile' + url.substring(lastDot);
@@ -506,7 +509,6 @@
         currentSheetsSong = song;
         currentSheetPages = getSheetPages(song);
         currentSheetPage = 0;
-        sheetZoomed = false;
 
         dom.sheetsModalTitle.textContent = song.title + ' – Nuty';
         dom.sheetsModal.classList.add('visible');
@@ -523,8 +525,6 @@
         document.body.style.overflow = '';
         currentSheetsSong = null;
         currentSheetPages = [];
-        sheetZoomed = false;
-        dom.sheetsImage.classList.remove('zoomed');
     }
 
     function handleSheetImageError() {
@@ -546,12 +546,12 @@
 
         const page = currentSheetPages[currentSheetPage];
         dom.sheetsImage.src = page;
-        dom.sheetsImage.classList.remove('zoomed');
-        sheetZoomed = false;
 
         dom.sheetsCounter.textContent = `${currentSheetPage + 1} / ${currentSheetPages.length}`;
         dom.sheetsPrev.disabled = currentSheetPage === 0;
         dom.sheetsNext.disabled = currentSheetPage === currentSheetPages.length - 1;
+
+        dom.sheetsImageContainer.scrollTop = 0;
 
         document.querySelectorAll('.sheets-dot').forEach((dot, i) => {
             dot.classList.toggle('active', i === currentSheetPage);
@@ -595,11 +595,6 @@
             currentSheetPage--;
             renderSheet();
         }
-    }
-
-    function toggleSheetZoom() {
-        sheetZoomed = !sheetZoomed;
-        dom.sheetsImage.classList.toggle('zoomed', sheetZoomed);
     }
 
     function initEvents() {
@@ -765,7 +760,6 @@
         dom.sheetsModalClose.addEventListener('click', closeSheets);
         dom.sheetsPrev.addEventListener('click', prevSheet);
         dom.sheetsNext.addEventListener('click', nextSheet);
-        dom.sheetsImage.addEventListener('click', toggleSheetZoom);
         dom.sheetsImage.addEventListener('error', handleSheetImageError);
 
         dom.sheetsPagination.addEventListener('click', e => {
@@ -806,15 +800,20 @@
         });
 
         let touchStartX = 0;
+        let touchStartY = 0;
         dom.sheetsImageContainer.addEventListener('touchstart', e => {
             touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
         });
 
         dom.sheetsImageContainer.addEventListener('touchend', e => {
             const touchEndX = e.changedTouches[0].clientX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
+            const touchEndY = e.changedTouches[0].clientY;
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
                     nextSheet();
                 } else {
                     prevSheet();

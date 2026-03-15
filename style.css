@@ -35,7 +35,6 @@ body {
     padding-bottom: 100px;
 }
 
-/* Header */
 header {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     padding: 40px 20px;
@@ -79,7 +78,6 @@ header h1 {
     font-weight: 300;
 }
 
-/* ==================== TOOLBAR (Sticky) ==================== */
 .toolbar {
     position: sticky;
     top: 0;
@@ -99,7 +97,6 @@ header h1 {
     align-items: center;
 }
 
-/* Search */
 .search-bar {
     position: relative;
     flex: 1;
@@ -137,7 +134,6 @@ header h1 {
     pointer-events: none;
 }
 
-/* Hamburger button - ALWAYS VISIBLE */
 .hamburger {
     display: flex;
     flex-direction: column;
@@ -185,7 +181,6 @@ header h1 {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Active filters count badge */
 .hamburger-badge {
     position: absolute;
     top: -6px;
@@ -208,7 +203,6 @@ header h1 {
     flex-shrink: 0;
 }
 
-/* Filters - ALWAYS in drawer/panel */
 .filters {
     position: fixed;
     top: 0;
@@ -321,7 +315,6 @@ header h1 {
     border-color: var(--accent);
 }
 
-/* Voice-specific filter colors */
 .filter-btn[data-voice*="soprano"].active { background: var(--soprano); border-color: var(--soprano); }
 .filter-btn[data-voice*="alto"].active { background: var(--alto); border-color: var(--alto); color: #1a1a24; }
 .filter-btn[data-voice*="tenor"].active { background: var(--tenor); border-color: var(--tenor); color: #1a1a24; }
@@ -345,7 +338,6 @@ header h1 {
     cursor: pointer;
 }
 
-/* Active filters indicator */
 .active-filters {
     display: flex;
     flex-direction: column;
@@ -417,7 +409,6 @@ header h1 {
     color: var(--text-bright);
 }
 
-/* Overlay */
 .filters-overlay {
     display: none;
     position: fixed;
@@ -431,21 +422,18 @@ header h1 {
     display: block;
 }
 
-/* ==================== MAIN ==================== */
 main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 24px 20px;
 }
 
-/* Songs Grid */
 .songs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 20px;
 }
 
-/* Song Card */
 .song-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -500,7 +488,6 @@ main {
     color: var(--text-bright);
 }
 
-/* Track list inside song card */
 .track-list {
     padding: 12px 16px;
 }
@@ -580,7 +567,6 @@ main {
 .track-type-badge.mix { background: rgba(190, 75, 219, 0.15); color: var(--mix); }
 .track-type-badge.unisono { background: rgba(134, 142, 150, 0.15); color: var(--unisono); }
 
-/* Pulsing animation for playing track */
 .track-item.playing .track-icon::after {
     content: '';
     position: absolute;
@@ -595,7 +581,34 @@ main {
     100% { transform: scale(1.3); opacity: 0; }
 }
 
-/* Audio Player (bottom bar) */
+.song-footer {
+    padding: 12px 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+}
+
+.show-sheets-btn {
+    padding: 8px 16px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.show-sheets-btn:hover {
+    background: var(--accent);
+    color: var(--text-bright);
+    border-color: var(--accent);
+}
+
 .audio-player {
     position: fixed;
     bottom: 0;
@@ -620,7 +633,7 @@ main {
 
 .player-info {
     min-width: 0;
-    flex: 0 0 180px;
+    flex: 0 0 150px;
 }
 
 .player-title {
@@ -724,11 +737,31 @@ main {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex: 0 0 120px;
+    flex: 0 0 100px;
 }
 
 .player-volume span {
     font-size: 0.9rem;
+}
+
+.player-sheets-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.player-sheets-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
 }
 
 .player-close {
@@ -745,7 +778,6 @@ main {
     color: var(--text);
 }
 
-/* Empty state */
 .empty-state {
     text-align: center;
     padding: 60px 20px;
@@ -753,7 +785,205 @@ main {
     font-size: 1.1rem;
 }
 
-/* Responsive */
+.sheets-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 2000;
+    flex-direction: column;
+}
+
+.sheets-modal.visible {
+    display: flex;
+}
+
+.sheets-modal-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+}
+
+.sheets-modal-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sheets-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sheets-nav-btn {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.sheets-nav-btn:hover:not(:disabled) {
+    background: var(--accent);
+    color: var(--text-bright);
+    border-color: var(--accent);
+}
+
+.sheets-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.sheets-counter {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    min-width: 60px;
+    text-align: center;
+}
+
+.sheets-modal-close {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.sheets-modal-close:hover {
+    background: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.sheets-modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 16px;
+    min-height: 0;
+}
+
+.sheets-image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    background: #000;
+    border-radius: var(--radius-sm);
+    min-height: 0;
+}
+
+.sheets-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: zoom-in;
+}
+
+.sheets-image-container img.zoomed {
+    cursor: zoom-out;
+    max-width: none;
+    max-height: none;
+}
+
+.sheets-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0;
+}
+
+.sheets-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sheets-dot:hover {
+    background: var(--text-dim);
+}
+
+.sheets-dot.active {
+    background: var(--accent);
+    transform: scale(1.3);
+}
+
+.sheets-tracks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.sheets-track-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text);
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sheets-track-btn:hover {
+    border-color: var(--accent);
+    background: var(--bg-card-hover);
+}
+
+.sheets-track-btn.playing {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-bright);
+}
+
+.sheets-track-btn .track-emoji {
+    font-size: 1rem;
+}
+
+.sheets-player {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    background: var(--player-bg);
+    border-top: 1px solid var(--border);
+}
+
 @media (max-width: 768px) {
     header {
         padding: 28px 16px;
@@ -782,279 +1012,80 @@ main {
     }
 
     .player-info {
-        flex: 1 1 calc(100% - 40px);
+        flex: 1 1 calc(100% - 90px);
         order: 1;
     }
 
-    .player-close {
+    .player-sheets-btn {
         order: 2;
     }
 
-    .player-controls {
+    .player-close {
         order: 3;
     }
 
-    .player-progress {
+    .player-controls {
         order: 4;
-        flex: 1 1 auto;
+    }
+
+    .player-progress {
+        order: 5;
+        flex: 1 1 100%;
     }
 
     .player-volume {
-        order: 5;
-        flex: 0 0 100px;
-    }
-}
-
-@media (max-width: 400px) {
-    .songs-grid {
-        gap: 16px;
+        display: none;
     }
 
-    .song-header {
-        padding: 14px 16px 10px;
+    .sheets-modal-header {
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
-    .track-list {
+    .sheets-modal-title {
+        flex: 1 1 calc(100% - 50px);
+        order: 1;
+    }
+
+    .sheets-modal-close {
+        order: 2;
+    }
+
+    .sheets-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .sheets-tracks {
         padding: 10px 12px;
     }
-}
 
-
-/* ==================== SHEET MUSIC VIEWER ==================== */
-
-/* Show sheets button on song card */
-.song-footer {
-    padding: 12px 20px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    gap: 8px;
-}
-
-.show-sheets-btn {
-    padding: 8px 16px;
-    background: var(--bg-filter);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text);
-    font-size: 0.85rem;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.show-sheets-btn:hover {
-    background: var(--accent);
-    color: var(--text-bright);
-    border-color: var(--accent);
-}
-
-/* Modal */
-.sheets-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 2000;
-    backdrop-filter: blur(8px);
-}
-
-.sheets-modal.visible {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.sheets-modal-content {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    max-width: 1000px;
-    width: 100%;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.sheets-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
-}
-
-.sheets-modal-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-bright);
-}
-
-.sheets-modal-close {
-    width: 36px;
-    height: 36px;
-    background: var(--bg-filter);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    color: var(--text);
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-}
-
-.sheets-modal-close:hover {
-    background: var(--bg-card-hover);
-}
-
-.sheets-modal-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    padding: 20px;
-}
-
-.sheets-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-bottom: 16px;
-}
-
-.sheets-btn {
-    width: 44px;
-    height: 44px;
-    background: var(--bg-filter);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    color: var(--text);
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-}
-
-.sheets-btn:hover:not(:disabled) {
-    background: var(--accent);
-    color: var(--text-bright);
-    border-color: var(--accent);
-}
-
-.sheets-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-.sheets-counter {
-    font-size: 0.95rem;
-    color: var(--text-dim);
-    font-variant-numeric: tabular-nums;
-    min-width: 80px;
-    text-align: center;
-}
-
-.sheets-image-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: auto;
-    background: var(--bg);
-    border-radius: var(--radius-sm);
-    position: relative;
-}
-
-.sheets-image-container img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    cursor: zoom-in;
-    border-radius: 4px;
-}
-
-.sheets-image-container img.zoomed {
-    cursor: zoom-out;
-    max-width: none;
-    max-height: none;
-    width: auto;
-    height: auto;
-}
-
-.sheets-pagination {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 16px;
-}
-
-.sheets-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--border);
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.sheets-dot:hover {
-    background: var(--text-dim);
-}
-
-.sheets-dot.active {
-    background: var(--accent);
-    transform: scale(1.3);
-}
-
-/* Touch gestures hint */
-.sheets-hint {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--text-dim);
-    padding: 6px 12px;
-    border-radius: 16px;
-    font-size: 0.75rem;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.sheets-image-container:hover .sheets-hint {
-    opacity: 1;
-}
-
-@media (max-width: 768px) {
-    .sheets-modal-content {
-        max-height: 100vh;
-        border-radius: 0;
+    .sheets-track-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
     }
 
-    .sheets-modal.visible {
-        padding: 0;
+    .sheets-player {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 12px;
     }
 
-    .sheets-modal-body {
-        padding: 12px;
+    .sheets-player .player-info {
+        flex: 1 1 100%;
     }
 
-    .sheets-controls {
-        gap: 12px;
+    .sheets-player .player-controls {
+        order: 2;
     }
 
-    .sheets-btn {
-        width: 40px;
-        height: 40px;
+    .sheets-player .player-progress {
+        order: 3;
+        flex: 1 1 auto;
+    }
+
+    .sheets-player .player-volume {
+        display: none;
     }
 }

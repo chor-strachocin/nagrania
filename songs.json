@@ -679,6 +679,13 @@
     "triduum 2026",
     "części stałe"
   ],
+  "sheets": {
+	  "pages": [
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/kyrie-xi-0.jpg",
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/kyrie-xi-1.jpg"
+	  ]
+  },
+  
   "tracks": [
     {
       "label": "Sopran",
@@ -913,6 +920,12 @@
     "wigilia paschalna",
     "części stałe"
   ],
+  "sheets": {
+	  "pages": [
+		"https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/amen.jpg"
+	  ]
+  },
+
   "tracks": [
     {
       "label": "Sopran 1",

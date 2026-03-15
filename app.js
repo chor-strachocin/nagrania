@@ -13,11 +13,6 @@
     let currentTrack = null;
     let playableTracksList = [];
 
-    // ==================== SHEET MUSIC STATE ====================
-    let currentSheets = null;
-    let currentSheetPage = 0;
-    let sheetZoomed = false;
-
     // ==================== DOM REFS ====================
     const dom = {
         search: document.getElementById('search'),
@@ -46,22 +41,33 @@
         filtersOverlay: document.getElementById('filters-overlay'),
         activeFilters: document.getElementById('active-filters'),
         activeFiltersList: document.getElementById('active-filters-list'),
-        clearFilters: document.getElementById('clear-filters'),
-        // Sheet modal
-        sheetsModal: document.getElementById('sheets-modal'),
-        sheetsModalTitle: document.getElementById('sheets-modal-title'),
-        sheetsModalClose: document.getElementById('sheets-modal-close'),
-        sheetsImage: document.getElementById('sheets-image'),
-        sheetsImageContainer: document.getElementById('sheets-image-container'),
-        sheetsCounter: document.getElementById('sheets-counter'),
-        sheetsPrev: document.getElementById('sheets-prev'),
-        sheetsNext: document.getElementById('sheets-next'),
-        sheetsPagination: document.getElementById('sheets-pagination')
+        clearFilters: document.getElementById('clear-filters')
     };
 
-    // ==================== CONFIG ====================
-    const voiceConfig = { /* ... (bez zmian - zostaw całe voiceConfig i voiceOrder) ... */ };
-    const voiceOrder = { /* ... (bez zmian) ... */ };
+    // ==================== VOICE CONFIG ====================
+    const voiceConfig = {
+        soprano: { emoji: '🎤', label: 'Sopran', cssClass: 'soprano' },
+        soprano1: { emoji: '🎤', label: 'Sopran 1', cssClass: 'soprano1' },
+        soprano2: { emoji: '🎤', label: 'Sopran 2', cssClass: 'soprano2' },
+        alto: { emoji: '🎙️', label: 'Alt', cssClass: 'alto' },
+        alto1: { emoji: '🎙️', label: 'Alt 1', cssClass: 'alto' },
+        alto2: { emoji: '🎙️', label: 'Alt 2', cssClass: 'alto' },
+        tenor: { emoji: '🎶', label: 'Tenor', cssClass: 'tenor' },
+        tenor1: { emoji: '🎶', label: 'Tenor 1', cssClass: 'tenor' },
+        tenor2: { emoji: '🎶', label: 'Tenor 2', cssClass: 'tenor' },
+        bass: { emoji: '🔊', label: 'Bas', cssClass: 'bass' },
+        bass1: { emoji: '🔊', label: 'Bas 1', cssClass: 'bass' },
+        bass2: { emoji: '🔊', label: 'Bas 2', cssClass: 'bass' },
+        unisono: { emoji: '👥', label: 'Unisono', cssClass: 'unisono' }
+    };
+
+    const voiceOrder = {
+        soprano: 0, soprano1: 1, soprano2: 2,
+        alto: 10, alto1: 11, alto2: 12,
+        tenor: 20, tenor1: 21, tenor2: 22,
+        bass: 30, bass1: 31, bass2: 32,
+        unisono: 100
+    };
 
     function getVoiceInfo(voice) {
         return voiceConfig[voice] || { emoji: '🎵', label: voice, cssClass: 'mix' };
@@ -79,7 +85,10 @@
 
     // ==================== TAG NORMALIZATION ====================
     function normalizeTag(tag) {
-        return tag.toLowerCase().replace(/[^a-z0-9ąćęłńóśźżàâäéèêëïîôùûüÿœæ]/gi, '');
+        return tag
+            .toLowerCase()
+            .replace(/[^a-z0-9ąćęłńóśźżàâäéèêëïîôùûüÿœæ]/gi, '')
+            .toLowerCase();
     }
 
     function getNormalizedTags(song) {
@@ -439,29 +448,29 @@
 
             // W funkcji render(), w mapowaniu song → HTML, dodaj przed zamknięciem .song-card:
 
-			const footerHtml = song.sheets && song.sheets.pages && song.sheets.pages.length > 0
-				? `
-					<div class="song-footer">
-						<button class="show-sheets-btn" onclick="window.choirApp.openSheets(${JSON.stringify(song).replace(/"/g, '&quot;')})">
-							📄 Pokaż nuty (${song.sheets.pages.length} str.)
-						</button>
-					</div>
-				`
-				: '';
-
-			return `
-				<div class="song-card">
-					<div class="song-header">
-						<div class="song-title">${song.title}</div>
-						${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
-						<div class="song-tags">${tagsHtml}</div>
-					</div>
-					<div class="track-list">
-						${tracksHtml}
-					</div>
-					${footerHtml}
+		const footerHtml = song.sheets && song.sheets.pages && song.sheets.pages.length > 0
+			? `
+				<div class="song-footer">
+					<button class="show-sheets-btn" onclick="window.choirApp.openSheets(${JSON.stringify(song).replace(/"/g, '&quot;')})">
+						📄 Pokaż nuty (${song.sheets.pages.length} str.)
+					</button>
 				</div>
-			`;
+			`
+			: '';
+
+		return `
+			<div class="song-card">
+				<div class="song-header">
+					<div class="song-title">${song.title}</div>
+					${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
+					<div class="song-tags">${tagsHtml}</div>
+				</div>
+				<div class="track-list">
+					${tracksHtml}
+				</div>
+				${footerHtml}
+			</div>
+		`;
         }).join('');
     }
 
@@ -670,74 +679,50 @@
             dom.playerPlay.textContent = '▶';
         });
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', e => {
-            if (e.target.tagName === 'INPUT') return;
+		// Keyboard shortcuts
+		document.addEventListener('keydown', e => {
+			if (e.target.tagName === 'INPUT') return;
 
-            switch (e.code) {
-                case 'Space':
-                    e.preventDefault();
-                    dom.playerPlay.click();
-                    break;
-                case 'ArrowLeft':
-                    if (dom.audioElement.duration) {
-                        dom.audioElement.currentTime = Math.max(0, dom.audioElement.currentTime - 5);
-                    }
-                    break;
-                case 'ArrowRight':
-                    if (dom.audioElement.duration) {
-                        dom.audioElement.currentTime = Math.min(dom.audioElement.duration, dom.audioElement.currentTime + 5);
-                    }
-                    break;
-                case 'Escape':
-                    closeFiltersDrawer();
-                    break;
-            }
-        });
+			// Najpierw obsłuż nuty JEŻELI są otwarte
+			if (currentSheets) {
+				switch (e.code) {
+					case 'Escape':
+						e.preventDefault();
+						e.stopPropagation();
+						closeSheets();
+						return;
+					case 'ArrowLeft':
+						e.preventDefault();
+						prevSheet();
+						return;
+					case 'ArrowRight':
+						e.preventDefault();
+						nextSheet();
+						return;
+				}
+			}
 
-   // Sheet modal listeners
-        dom.sheetsModalClose.addEventListener('click', closeSheets);
-        dom.sheetsModal.addEventListener('click', e => {
-            if (e.target === dom.sheetsModal) closeSheets();
-        });
-        dom.sheetsPrev.addEventListener('click', prevSheet);
-        dom.sheetsNext.addEventListener('click', nextSheet);
-        dom.sheetsImage.addEventListener('click', toggleSheetZoom);
-        dom.sheetsPagination.addEventListener('click', e => {
-            const dot = e.target.closest('.sheets-dot');
-            if (dot) {
-                currentSheetPage = parseInt(dot.dataset.page);
-                renderCurrentSheet();
-            }
-        });
-
-        // Keyboard
-        document.addEventListener('keydown', e => {
-            if (e.target.tagName === 'INPUT') return;
-
-            if (currentSheets) {
-                switch (e.code) {
-                    case 'Escape': closeSheets(); break;
-                    case 'ArrowLeft': prevSheet(); break;
-                    case 'ArrowRight': nextSheet(); break;
-                }
-            } else {
-                switch (e.code) {
-                    case 'Space':
-                        e.preventDefault();
-                        dom.playerPlay.click();
-                        break;
-                    case 'ArrowLeft':
-                        if (dom.audioElement.duration) dom.audioElement.currentTime = Math.max(0, dom.audioElement.currentTime - 5);
-                        break;
-                    case 'ArrowRight':
-                        if (dom.audioElement.duration) dom.audioElement.currentTime = Math.min(dom.audioElement.duration, dom.audioElement.currentTime + 5);
-                        break;
-                }
-            }
-        });
-
-
+			// Dopiero później reszta skrótów
+			switch (e.code) {
+				case 'Space':
+					e.preventDefault();
+					dom.playerPlay.click();
+					break;
+				case 'ArrowLeft':
+					if (dom.audioElement.duration) {
+						dom.audioElement.currentTime = Math.max(0, dom.audioElement.currentTime - 5);
+					}
+					break;
+				case 'ArrowRight':
+					if (dom.audioElement.duration) {
+						dom.audioElement.currentTime = Math.min(dom.audioElement.duration, dom.audioElement.currentTime + 5);
+					}
+					break;
+				case 'Escape':
+					closeFiltersDrawer();
+					break;
+			}
+		});
         // Handle browser back/forward
         window.addEventListener('popstate', () => {
             applyUrlParams();
@@ -746,66 +731,132 @@
         });
     }
 
-    // ==================== SHEET MUSIC VIEWER ====================
+        // ==================== SHEET MUSIC VIEWER ====================
+    let currentSheets = null;
+    let currentSheetPage = 0;
+    let sheetZoomed = false;
+
+    const sheetsDom = {
+        modal: document.getElementById('sheets-modal'),
+        modalTitle: document.getElementById('sheets-modal-title'),
+        modalClose: document.getElementById('sheets-modal-close'),
+        image: document.getElementById('sheets-image'),
+        imageContainer: document.getElementById('sheets-image-container'),
+        counter: document.getElementById('sheets-counter'),
+        prev: document.getElementById('sheets-prev'),
+        next: document.getElementById('sheets-next'),
+        pagination: document.getElementById('sheets-pagination')
+    };
+
     function openSheets(song) {
-        if (!song.sheets?.pages?.length) return;
+        if (!song.sheets || !song.sheets.pages || song.sheets.pages.length === 0) return;
 
         currentSheets = song.sheets.pages;
         currentSheetPage = 0;
 
-        dom.sheetsModalTitle.textContent = `${song.title} – Nuty`;
-        dom.sheetsModal.classList.add('visible');
+        sheetsDom.modalTitle.textContent = `${song.title} – Nuty`;
+        sheetsDom.modal.classList.add('visible');
         document.body.style.overflow = 'hidden';
 
-        renderCurrentSheet();
+        renderSheet();
+        renderSheetPagination();
     }
 
     function closeSheets() {
-        dom.sheetsModal.classList.remove('visible');
+        sheetsDom.modal.classList.remove('visible');
         document.body.style.overflow = '';
         currentSheets = null;
         sheetZoomed = false;
     }
 
-    function renderCurrentSheet() {
+    function renderSheet() {
         if (!currentSheets) return;
-        const url = currentSheets[currentSheetPage];
-        dom.sheetsImage.src = url;
-        dom.sheetsCounter.textContent = `${currentSheetPage + 1} / ${currentSheets.length}`;
 
-        dom.sheetsPrev.disabled = currentSheetPage === 0;
-        dom.sheetsNext.disabled = currentSheetPage === currentSheets.length - 1;
+        const page = currentSheets[currentSheetPage];
+        sheetsDom.image.src = page;
+        sheetsDom.counter.textContent = `${currentSheetPage + 1} / ${currentSheets.length}`;
 
+        sheetsDom.prev.disabled = currentSheetPage === 0;
+        sheetsDom.next.disabled = currentSheetPage === currentSheets.length - 1;
+
+        // Update dots
         document.querySelectorAll('.sheets-dot').forEach((dot, i) => {
             dot.classList.toggle('active', i === currentSheetPage);
         });
+
+        // Reset zoom
+        sheetsDom.image.classList.remove('zoomed');
+        sheetZoomed = false;
+    }
+
+    function renderSheetPagination() {
+        if (!currentSheets) return;
+
+        sheetsDom.pagination.innerHTML = currentSheets.map((_, i) => 
+            `<div class="sheets-dot ${i === currentSheetPage ? 'active' : ''}" data-page="${i}"></div>`
+        ).join('');
     }
 
     function nextSheet() {
         if (currentSheetPage < currentSheets.length - 1) {
             currentSheetPage++;
-            renderCurrentSheet();
+            renderSheet();
         }
     }
 
     function prevSheet() {
         if (currentSheetPage > 0) {
             currentSheetPage--;
-            renderCurrentSheet();
+            renderSheet();
         }
     }
 
     function toggleSheetZoom() {
         sheetZoomed = !sheetZoomed;
-        dom.sheetsImage.classList.toggle('zoomed', sheetZoomed);
+        sheetsDom.image.classList.toggle('zoomed', sheetZoomed);
     }
 
+    // Event listeners for sheets
+    sheetsDom.modalClose.addEventListener('click', closeSheets);
+    sheetsDom.modal.addEventListener('click', (e) => {
+        if (e.target === sheetsDom.modal) closeSheets();
+    });
+    sheetsDom.prev.addEventListener('click', prevSheet);
+    sheetsDom.next.addEventListener('click', nextSheet);
+    sheetsDom.image.addEventListener('click', toggleSheetZoom);
+
+    sheetsDom.pagination.addEventListener('click', (e) => {
+        const dot = e.target.closest('.sheets-dot');
+        if (dot) {
+            currentSheetPage = parseInt(dot.dataset.page);
+            renderSheet();
+        }
+    });
 
 
-    // ==================== FINAL EXPOSE ====================
-    window.choirApp = {
+    // Touch swipe support
+    let touchStartX = 0;
+    sheetsDom.imageContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    });
+
+    sheetsDom.imageContainer.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) { // threshold
+            if (diff > 0) {
+                nextSheet(); // swipe left = next
+            } else {
+                prevSheet(); // swipe right = prev
+            }
+        }
+    });
+
+    // Expose for song cards
+    window.choirApp = { 
         playTrack,
-        openSheets
+        openSheets 
     };
 
     initEvents();

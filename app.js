@@ -61,7 +61,8 @@
         sheetsPlayerSeek: document.getElementById('sheets-player-seek'),
         sheetsPlayerCurrentTime: document.getElementById('sheets-player-current-time'),
         sheetsPlayerDuration: document.getElementById('sheets-player-duration'),
-        sheetsPlayerVolume: document.getElementById('sheets-player-volume')
+        sheetsPlayerVolume: document.getElementById('sheets-player-volume'),
+        toolbar: document.getElementById('toolbar')
     };
 
     const voiceConfig = {
@@ -335,11 +336,21 @@
         }
     }
 
+    // ZMIANA 1: Nowa logika filtrowania - unisono pokazywane gdy hideUnisono === false
     function filterTracks(tracks) {
         return tracks.filter(track => {
+            const isUnisono = track.type === 'unisono' || track.voice === 'unisono';
+            
+            // Obsługa unisono
+            if (isUnisono) {
+                // Ukryj unisono tylko gdy checkbox jest zaznaczony
+                return !currentFilters.hideUnisono;
+            }
+            
+            // Dla pozostałych typów - standardowa logika filtrów
             if (currentFilters.voice !== 'all' && track.voice !== currentFilters.voice) return false;
             if (currentFilters.type !== 'all' && track.type !== currentFilters.type) return false;
-            if (currentFilters.hideUnisono && track.type === 'unisono') return false;
+            
             return true;
         });
     }
@@ -366,7 +377,8 @@
         return filtered;
     }
 
-    function render() {
+    // ZMIANA 2: Dodano parametr scrollToResults
+    function render(scrollToResults = false) {
         const filtered = getFilteredSongs();
         playableTracksList = [];
         filtered.forEach(song => {
@@ -421,6 +433,13 @@
                 </div>
             `;
         }).join('');
+
+        // ZMIANA 2: Scroll do wyników gdy wyszukiwanie
+        if (scrollToResults && filtered.length > 0) {
+            const toolbarHeight = dom.toolbar ? dom.toolbar.offsetHeight : 70;
+            const targetScrollTop = dom.songsGrid.offsetTop - toolbarHeight - 10;
+            window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
+        }
     }
 
     function playTrack(songId, file) {
@@ -469,7 +488,18 @@
     }
 
     function updateSheetsPlayerUI() {
-        if (!currentSong || !currentTrack) return;
+        if (!currentSong || !currentTrack) {
+            // ZMIANA 3: Gdy nie ma wybranej ścieżki, pokaż info o utworze z nut
+            if (currentSheetsSong) {
+                dom.sheetsPlayerTitle.textContent = currentSheetsSong.title;
+                dom.sheetsPlayerTrack.textContent = 'Wybierz ścieżkę lub kliknij ▶';
+            } else {
+                dom.sheetsPlayerTitle.textContent = '-';
+                dom.sheetsPlayerTrack.textContent = '-';
+            }
+            dom.sheetsPlayerPlay.textContent = '▶';
+            return;
+        }
         dom.sheetsPlayerTitle.textContent = currentSong.title;
         dom.sheetsPlayerTrack.textContent = currentTrack.label;
         dom.sheetsPlayerPlay.textContent = dom.audioElement.paused ? '▶' : '⏸';
@@ -607,6 +637,25 @@
         }
     }
 
+    // ZMIANA 3: Funkcja do odtworzenia pierwszej dostępnej ścieżki dla utworu
+    function playFirstTrackOfSong(song) {
+        if (!song || !song.tracks || song.tracks.length === 0) return false;
+        
+        const availableTracks = filterTracks(song.tracks).sort(compareTracks);
+        if (availableTracks.length === 0) {
+            // Jeśli filtry ukrywają wszystkie ścieżki, weź pierwszą bez filtrowania
+            const allTracks = [...song.tracks].sort(compareTracks);
+            if (allTracks.length > 0) {
+                playTrack(song.id, allTracks[0].file);
+                return true;
+            }
+            return false;
+        }
+        
+        playTrack(song.id, availableTracks[0].file);
+        return true;
+    }
+
     function initEvents() {
         let searchTimeout;
         dom.search.addEventListener('input', () => {
@@ -614,7 +663,8 @@
             searchTimeout = setTimeout(() => {
                 currentFilters.search = dom.search.value.trim();
                 updateUrl();
-                render();
+                // ZMIANA 2: Przekazujemy true aby scrollować do wyników
+                render(true);
             }, 200);
         });
 
@@ -787,7 +837,19 @@
             }
         });
 
+        // ZMIANA 3: Obsługa play w panelu nut - odtwarza pierwszą ścieżkę jeśli nie wybrano
         dom.sheetsPlayerPlay.addEventListener('click', () => {
+            // Jeśli nie ma aktualnie wybranej ścieżki dla tego utworu, odtwórz pierwszą
+            const isCurrentSongPlaying = currentSong && currentSheetsSong && currentSong.id === currentSheetsSong.id;
+            
+            if (!currentTrack || !isCurrentSongPlaying) {
+                if (currentSheetsSong) {
+                    playFirstTrackOfSong(currentSheetsSong);
+                }
+                return;
+            }
+            
+            // Standardowa logika play/pause
             if (dom.audioElement.paused) {
                 dom.audioElement.play();
             } else {

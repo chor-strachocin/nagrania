@@ -798,6 +798,11 @@
     "wielki czwartek",
     "wigilia paschalna"
   ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/sanctus-xii.png"
+	  ]
+  },
   "tracks": [
     {
       "label": "Unisono",
@@ -817,6 +822,11 @@
     "eucharystyczne",
     "triduum 2026"
   ],
+   "sheets": {
+	  "pages": [
+		"/Nuty/uczta-baranka.png"
+		]
+  },
   "tracks": [
     {
       "label": "Sopran",
@@ -942,6 +952,9 @@
   "sheets": {
 	  "pages": [
 		"/Nuty/amen.jpg"
+	  ],
+	  "mobilePages": [
+		"/Nuty/amen-mobile.png"
 	  ]
   },
 

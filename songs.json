@@ -1185,7 +1185,72 @@
 
 
 	
-	
+	{
+  "id": "agnus-dei-ssmi-cordis-iesu",
+  "title": "Agnus Dei ex Litaniae ssmi cordis Iesu",
+  "composer": "chorał gregoriański / Krzysztof Stępień",
+  "tags": [
+    "wielki czwartek",
+    "wigilia paschalna",
+    "Triduum 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/agnus-dei-ssmi-cordis-iesu.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "/mp3/Agnus_Dei_pd_1.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "/mp3/Agnus_Dei_pd_3.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "/mp3/Agnus_Dei_pd_4.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "/mp3/Agnus_Dei_pd_5.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/agnus-dei-ssmi-cordis-iesu-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/agnus-dei-ssmi-cordis-iesu-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/agnus-dei-ssmi-cordis-iesu-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/agnus-dei-ssmi-cordis-iesu-bass.mp3"
+    }
+  ]
+}
+
 	
 	
 	

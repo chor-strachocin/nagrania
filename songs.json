@@ -5,7 +5,14 @@
       "id": "ludu-moj-ludu-2025",
       "title": "Ludu mój, ludu",
       "composer": "trad. / Krzysztof Stępień",
-      "tags": ["pasyjne", "triduum", "triduum 2026", "wielki piątek"],
+      "tags": ["pasyjne", "triduum 2026", "wielki piątek"],
+	  "sheets": {
+		  "pages": [
+			"/Nuty/ludu-moj-ludu-1.jpg",
+			"/Nuty/ludu-moj-ludu-2.jpg"
+		  ]
+  },
+
       "tracks": [
 
         {
@@ -327,6 +334,16 @@
     "wielki piątek",
     "triduum 2026"
   ],
+
+   "sheets": {
+	  "pages": [
+		"/Nuty/to-co-odkrywacie-1.png",
+		"/Nuty/to-co-odkrywacie-2.png"
+	  ],
+	  "mobilePages": [
+		"/Nuty/to-co-odkrywacie-mobile-1.png"
+	  ]
+  },
   "tracks": [
     {
       "label": "Sopran",
@@ -1249,10 +1266,397 @@
       "file": "/mp3/agnus-dei-ssmi-cordis-iesu-bass.mp3"
     }
   ]
+},
+
+
+{
+  "id": "swiety-boze",
+  "title": "Suplikacje (Święty Boże)",
+  "composer": "trad. / Marcin Pospieszalski",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/swiety-boze-pospieszalski.png"
+	  ]
+ },	
+  "tracks": [
+     {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/swiety-boze-pospieszalski-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/swiety-boze-pospieszalski-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/swiety-boze-pospieszalski-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/swiety-boze-pospieszalski-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "krzyzu-swiety",
+  "title": "Krzyżu Święty nade wszystko",
+  "composer": "trad. / Jacek Gałuszka",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/krzyzu-swiety.png"
+	  ]
+ },	
+  "tracks": [
+ 
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/krzyzu-swiety-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/krzyzu-swiety-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/krzyzu-swiety-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/krzyzu-swiety-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "jezu-chryste-panie-mily",
+  "title": "Jezu Chryste, Panie miły",
+  "composer": "trad.",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/jezu-chryste-panie-mily.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/jezu-chryste-panie-mily-unisono.mp3"
+    }
+  ]
+},
+
+
+{
+  "id": "swietosc-krzyza-rozpamietuj",
+  "title": "Świętość Krzyża rozpamiętuj",
+  "composer": "Dawid Kusz",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/swietosc-krzyza-rozpamietuj.png"
+	  ]
+ },	
+  "tracks": [
+ 
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/swietosc-krzyza-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/swietosc-krzyza-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/swietosc-krzyza-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/swietosc-krzyza-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "wisi-na-krzyzu",
+  "title": "Wisi na krzyżu	",
+  "composer": "trad.",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/wisi-na-krzyzu.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/wisi-na-krzyzu-unisono.mp3"
+    }
+  ]
+},
+
+{
+  "id": "wielbimy-krzyz-twoj-panie-jezu",
+  "title": "Wielbimy Krzyż Twój, Panie Jezu",
+  "composer": "Krzysztof Stępień",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/wielbimy-krzyz-twoj-panie-jezu.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/wielbimy-krzyz-twoj-panie-jezu-unisono.mp3"
+    }
+  ]
+},
+	
+
+{
+  "id": "krzyzu-moj-krzyzu",
+  "title": "Krzyżu, mój Krzyżu",
+  "composer": "Marian Machura",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/krzyzu-moj-krzyzu.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/krzyzu-moj-krzyzu-unisono.mp3"
+    }
+  ]
+},
+
+
+{
+  "id": "pan-jezus-grzechy-nasze",
+  "title": "Pan Jezus grzechy nasze na krzyż ze sobą wziął",
+  "composer": "benedyktyni tynieccy",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/pan-jezus-grzechy-nasze.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/pan-jezus-grzechy-nasze-unisono.mp3"
+    }
+  ]
+},	
+
+{
+  "id": "w-krzyzu-cierpienie",
+  "title": "W krzyżu cierpienie",
+  "composer": "Karol Antoniewicz",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/w-krzyzu-cierpienie.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/w-krzyzu-cierpienie-unisono.mp3"
+    }
+  ]
+},
+
+
+{
+  "id": "krzyzu-chrystusa",
+  "title": "Krzyżu Chrystusa",
+  "composer": "trad.",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/krzyzu-chrystusa.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/krzyzu-chrystusa-unisono.mp3"
+    }
+  ]
+},
+
+{
+  "id": "zawitaj-ukrzyzowany",
+  "title": "Zawitaj, Ukrzyżowany",
+  "composer": "trad. / Jacek Gałuszka",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/zawitaj-ukrzyzowany.png"
+	  ]
+ },	
+  "tracks": [
+ 
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/zawitaj-ukrzyzowany-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/zawitaj-ukrzyzowany-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/zawitaj-ukrzyzowany-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/zawitaj-ukrzyzowany-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "krola-wznosza-sie-znamiona",
+  "title": "Króla wznoszą się znamiona",
+  "composer": "Alojzy Odrobina",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"pasyjne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/krola-wznosza-sie-znamiona.png"
+	  ]
+ },	
+  "tracks": [
+     {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/krola-wznosza-sie-znamiona-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/krola-wznosza-sie-znamiona-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/krola-wznosza-sie-znamiona-soprano.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/krola-wznosza-sie-znamiona-alto.mp3"
+    }
+  ]
 }
 
-	
-	
+
+
+
+
 	
   ]
 }

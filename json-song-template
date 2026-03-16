@@ -1,0 +1,64 @@
+{
+  "id": "",
+  "title": "",
+  "composer": "",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "/mp3/.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "/mp3/.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "/mp3/.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "/mp3/.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/-bass.mp3"
+    }
+  ]
+}

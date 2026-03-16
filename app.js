@@ -62,7 +62,8 @@
         sheetsPlayerCurrentTime: document.getElementById('sheets-player-current-time'),
         sheetsPlayerDuration: document.getElementById('sheets-player-duration'),
         sheetsPlayerVolume: document.getElementById('sheets-player-volume'),
-        toolbar: document.getElementById('toolbar')
+        toolbar: document.getElementById('toolbar'),
+        sheetsNextPageHint: document.getElementById('sheets-next-page-hint')
     };
 
     const voiceConfig = {
@@ -336,18 +337,14 @@
         }
     }
 
-    // ZMIANA 1: Nowa logika filtrowania - unisono pokazywane gdy hideUnisono === false
     function filterTracks(tracks) {
         return tracks.filter(track => {
             const isUnisono = track.type === 'unisono' || track.voice === 'unisono';
             
-            // Obsługa unisono
             if (isUnisono) {
-                // Ukryj unisono tylko gdy checkbox jest zaznaczony
                 return !currentFilters.hideUnisono;
             }
             
-            // Dla pozostałych typów - standardowa logika filtrów
             if (currentFilters.voice !== 'all' && track.voice !== currentFilters.voice) return false;
             if (currentFilters.type !== 'all' && track.type !== currentFilters.type) return false;
             
@@ -377,7 +374,6 @@
         return filtered;
     }
 
-    // ZMIANA 2: Dodano parametr scrollToResults
     function render(scrollToResults = false) {
         const filtered = getFilteredSongs();
         playableTracksList = [];
@@ -434,7 +430,6 @@
             `;
         }).join('');
 
-        // ZMIANA 2: Scroll do wyników gdy wyszukiwanie
         if (scrollToResults && filtered.length > 0) {
             const toolbarHeight = dom.toolbar ? dom.toolbar.offsetHeight : 70;
             const targetScrollTop = dom.songsGrid.offsetTop - toolbarHeight - 10;
@@ -489,7 +484,6 @@
 
     function updateSheetsPlayerUI() {
         if (!currentSong || !currentTrack) {
-            // ZMIANA 3: Gdy nie ma wybranej ścieżki, pokaż info o utworze z nut
             if (currentSheetsSong) {
                 dom.sheetsPlayerTitle.textContent = currentSheetsSong.title;
                 dom.sheetsPlayerTrack.textContent = 'Wybierz ścieżkę lub kliknij ▶';
@@ -542,6 +536,48 @@
         return pages.map(p => resolveUrl(p));
     }
 
+    // Sprawdza czy użytkownik doscrollował do końca strony nut
+    function checkScrollForNextPageHint() {
+        if (!currentSheetsSong || currentSheetPages.length === 0) {
+            hideNextPageHint();
+            return;
+        }
+
+        // Ukryj na ostatniej stronie
+        if (currentSheetPage >= currentSheetPages.length - 1) {
+            hideNextPageHint();
+            return;
+        }
+
+        const container = dom.sheetsImageContainer;
+        const scrollTop = container.scrollTop;
+        const scrollHeight = container.scrollHeight;
+        const clientHeight = container.clientHeight;
+
+        // Pokaż hint gdy użytkownik jest blisko końca (w granicach 100px od dołu)
+        const threshold = 100;
+        const isNearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
+
+        if (isNearBottom) {
+            showNextPageHint();
+        } else {
+            hideNextPageHint();
+        }
+    }
+
+    function showNextPageHint() {
+        if (dom.sheetsNextPageHint) {
+            dom.sheetsNextPageHint.classList.add('visible');
+            dom.sheetsNextPageHint.classList.remove('hidden');
+        }
+    }
+
+    function hideNextPageHint() {
+        if (dom.sheetsNextPageHint) {
+            dom.sheetsNextPageHint.classList.remove('visible');
+        }
+    }
+
     function openSheets(songId) {
         const song = songsData.find(s => s.id === songId);
         if (!song || !song.sheets || !song.sheets.pages || song.sheets.pages.length === 0) return;
@@ -558,6 +594,7 @@
         renderSheetsPagination();
         renderSheetsTracks();
         updateSheetsPlayerUI();
+        updateNextPageHintVisibility();
     }
 
     function closeSheets() {
@@ -565,6 +602,7 @@
         document.body.style.overflow = '';
         currentSheetsSong = null;
         currentSheetPages = [];
+        hideNextPageHint();
     }
 
     function handleSheetImageError() {
@@ -578,6 +616,28 @@
             if (originalUrl && currentUrl !== originalUrl) {
                 dom.sheetsImage.src = originalUrl;
             }
+        }
+    }
+
+    // Aktualizuje widoczność przycisku hint w zależności od strony
+    function updateNextPageHintVisibility() {
+        if (!currentSheetsSong || currentSheetPages.length === 0) {
+            hideNextPageHint();
+            return;
+        }
+
+        // Ukryj na ostatniej stronie
+        if (currentSheetPage >= currentSheetPages.length - 1) {
+            if (dom.sheetsNextPageHint) {
+                dom.sheetsNextPageHint.classList.add('hidden');
+            }
+            hideNextPageHint();
+        } else {
+            if (dom.sheetsNextPageHint) {
+                dom.sheetsNextPageHint.classList.remove('hidden');
+            }
+            // Sprawdź scroll dopiero po załadowaniu obrazu
+            hideNextPageHint();
         }
     }
 
@@ -596,6 +656,10 @@
         document.querySelectorAll('.sheets-dot').forEach((dot, i) => {
             dot.classList.toggle('active', i === currentSheetPage);
         });
+
+        // Ukryj hint przy zmianie strony, potem sprawdź po załadowaniu obrazu
+        hideNextPageHint();
+        updateNextPageHintVisibility();
     }
 
     function renderSheetsPagination() {
@@ -637,13 +701,11 @@
         }
     }
 
-    // ZMIANA 3: Funkcja do odtworzenia pierwszej dostępnej ścieżki dla utworu
     function playFirstTrackOfSong(song) {
         if (!song || !song.tracks || song.tracks.length === 0) return false;
         
         const availableTracks = filterTracks(song.tracks).sort(compareTracks);
         if (availableTracks.length === 0) {
-            // Jeśli filtry ukrywają wszystkie ścieżki, weź pierwszą bez filtrowania
             const allTracks = [...song.tracks].sort(compareTracks);
             if (allTracks.length > 0) {
                 playTrack(song.id, allTracks[0].file);
@@ -663,7 +725,6 @@
             searchTimeout = setTimeout(() => {
                 currentFilters.search = dom.search.value.trim();
                 updateUrl();
-                // ZMIANA 2: Przekazujemy true aby scrollować do wyników
                 render(true);
             }, 200);
         });
@@ -822,6 +883,26 @@
         dom.sheetsNext.addEventListener('click', nextSheet);
         dom.sheetsImage.addEventListener('error', handleSheetImageError);
 
+        // Sprawdź scroll po załadowaniu obrazu nut
+        dom.sheetsImage.addEventListener('load', () => {
+            // Daj chwilę na wyrenderowanie
+            setTimeout(() => {
+                checkScrollForNextPageHint();
+            }, 100);
+        });
+
+        // Obsługa scrollowania w kontenerze nut
+        dom.sheetsImageContainer.addEventListener('scroll', () => {
+            checkScrollForNextPageHint();
+        });
+
+        // Kliknięcie w strzałkę "następna strona"
+        if (dom.sheetsNextPageHint) {
+            dom.sheetsNextPageHint.addEventListener('click', () => {
+                nextSheet();
+            });
+        }
+
         dom.sheetsPagination.addEventListener('click', e => {
             const dot = e.target.closest('.sheets-dot');
             if (dot) {
@@ -837,9 +918,7 @@
             }
         });
 
-        // ZMIANA 3: Obsługa play w panelu nut - odtwarza pierwszą ścieżkę jeśli nie wybrano
         dom.sheetsPlayerPlay.addEventListener('click', () => {
-            // Jeśli nie ma aktualnie wybranej ścieżki dla tego utworu, odtwórz pierwszą
             const isCurrentSongPlaying = currentSong && currentSheetsSong && currentSong.id === currentSheetsSong.id;
             
             if (!currentTrack || !isCurrentSongPlaying) {
@@ -849,7 +928,6 @@
                 return;
             }
             
-            // Standardowa logika play/pause
             if (dom.audioElement.paused) {
                 dom.audioElement.play();
             } else {

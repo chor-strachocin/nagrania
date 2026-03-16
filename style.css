@@ -1180,3 +1180,78 @@ main {
         display: none;
     }
 }
+
+/* Strzałka "następna strona" w nutach */
+.sheets-next-page-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(108, 92, 231, 0.9);
+    border: 1px solid var(--accent-light);
+    border-radius: 30px;
+    color: var(--text-bright);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+}
+
+.sheets-next-page-hint.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sheets-next-page-hint:hover {
+    background: var(--accent);
+    transform: translateX(-50%) scale(1.05);
+}
+
+.sheets-next-page-hint:active {
+    transform: translateX(-50%) scale(0.98);
+}
+
+.sheets-next-page-hint-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.sheets-next-page-hint-arrow {
+    font-size: 1.2rem;
+    animation: bounceArrow 1s ease-in-out infinite;
+}
+
+@keyframes bounceArrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+/* Ukryj na ostatniej stronie - obsługiwane przez JS */
+.sheets-next-page-hint.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sheets-next-page-hint {
+        bottom: 15px;
+        padding: 10px 20px;
+        gap: 6px;
+    }
+
+    .sheets-next-page-hint-text {
+        font-size: 0.8rem;
+    }
+
+    .sheets-next-page-hint-arrow {
+        font-size: 1rem;
+    }
+}

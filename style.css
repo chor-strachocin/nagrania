@@ -788,10 +788,16 @@ main {
 .sheets-modal {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px;
+    height: 100vh;
     background: var(--bg);
     z-index: 2000;
     flex-direction: column;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);  /* ← cień po bokach */
 }
 
 .sheets-modal.visible {

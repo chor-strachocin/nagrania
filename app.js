@@ -537,34 +537,33 @@
     }
 
     // Sprawdza czy użytkownik doscrollował do końca strony nut
-    function checkScrollForNextPageHint() {
-        if (!currentSheetsSong || currentSheetPages.length === 0) {
-            hideNextPageHint();
-            return;
-        }
-
-        // Ukryj na ostatniej stronie
-        if (currentSheetPage >= currentSheetPages.length - 1) {
-            hideNextPageHint();
-            return;
-        }
-
-        const container = dom.sheetsImageContainer;
-        const scrollTop = container.scrollTop;
-        const scrollHeight = container.scrollHeight;
-        const clientHeight = container.clientHeight;
-
-        // Pokaż hint gdy użytkownik jest blisko końca (w granicach 100px od dołu)
-        const threshold = 100;
-        const isNearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-
-        if (isNearBottom) {
-            showNextPageHint();
-        } else {
-            hideNextPageHint();
-        }
+function checkScrollForNextPageHint() {
+    if (!currentSheetsSong || currentSheetPages.length === 0) {
+        hideNextPageHint();
+        return;
     }
 
+    // Ukryj na ostatniej stronie
+    if (currentSheetPage >= currentSheetPages.length - 1) {
+        hideNextPageHint();
+        return;
+    }
+
+    const container = dom.sheetsImageContainer;
+    const scrollTop = container.scrollTop;
+    const scrollHeight = container.scrollHeight;
+    const clientHeight = container.clientHeight;
+
+    // Na mobile 200px, na desktop 100px
+    const threshold = isMobile() ? 200 : 100;
+    const isNearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
+
+    if (isNearBottom) {
+        showNextPageHint();
+    } else {
+        hideNextPageHint();
+    }
+}
     function showNextPageHint() {
         if (dom.sheetsNextPageHint) {
             dom.sheetsNextPageHint.classList.add('visible');
@@ -578,33 +577,40 @@
         }
     }
 
-    function openSheets(songId) {
-        const song = songsData.find(s => s.id === songId);
-        if (!song || !song.sheets || !song.sheets.pages || song.sheets.pages.length === 0) return;
+function openSheets(songId) {
+    const song = songsData.find(s => s.id === songId);
+    if (!song || !song.sheets || !song.sheets.pages || song.sheets.pages.length === 0) return;
 
-        currentSheetsSong = song;
-        currentSheetPages = getSheetPages(song);
-        currentSheetPage = 0;
+    currentSheetsSong = song;
+    currentSheetPages = getSheetPages(song);
+    currentSheetPage = 0;
 
-        dom.sheetsModalTitle.textContent = song.title + ' – Nuty';
-        dom.sheetsModal.classList.add('visible');
-        document.body.style.overflow = 'hidden';
+    dom.sheetsModalTitle.textContent = song.title + ' – Nuty';
+    dom.sheetsModal.classList.add('visible');
+    document.body.style.overflow = 'hidden';
 
-        renderSheet();
-        renderSheetsPagination();
-        renderSheetsTracks();
-        updateSheetsPlayerUI();
-        updateNextPageHintVisibility();
+    // ZMIANA 2: Ukryj główny panel odtwarzania gdy otwarte nuty
+    dom.audioPlayer.classList.remove('visible');
+
+    renderSheet();
+    renderSheetsPagination();
+    renderSheetsTracks();
+    updateSheetsPlayerUI();
+    updateNextPageHintVisibility();
+}
+
+function closeSheets() {
+    dom.sheetsModal.classList.remove('visible');
+    document.body.style.overflow = '';
+    currentSheetsSong = null;
+    currentSheetPages = [];
+    hideNextPageHint();
+
+    // Przywróć główny panel odtwarzania jeśli coś jest odtwarzane
+    if (currentTrack && currentSong) {
+        dom.audioPlayer.classList.add('visible');
     }
-
-    function closeSheets() {
-        dom.sheetsModal.classList.remove('visible');
-        document.body.style.overflow = '';
-        currentSheetsSong = null;
-        currentSheetPages = [];
-        hideNextPageHint();
-    }
-
+}
     function handleSheetImageError() {
         if (!currentSheetsSong) return;
 

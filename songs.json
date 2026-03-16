@@ -1739,7 +1739,7 @@
 	  ],
 	  "mobilePages": [
 		"/Nuty/boska-dobroci-mobile-1.png",
-		"/Nuty/boska-dobroci-mobile-2.png",		
+		"/Nuty/boska-dobroci-mobile-2.png"	
 	  ]
  },	
   "tracks": [
@@ -1820,8 +1820,5 @@
 
 
 
-
-
-	
   ]
 }

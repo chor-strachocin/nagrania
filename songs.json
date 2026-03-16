@@ -474,7 +474,18 @@
     "wielki piątek",
     "triduum 2026"
   ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/tak-bowiem-bog.png"
+	  ]
+  },
   "tracks": [
+      {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/tak-bowiem-bog-soprano.mp3"
+    },
     {
       "label": "Alt",
       "voice": "alto",
@@ -521,14 +532,19 @@
 },
 
 {
-  "id": "odszedl-pasterz",
-  "title": "Odszedł Pasterz od nas",
+  "id": "odszedl-pasterz-nasz",
+  "title": "Odszedł Pasterz od nas (Odszedł Pasterz nasz)",
   "composer": "Wojciech Lewkowicz / Łukasz Mac",
   "tags": [
     "pasyjne",
     "wielki piątek",
     "Triduum 2026"
   ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/odszedl-pasterz-nasz.png"
+	  ]
+  },
   "tracks": [
     {
       "label": "Alt",
@@ -1649,6 +1665,97 @@
       "voice": "bass",
       "type": "single",
       "file": "/mp3/krola-wznosza-sie-znamiona-alto.mp3"
+    }
+  ]
+},
+
+{
+  "id": "boska-dobroci",
+  "title": "Boska dobroci",
+  "composer": "trad. / Krzysztof Stępień",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/boska-dobroci-1.png",
+		"/Nuty/boska-dobroci-2.png",
+		"/Nuty/boska-dobroci-3.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Sopran 1",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "/mp3/boska-dobroci-pd1.mp3"
+    },
+    {
+      "label": "Sopran 2",
+      "voice": "soprano",
+      "type": "mix",
+      "file": "/mp3/boska-dobroci-pd2.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "mix",
+      "file": "/mp3/boska-dobroci-pd3.mp3"
+    },
+    {
+      "label": "Tenor 1",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "/mp3/boska-dobroci-pd4.mp3"
+    },
+    {
+      "label": "Tenor 2",
+      "voice": "tenor",
+      "type": "mix",
+      "file": "/mp3/boska-dobroci-pd5.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "mix",
+      "file": "/mp3/boska-dobroci-pd6.mp3"
+    },
+    {
+      "label": "Sopran 1",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/boska-dobroci-soprano-1.mp3"
+    },
+	{
+      "label": "Sopran 2",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/boska-dobroci-soprano-2.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/boska-dobroci-alto.mp3"
+    },
+    {
+      "label": "Tenor 1",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/boska-dobroci-tenor-1.mp3"
+    },
+    {
+      "label": "Tenor 2",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/boska-dobroci-tenor-2.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/boska-dobroci-bass.mp3"
     }
   ]
 }

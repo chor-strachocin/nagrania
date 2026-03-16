@@ -437,34 +437,40 @@
         }
     }
 
-    function playTrack(songId, file) {
-        const song = songsData.find(s => s.id === songId);
-        if (!song) return;
-        const track = song.tracks.find(t => t.file === file);
-        if (!track) return;
-        if (currentTrack && currentSong && currentSong.id === songId && currentTrack.file === file) {
-            if (dom.audioElement.paused) {
-                dom.audioElement.play();
-            } else {
-                dom.audioElement.pause();
-            }
-            return;
-        }
-        currentSong = song;
-        currentTrack = track;
-        dom.audioElement.src = resolveUrl(file);
-        dom.audioElement.play().catch(() => {});
-        updatePlayerUI();
-        updateSheetsPlayerUI();
-        dom.audioPlayer.classList.add('visible');
-        const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
-        dom.playerSheetsBtn.style.display = hasSheets ? 'flex' : 'none';
-        render();
-        if (dom.sheetsModal.classList.contains('visible')) {
-            renderSheetsTracks();
-        }
-    }
-
+	function playTrack(songId, file) {
+		const song = songsData.find(s => s.id === songId);
+		if (!song) return;
+		const track = song.tracks.find(t => t.file === file);
+		if (!track) return;
+		if (currentTrack && currentSong && currentSong.id === songId && currentTrack.file === file) {
+			if (dom.audioElement.paused) {
+				dom.audioElement.play();
+			} else {
+				dom.audioElement.pause();
+			}
+			return;
+		}
+		currentSong = song;
+		currentTrack = track;
+		dom.audioElement.src = resolveUrl(file);
+		dom.audioElement.play().catch(() => {});
+		updatePlayerUI();
+		updateSheetsPlayerUI();
+		
+		// ZMIANA: Pokaż główny panel tylko gdy nuty NIE są otwarte
+		const sheetsOpen = dom.sheetsModal.classList.contains('visible');
+		if (!sheetsOpen) {
+			dom.audioPlayer.classList.add('visible');
+		}
+		
+		const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
+		dom.playerSheetsBtn.style.display = hasSheets ? 'flex' : 'none';
+		render();
+		if (sheetsOpen) {
+			renderSheetsTracks();
+		}
+	}
+	
     function playPrevNext(direction) {
         if (!currentTrack || playableTracksList.length === 0) return;
         const idx = playableTracksList.findIndex(item => item.song.id === currentSong.id && item.track.file === currentTrack.file);

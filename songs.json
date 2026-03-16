@@ -547,6 +547,12 @@
   },
   "tracks": [
     {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/odszedl-pasterz-nasz-sopran.mp3"
+    },
+    {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
@@ -1561,6 +1567,54 @@
 
 
 {
+  "id": "witam-cie-witam",
+  "title": "Witam Cię, witam",
+  "composer": "trad.",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"eucharystyczne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/witam-cie-witam.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/witam-cie-witam-unisono.mp3"
+    }
+  ]
+},
+
+{
+  "id": "o-krwi-najdrozsza",
+  "title": "O Krwi najdroższa",
+  "composer": "trad.",
+  "tags": [
+    "wielki piątek",
+    "Triduum 2026",
+	"eucharystyczne"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/o-krwi-najdrozsza.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/o-krwi-najdrozsza-unisono.mp3"
+    }
+  ]
+},
+
+{
   "id": "krzyzu-chrystusa",
   "title": "Krzyżu Chrystusa",
   "composer": "trad.",
@@ -1682,6 +1736,10 @@
 		"/Nuty/boska-dobroci-1.png",
 		"/Nuty/boska-dobroci-2.png",
 		"/Nuty/boska-dobroci-3.png"
+	  ],
+	  "mobilePages": [
+		"/Nuty/boska-dobroci-mobile-1.png",
+		"/Nuty/boska-dobroci-mobile-2.png",		
 	  ]
  },	
   "tracks": [

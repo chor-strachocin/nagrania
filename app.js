@@ -374,68 +374,77 @@
         return filtered;
     }
 
-    function render(scrollToResults = false) {
-        const filtered = getFilteredSongs();
-        playableTracksList = [];
-        filtered.forEach(song => {
-            song.tracks.forEach(track => {
-                playableTracksList.push({ song, track });
-            });
+function render(scrollToResults = false) {
+    const filtered = getFilteredSongs();
+    playableTracksList = [];
+    filtered.forEach(song => {
+        song.tracks.forEach(track => {
+            playableTracksList.push({ song, track });
         });
-        if (filtered.length === 0) {
-            dom.songsGrid.innerHTML = '';
-            dom.emptyState.style.display = 'block';
-            return;
-        }
-        dom.emptyState.style.display = 'none';
-        dom.songsGrid.innerHTML = filtered.map(song => {
-            const tracksHtml = song.tracks.map(track => {
-                const iconClass = getTrackIconClass(track);
-                const emoji = getTrackEmoji(track);
-                const isPlaying = currentTrack && currentSong && currentSong.id === song.id && currentTrack.file === track.file;
-                const playingClass = isPlaying ? 'playing' : '';
-                const typeBadge = track.type !== 'single' ? `<span class="track-type-badge ${track.type}">${track.type}</span>` : '';
-                const description = track.description ? `<div class="track-description">${track.description}</div>` : '';
-                return `
-                    <div class="track-item ${playingClass}" data-song-id="${song.id}" data-file="${track.file}">
-                        <div class="track-icon ${iconClass}">${isPlaying ? '⏸' : emoji}</div>
-                        <div class="track-info">
-                            <div class="track-label">${track.label}</div>
-                            ${description}
-                        </div>
-                        ${typeBadge}
-                    </div>
-                `;
-            }).join('');
-            const tagsHtml = (song.tags || []).map(t => {
-                const normalized = normalizeTag(t);
-                return `<span class="tag" data-tag="${normalized}">${normalized}</span>`;
-            }).join('');
-            const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
-            const footerHtml = hasSheets ? `
-                <div class="song-footer">
-                    <button class="show-sheets-btn" data-song-id="${song.id}">📄 Pokaż nuty</button>
-                </div>
-            ` : '';
+    });
+    if (filtered.length === 0) {
+        dom.songsGrid.innerHTML = '';
+        dom.emptyState.style.display = 'block';
+        return;
+    }
+    dom.emptyState.style.display = 'none';
+    dom.songsGrid.innerHTML = filtered.map(song => {
+        const tracksHtml = song.tracks.map(track => {
+            const iconClass = getTrackIconClass(track);
+            const emoji = getTrackEmoji(track);
+            const isPlaying = currentTrack && currentSong && currentSong.id === song.id && currentTrack.file === track.file;
+            const playingClass = isPlaying ? 'playing' : '';
+            const typeBadge = track.type !== 'single' ? `<span class="track-type-badge ${track.type}">${track.type}</span>` : '';
+            const description = track.description ? `<div class="track-description">${track.description}</div>` : '';
             return `
-                <div class="song-card" data-song-id="${song.id}">
-                    <div class="song-header">
-                        <div class="song-title">${song.title}</div>
-                        ${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
-                        <div class="song-tags">${tagsHtml}</div>
+                <div class="track-item ${playingClass}" data-song-id="${song.id}" data-file="${track.file}">
+                    <div class="track-icon ${iconClass}">${isPlaying ? '⏸' : emoji}</div>
+                    <div class="track-info">
+                        <div class="track-label">${track.label}</div>
+                        ${description}
                     </div>
-                    <div class="track-list">${tracksHtml}</div>
-                    ${footerHtml}
+                    ${typeBadge}
                 </div>
             `;
         }).join('');
+        const tagsHtml = (song.tags || []).map(t => {
+            const normalized = normalizeTag(t);
+            return `<span class="tag" data-tag="${normalized}">${normalized}</span>`;
+        }).join('');
+        const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
+        const footerHtml = hasSheets ? `
+            <div class="song-footer">
+                <button class="show-sheets-btn" data-song-id="${song.id}">📄 Pokaż nuty</button>
+            </div>
+        ` : '';
+        return `
+            <div class="song-card" data-song-id="${song.id}">
+                <div class="song-header">
+                    <div class="song-header-row">
+                        <div class="song-header-info" data-song-id="${song.id}">
+                            <div class="song-title">${song.title}</div>
+                            ${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
+                            <div class="song-tags">${tagsHtml}</div>
+                        </div>
+                        <button class="song-expand-btn" data-song-id="${song.id}" aria-label="Rozwiń utwór">
+                            <span class="arrow">▼</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="song-collapsible">
+                    <div class="track-list">${tracksHtml}</div>
+                    ${footerHtml}
+                </div>
+            </div>
+        `;
+    }).join('');
 
-        if (scrollToResults && filtered.length > 0) {
-            const toolbarHeight = dom.toolbar ? dom.toolbar.offsetHeight : 70;
-            const targetScrollTop = dom.songsGrid.offsetTop - toolbarHeight - 10;
-            window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
-        }
+    if (scrollToResults && filtered.length > 0) {
+        const toolbarHeight = dom.toolbar ? dom.toolbar.offsetHeight : 70;
+        const targetScrollTop = dom.songsGrid.offsetTop - toolbarHeight - 10;
+        window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
     }
+}
 
 	function playTrack(songId, file) {
 		const song = songsData.find(s => s.id === songId);
@@ -774,28 +783,59 @@ function closeSheets() {
             render();
         });
 
-        dom.songsGrid.addEventListener('click', e => {
-            const tag = e.target.closest('.tag');
-            if (tag) {
-                e.stopPropagation();
-                currentFilters.tag = tag.dataset.tag;
-                setActiveFilterButton(dom.tagFilters, 'tag', tag.dataset.tag);
-                updateUrl();
-                updateActiveFiltersDisplay();
-                render();
-                return;
+dom.songsGrid.addEventListener('click', e => {
+    const tag = e.target.closest('.tag');
+    if (tag) {
+        e.stopPropagation();
+        currentFilters.tag = tag.dataset.tag;
+        setActiveFilterButton(dom.tagFilters, 'tag', tag.dataset.tag);
+        updateUrl();
+        updateActiveFiltersDisplay();
+        render();
+        return;
+    }
+
+    // ZMIANA 1: Obsługa przycisku rozwijania na mobile
+    const expandBtn = e.target.closest('.song-expand-btn');
+    if (expandBtn) {
+        e.stopPropagation();
+        const songCard = expandBtn.closest('.song-card');
+        if (songCard) {
+            songCard.classList.toggle('expanded');
+        }
+        return;
+    }
+
+    // ZMIANA 2: Kliknięcie na tytuł/header info - otwiera nuty i puszcza pierwszy track
+    const headerInfo = e.target.closest('.song-header-info');
+    if (headerInfo) {
+        e.stopPropagation();
+        const songId = headerInfo.dataset.songId;
+        const song = songsData.find(s => s.id === songId);
+        if (song) {
+            // Otwórz nuty jeśli są dostępne
+            const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
+            if (hasSheets) {
+                openSheets(songId);
             }
-            const trackItem = e.target.closest('.track-item');
-            if (trackItem) {
-                playTrack(trackItem.dataset.songId, trackItem.dataset.file);
-                return;
-            }
-            const sheetsBtn = e.target.closest('.show-sheets-btn');
-            if (sheetsBtn) {
-                openSheets(sheetsBtn.dataset.songId);
-                return;
-            }
-        });
+            // Odtwórz pierwszy dostępny track
+            playFirstTrackOfSong(song);
+        }
+        return;
+    }
+
+    const trackItem = e.target.closest('.track-item');
+    if (trackItem) {
+        playTrack(trackItem.dataset.songId, trackItem.dataset.file);
+        return;
+    }
+
+    const sheetsBtn = e.target.closest('.show-sheets-btn');
+    if (sheetsBtn) {
+        openSheets(sheetsBtn.dataset.songId);
+        return;
+    }
+});
 
         dom.hideUnisono.addEventListener('change', () => {
             currentFilters.hideUnisono = dom.hideUnisono.checked;

@@ -1261,3 +1261,86 @@ main {
         font-size: 1rem;
     }
 }
+
+/* Rozwijanie utworów na mobile */
+.song-expand-btn {
+    display: none;
+    width: 36px;
+    height: 36px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.song-expand-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.song-expand-btn .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.song-card.expanded .song-expand-btn .arrow {
+    transform: rotate(180deg);
+}
+
+.song-header-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.song-header-info {
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+}
+
+.song-header-info:hover .song-title {
+    color: var(--accent-light);
+}
+
+.song-collapsible {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .song-expand-btn {
+        display: flex;
+    }
+
+    .song-collapsible {
+        display: none;
+        overflow: hidden;
+    }
+
+    .song-card.expanded .song-collapsible {
+        display: block;
+    }
+
+    .song-header {
+        padding: 14px 16px 12px;
+    }
+
+    .song-header-info {
+        padding-right: 8px;
+    }
+
+    .song-title {
+        font-size: 1rem;
+    }
+
+    .song-composer {
+        font-size: 0.8rem;
+    }
+}

@@ -300,57 +300,72 @@
         }
     }
 
-    function buildFilters() {
-        const voices = new Set();
-        const tagsSet = new Set();
-        songsData.forEach(song => {
-            song.tracks.forEach(t => voices.add(t.voice));
-            (song.tags || []).forEach(t => tagsSet.add(normalizeTag(t)));
+function buildFilters() {
+    const voices = new Set();
+    const tagsSet = new Set();
+    songsData.forEach(song => {
+        song.tracks.forEach(t => {
+            // Grupuj głosy - dodaj tylko główny głos (bez numerów)
+            const baseVoice = t.voice.replace(/[0-9]/g, '');
+            voices.add(baseVoice);
         });
-        const sortedVoices = Array.from(voices).sort((a, b) => {
-            const order = ['soprano', 'soprano1', 'soprano2', 'alto', 'alto1', 'alto2', 'tenor', 'tenor1', 'tenor2', 'bass', 'bass1', 'bass2', 'unisono'];
-            return (order.indexOf(a) === -1 ? 99 : order.indexOf(a)) - (order.indexOf(b) === -1 ? 99 : order.indexOf(b));
-        });
-        sortedVoices.forEach(voice => {
-            const info = getVoiceInfo(voice);
+        (song.tags || []).forEach(t => tagsSet.add(normalizeTag(t)));
+    });
+    
+    // Sortuj tylko główne głosy
+    const sortedVoices = Array.from(voices).sort((a, b) => {
+        const order = ['soprano', 'alto', 'tenor', 'bass', 'unisono'];
+        return (order.indexOf(a) === -1 ? 99 : order.indexOf(a)) - (order.indexOf(b) === -1 ? 99 : order.indexOf(b));
+    });
+    
+    sortedVoices.forEach(voice => {
+        const info = getVoiceInfo(voice);
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn';
+        btn.dataset.voice = voice;
+        btn.textContent = `${info.emoji} ${info.label}`;
+        dom.voiceFilters.appendChild(btn);
+    });
+    
+    if (tagsSet.size > 0) {
+        const allTagBtn = document.createElement('button');
+        allTagBtn.className = 'filter-btn active';
+        allTagBtn.dataset.tag = 'all';
+        allTagBtn.textContent = 'Wszystkie';
+        dom.tagFilters.appendChild(allTagBtn);
+        Array.from(tagsSet).sort((a, b) => a.localeCompare(b, 'pl')).forEach(tag => {
             const btn = document.createElement('button');
             btn.className = 'filter-btn';
-            btn.dataset.voice = voice;
-            btn.textContent = `${info.emoji} ${info.label}`;
-            dom.voiceFilters.appendChild(btn);
+            btn.dataset.tag = tag;
+            btn.textContent = tag;
+            dom.tagFilters.appendChild(btn);
         });
-        if (tagsSet.size > 0) {
-            const allTagBtn = document.createElement('button');
-            allTagBtn.className = 'filter-btn active';
-            allTagBtn.dataset.tag = 'all';
-            allTagBtn.textContent = 'Wszystkie';
-            dom.tagFilters.appendChild(allTagBtn);
-            Array.from(tagsSet).sort((a, b) => a.localeCompare(b, 'pl')).forEach(tag => {
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.dataset.tag = tag;
-                btn.textContent = tag;
-                dom.tagFilters.appendChild(btn);
-            });
-        } else {
-            dom.tagFilters.parentElement.style.display = 'none';
-        }
+    } else {
+        dom.tagFilters.parentElement.style.display = 'none';
     }
+}
 
-    function filterTracks(tracks) {
-        return tracks.filter(track => {
-            const isUnisono = track.type === 'unisono' || track.voice === 'unisono';
-            
-            if (isUnisono) {
-                return !currentFilters.hideUnisono;
+function filterTracks(tracks) {
+    return tracks.filter(track => {
+        const isUnisono = track.type === 'unisono' || track.voice === 'unisono';
+        
+        if (isUnisono) {
+            return !currentFilters.hideUnisono;
+        }
+        
+        // Filtrowanie po głosie - grupuj S/S1/S2 itd.
+        if (currentFilters.voice !== 'all') {
+            const trackBaseVoice = track.voice.replace(/[0-9]/g, '');
+            if (trackBaseVoice !== currentFilters.voice) {
+                return false;
             }
-            
-            if (currentFilters.voice !== 'all' && track.voice !== currentFilters.voice) return false;
-            if (currentFilters.type !== 'all' && track.type !== currentFilters.type) return false;
-            
-            return true;
-        });
-    }
+        }
+        
+        if (currentFilters.type !== 'all' && track.type !== currentFilters.type) return false;
+        
+        return true;
+    });
+}
 
     function getFilteredSongs() {
         const filtered = songsData.map(song => {

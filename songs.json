@@ -157,7 +157,7 @@
   "tracks": [
     {
       "label": "Sopran 1",
-      "voice": "soprano",
+      "voice": "soprano1",
       "type": "single",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/s-1-oto-dzien-wesela-pelen.mp3"
     },
@@ -169,7 +169,7 @@
     },
     {
       "label": "Tenor 1",
-      "voice": "tenor",
+      "voice": "tenor1",
       "type": "single",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-tenor-1.mp3"
     },
@@ -181,25 +181,25 @@
     },
     {
       "label": "Sopran 2",
-      "voice": "soprano",
+      "voice": "soprano2",
       "type": "single",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/s-2-oto-dzien-wesela-pelen.mp3"
     },
     {
       "label": "Sopran 1",
-      "voice": "soprano",
+      "voice": "soprano1",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_1.mp3"
     },
     {
       "label": "Tenor 2",
-      "voice": "tenor",
+      "voice": "tenor2",
       "type": "single",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-tenor-2.mp3"
     },
     {
       "label": "Sopran 2",
-      "voice": "soprano",
+      "voice": "soprano2",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_2.mp3"
     },
@@ -211,13 +211,13 @@
     },
     {
       "label": "Tenor 1",
-      "voice": "tenor",
+      "voice": "tenor1",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_4.mp3"
     },
     {
       "label": "Tenor 2",
-      "voice": "tenor",
+      "voice": "tenor2",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_6.mp3"
     },
@@ -1034,7 +1034,7 @@
   "tracks": [
     {
       "label": "Sopran 1",
-      "voice": "soprano",
+      "voice": "soprano1",
       "type": "mix",
       "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_1.mp3"
     },
@@ -1058,13 +1058,13 @@
     },
     {
       "label": "Sopran 2",
-      "voice": "soprano",
+      "voice": "soprano2",
       "type": "mix",
       "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_2.mp3"
     },
     {
       "label": "Sopran 1",
-      "voice": "soprano",
+      "voice": "soprano1",
       "type": "single",
       "file": "/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-soprano-1.mp3"
     },
@@ -1088,7 +1088,7 @@
     },
     {
       "label": "Sopran 2",
-      "voice": "soprano",
+      "voice": "soprano2",
       "type": "single",
       "file": "/Ubi%20Caritas%20Gjejlo/ubi-caritas-gjejlo-soprano-2.mp3"
     }
@@ -1117,7 +1117,7 @@
   "tracks": [
     {
       "label": "Sopran 1",
-      "voice": "soprano",
+      "voice": "soprano1",
       "type": "single",
       "file": "/Amen/amen-soprano-1.mp3"
     },
@@ -1141,13 +1141,13 @@
     },
     {
       "label": "Sopran 2",
-      "voice": "soprano",
+      "voice": "soprano2",
       "type": "single",
       "file": "/Amen/amen-soprano-2.mp3"
     },
     {
       "label": "Sopran 1",
-      "voice": "soprano",
+      "voice": "soprano1",
       "type": "mix",
       "file": "/Amen/mix-amen-soprano-1.mp3"
     },
@@ -1171,7 +1171,7 @@
     },
     {
       "label": "Sopran 2",
-      "voice": "soprano",
+      "voice": "soprano2",
       "type": "mix",
       "file": "/Amen/mix-amen-soprano-2.mp3"
     }
@@ -1853,13 +1853,13 @@
   "tracks": [
     {
       "label": "Sopran 1",
-      "voice": "soprano",
+      "voice": "soprano1",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd1.mp3"
     },
     {
       "label": "Sopran 2",
-      "voice": "soprano",
+      "voice": "soprano2",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd2.mp3"
     },
@@ -1871,13 +1871,13 @@
     },
     {
       "label": "Tenor 1",
-      "voice": "tenor",
+      "voice": "tenor1",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd4.mp3"
     },
     {
       "label": "Tenor 2",
-      "voice": "tenor",
+      "voice": "tenor2",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd5.mp3"
     },
@@ -1889,13 +1889,13 @@
     },
     {
       "label": "Sopran 1",
-      "voice": "soprano",
+      "voice": "soprano1",
       "type": "single",
       "file": "/mp3/Boska_dobroci_single_pd1.mp3"
     },
 	{
       "label": "Sopran 2",
-      "voice": "soprano",
+      "voice": "soprano2",
       "type": "single",
       "file": "/mp3/Boska_dobroci_single_pd2.mp3"
     },
@@ -1907,13 +1907,13 @@
     },
     {
       "label": "Tenor 1",
-      "voice": "tenor",
+      "voice": "tenor1",
       "type": "single",
       "file": "/mp3/Boska_dobroci_single_pd4.mp3"
     },
     {
       "label": "Tenor 2",
-      "voice": "tenor",
+      "voice": "tenor2",
       "type": "single",
       "file": "/mp3/Boska_dobroci_single_pd5.mp3"
     },

@@ -374,6 +374,43 @@
         return filtered;
     }
 
+function getVoiceComposition(tracks) {
+    // Wyciągnij unikalne głosy
+    const voices = [...new Set(tracks.map(t => t.voice))];
+    
+    // Sortuj według voiceOrder
+    voices.sort((a, b) => (voiceOrder[a] ?? 999) - (voiceOrder[b] ?? 999));
+    
+    // Jeśli tylko unisono
+    if (voices.length === 1 && voices[0] === 'unisono') {
+        return 'Unisono';
+    }
+    
+    // Skróty dla głosów
+    const shortNames = {
+        soprano: 'S',
+        soprano1: 'S1',
+        soprano2: 'S2',
+        alto: 'A',
+        alto1: 'A1',
+        alto2: 'A2',
+        tenor: 'T',
+        tenor1: 'T1',
+        tenor2: 'T2',
+        bass: 'B',
+        bass1: 'B1',
+        bass2: 'B2',
+        unisono: 'Uni'
+    };
+    
+    // Filtruj unisono z głównej listy i zamień na skróty
+    return voices
+        .filter(v => v !== 'unisono')
+        .map(v => shortNames[v] || v.toUpperCase())
+        .join(' ');
+}
+
+
 function render(scrollToResults = false) {
     const filtered = getFilteredSongs();
     playableTracksList = [];
@@ -417,6 +454,11 @@ function render(scrollToResults = false) {
                 <button class="show-sheets-btn" data-song-id="${song.id}">📄 Pokaż nuty</button>
             </div>
         ` : '';
+        
+        // Skład głosowy (z oryginalnych tracks, nie filtrowanych)
+        const originalSong = songsData.find(s => s.id === song.id);
+        const voiceComposition = getVoiceComposition(originalSong ? originalSong.tracks : song.tracks);
+        
         return `
             <div class="song-card" data-song-id="${song.id}">
                 <div class="song-header">
@@ -424,6 +466,7 @@ function render(scrollToResults = false) {
                         <div class="song-header-info" data-song-id="${song.id}">
                             <div class="song-title">${song.title}</div>
                             ${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
+                            <div class="song-voices">${voiceComposition}</div>
                             <div class="song-tags">${tagsHtml}</div>
                         </div>
                         <button class="song-expand-btn" data-song-id="${song.id}" aria-label="Rozwiń utwór">

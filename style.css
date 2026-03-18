@@ -1344,3 +1344,48 @@ main {
         font-size: 0.8rem;
     }
 }
+
+/* Skład głosowy w song header */
+.song-voices {
+    display: none;
+    font-size: 0.75rem;
+    color: var(--accent-light);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-top: 6px;
+    padding: 4px 10px;
+    background: rgba(108, 92, 231, 0.15);
+    border-radius: 12px;
+    width: fit-content;
+}
+
+@media (max-width: 768px) {
+    .song-voices {
+        display: inline-block;
+    }
+
+    /* FIX: Panel odtwarzania w nutach - fixed na mobile */
+    .sheets-modal.visible {
+        display: flex !important;
+    }
+
+    .sheets-player {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2001;
+        background: var(--player-bg);
+        border-top: 1px solid var(--border);
+    }
+
+    /* Dodaj padding na dole body modalu żeby player nie zasłaniał contentu */
+    .sheets-tracks {
+        padding-bottom: 80px;
+    }
+
+    /* Gdy nie ma tracks, dodaj padding do image container */
+    .sheets-modal-body {
+        margin-bottom: 70px;
+    }
+}

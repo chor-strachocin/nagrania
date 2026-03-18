@@ -14,7 +14,12 @@
   },
 
       "tracks": [
-
+        {
+          "label": "Sopran",
+          "voice": "soprano",
+          "type": "single",
+          "file": "/mp3/ludu-moj-ludu-2025-soprano.mp3"
+        },
         {
           "label": "Alt",
           "voice": "alto",
@@ -67,6 +72,15 @@
 		"triduum 2026",
 		"triduum", "wigilia paschalna"
 	  ],
+	  "sheets": {
+		  "pages": [
+			"/Nuty/chwala-badz-ojcu-i-synowi-1.png",
+			"/Nuty/chwala-badz-ojcu-i-synowi-2.png"
+		  ],
+		  "mobilePages": [
+			"/Nuty/chwala-badz-ojcu-i-synowi-mobile.png"
+		  ]
+  },	  
 	  "tracks": [
 		{
 		  "label": "Sopran",
@@ -132,6 +146,11 @@
 		"/Nuty/oto-dzien-wesela-pelen-0.jpg",
 		"/Nuty/oto-dzien-wesela-pelen-1.jpg",
 		"/Nuty/oto-dzien-wesela-pelen-2.jpg"
+	  ],
+	  "mobilePages": [
+		"/Nuty/oto-dzien-wesela-pelen-mobile-1.png",
+		"/Nuty/oto-dzien-wesela-pelen-mobile-2.png",		
+		"/Nuty/oto-dzien-wesela-pelen-mobile-3.png"		
 	  ]
   },
 
@@ -219,6 +238,17 @@
     "triduum 2026",
     "wielkanoc", "wigilia paschalna"
   ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/chrystus-zmartywchwstal-jest-1.png",
+		"/Nuty/chrystus-zmartywchwstal-jest-2.png",
+		"/Nuty/chrystus-zmartywchwstal-jest-3.png"
+	  ],
+	  "mobilePages": [
+		"/Nuty/chrystus-zmartywchwstal-jest-mobile-1.png",
+		"/Nuty/chrystus-zmartywchwstal-jest-mobile-2.png"
+	  ]
+  },
   "tracks": [
     {
       "label": "Sopran",
@@ -279,7 +309,18 @@
     "wielkanoc",
     "triduum 2026", "wigilia paschalna"
   ],
+   "sheets": {
+	  "pages": [
+		"/Nuty/piesn-o-zmartwychwstaniu.png"
+	  ]
+   },	  
   "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/piesn-o-zmartwychwstaniu-sopran.mp3"
+    },    
     {
       "label": "Alt",
       "voice": "alto",
@@ -302,25 +343,25 @@
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_1.mp3"
+      "file": "/mp3/Piesn-o-zmartwychwstaniu_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_2.mp3"
+      "file": "/mp3/Piesn-o-zmartwychwstaniu_pd_2.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_3.mp3"
+      "file": "/mp3/Piesn-o-zmartwychwstaniu_pd_3.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/Piesn%20o%20zmartwychwstaniu_pd_4.mp3"
+      "file": "/mp3/Piesn-o-zmartwychwstaniu_pd_4.mp3"
     }
   ]
 },
@@ -613,31 +654,64 @@
     "wigilia paschalna",
     "triduum 2026"
   ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/widzialem-wode-castagnet-1.png",
+		"/Nuty/widzialem-wode-castagnet-2.png"		
+		],
+	  "mobilePages": [
+		"/Nuty/widzialem-wode-castagnet-mobile.png"	  
+	  ]
+  },
   "tracks": [
     {
       "label": "Sopran",
       "voice": "soprano",
       "type": "mix",
-      "file": "/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_1.mp3"
+      "file": "/mp3/Widzialem_wode_pd_1.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_2.mp3"
+      "file": "/mp3/Widzialem_wode_pd_2.mp3"
     },
     {
       "label": "Tenor",
       "voice": "tenor",
       "type": "mix",
-      "file": "/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_3.mp3"
+      "file": "/mp3/Widzialem_wode_pd_3.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "/Widzia%C5%82em%20wod%C4%99%20z%20g%C5%82%C4%99bi%20Chrystusowych%20ran/Widzialem_wode_pd_4.mp3"
-    }
+      "file": "/mp3/Widzialem_wode_pd_4.mp3"
+    },
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/widzialem-wode-castagnet-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/widzialem-wode-castagnet-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/widzialem-wode-castagnet-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/widzialem-wode-castagnet-basso.mp3"
+    }	
   ]
 },
 
@@ -650,7 +724,41 @@
     "wigilia paschalna",
     "triduum 2026"
   ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/otrzyjcie-juz-lzy-placzacy-1.png",
+		"/Nuty/otrzyjcie-juz-lzy-placzacy-2.png"		
+		],
+	  "mobilePages": [
+		"/Nuty/otrzyjcie-juz-lzy-placzacy-mobile.png"	  
+	  ]
+  },
+  
   "tracks": [
+   {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/otrzyjcie-juz-lzy-placzacy-botor-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/otrzyjcie-juz-lzy-placzacy-botor-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/otrzyjcie-juz-lzy-placzacy-botor-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/otrzyjcie-juz-lzy-placzacy-botor-bass.mp3"
+    },  
     {
       "label": "Sopran",
       "voice": "soprano",
@@ -1747,73 +1855,271 @@
       "label": "Sopran 1",
       "voice": "soprano",
       "type": "mix",
-      "file": "/mp3/boska-dobroci-pd1.mp3"
+      "file": "/mp3/Boska_dobroci_mix_pd1.mp3"
     },
     {
       "label": "Sopran 2",
       "voice": "soprano",
       "type": "mix",
-      "file": "/mp3/boska-dobroci-pd2.mp3"
+      "file": "/mp3/Boska_dobroci_mix_pd2.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "mix",
-      "file": "/mp3/boska-dobroci-pd3.mp3"
+      "file": "/mp3/Boska_dobroci_mix_pd3.mp3"
     },
     {
       "label": "Tenor 1",
       "voice": "tenor",
       "type": "mix",
-      "file": "/mp3/boska-dobroci-pd4.mp3"
+      "file": "/mp3/Boska_dobroci_mix_pd4.mp3"
     },
     {
       "label": "Tenor 2",
       "voice": "tenor",
       "type": "mix",
-      "file": "/mp3/boska-dobroci-pd5.mp3"
+      "file": "/mp3/Boska_dobroci_mix_pd5.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "mix",
-      "file": "/mp3/boska-dobroci-pd6.mp3"
+      "file": "/mp3/Boska_dobroci_mix_pd6.mp3"
     },
     {
       "label": "Sopran 1",
       "voice": "soprano",
       "type": "single",
-      "file": "/mp3/boska-dobroci-soprano-1.mp3"
+      "file": "/mp3/Boska_dobroci_single_pd1.mp3"
     },
 	{
       "label": "Sopran 2",
       "voice": "soprano",
       "type": "single",
-      "file": "/mp3/boska-dobroci-soprano-2.mp3"
+      "file": "/mp3/Boska_dobroci_single_pd2.mp3"
     },
     {
       "label": "Alt",
       "voice": "alto",
       "type": "single",
-      "file": "/mp3/boska-dobroci-alto.mp3"
+      "file": "/mp3/Boska_dobroci_single_pd3.mp3"
     },
     {
       "label": "Tenor 1",
       "voice": "tenor",
       "type": "single",
-      "file": "/mp3/boska-dobroci-tenor-1.mp3"
+      "file": "/mp3/Boska_dobroci_single_pd4.mp3"
     },
     {
       "label": "Tenor 2",
       "voice": "tenor",
       "type": "single",
-      "file": "/mp3/boska-dobroci-tenor-2.mp3"
+      "file": "/mp3/Boska_dobroci_single_pd5.mp3"
     },
     {
       "label": "Bas",
       "voice": "bass",
       "type": "single",
-      "file": "/mp3/boska-dobroci-bass.mp3"
+      "file": "/mp3/Boska_dobroci_single_pd6.mp3"
+    }
+  ]
+},
+
+{
+  "id": "radujmy-sie-weselmy-sie",
+  "title": "Radujmy się, weselmy się",
+  "composer": "Piotr Pałka",
+  "tags": [
+    "wigilia paschalna",
+    "Triduum 2026",
+	"wielkanoc"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/radujmy-sie-weselmy-sie-1.png",
+		"/Nuty/radujmy-sie-weselmy-sie-2.png"		
+	  ],
+	  "mobilePages": [
+		"/Nuty/radujmy-sie-weselmy-sie-mobile.png"		
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/radujmy-sie-weselmy-sie-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/radujmy-sie-weselmy-sie-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/radujmy-sie-weselmy-sie-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/radujmy-sie-weselmy-sie-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "ciebie-boga-wyslawiamy-unisono",
+  "title": "Ciebie, Boga, wysławiamy (Te Deum)",
+  "composer": "Franciszek Wesołowski",
+  "tags": [
+    "wigilia paschalna",
+    "Triduum 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/ciebie-boga-wyslawiamy.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/ciebie-boga-wyslawiamy-unisono.mp3"
+    }
+  ]
+},
+
+
+{
+  "id": "wesoly-nam-dzien-dzis-nastal-unisono",
+  "title": "Wesoły nam dzień dziś nastał",
+  "composer": "trad.",
+  "tags": [
+    "wigilia paschalna",
+    "Triduum 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/wesoly-nam-dzien-dzis-nastal.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/wesoly-nam-dzien-dzis-nastal-unisono.mp3"
+    }
+  ]
+},
+
+{
+  "id": "litania-do-wszystkich-swietych",
+  "title": "Litania do wszystkich świętych",
+  "composer": "chorał gregoriański",
+  "tags": [
+    "wigilia paschalna",
+    "Triduum 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/litania-do-wszystkich-swietych.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Unisono",
+      "voice": "unisono",
+      "type": "unisono",
+      "file": "/mp3/litania-do-wszystkich-swietych.mp3"
+    }
+  ]
+},
+
+{
+  "id": "radosna-swiatlosci",
+  "title": "Radosna Światłości (+ Światło Chrystusa)",
+  "composer": "Andrzej Bujnowski",
+  "tags": [
+    "wigilia paschalna",
+    "Triduum 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/radosna-swiatlosci.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/radosna-swiatlosci-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/radosna-swiatlosci-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/radosna-swiatlosci-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/radosna-swiatlosci-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "alleluja-jamnenskie",
+  "title": "Alleluja jamneńskie",
+  "composer": "Jacek Sykulski",
+  "tags": [
+    "wigilia paschalna",
+    "Triduum 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/alleluja-jamnenskie.png"
+	  ]
+ },	
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/alleluja-jamnenskie-mix-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/alleluja-jamnenskie-alt.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/alleluja-jamnenskie-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/alleluja-jamnenskie-bass.mp3"
     }
   ]
 }

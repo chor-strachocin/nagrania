@@ -86,25 +86,25 @@
   },	  
 	  "tracks": [
 		{
-		  "label": "Sopran",
+		  "label": "Sopran (mix)",
 		  "voice": "soprano",
 		  "type": "mix",
 		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_1.mp3"
 		},
 		{
-		  "label": "Alt",
+		  "label": "Alt (mix)",
 		  "voice": "alto",
 		  "type": "mix",
 		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_2.mp3"
 		},
 		{
-		  "label": "Tenor",
+		  "label": "Tenor (mix)",
 		  "voice": "tenor",
 		  "type": "mix",
 		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_4.mp3"
 		},
 		{
-		  "label": "Bas",
+		  "label": "Bas (mix)",
 		  "voice": "bass",
 		  "type": "mix",
 		  "file": "/Chwa%C5%82a%20b%C4%85d%C5%BA%20Ojcu%20i%20Synowi/Chwala_badz_Ojcu_i_Synowi_SATB_pd_5.mp3"
@@ -189,7 +189,7 @@
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/s-2-oto-dzien-wesela-pelen.mp3"
     },
     {
-      "label": "Sopran 1",
+      "label": "Sopran 1 (mix)",
       "voice": "soprano1",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_1.mp3"
@@ -201,31 +201,31 @@
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/oto-dzien-wesela-pelen-tenor-2.mp3"
     },
     {
-      "label": "Sopran 2",
+      "label": "Sopran 2 (mix)",
       "voice": "soprano2",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_2.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_3.mp3"
     },
     {
-      "label": "Tenor 1",
+      "label": "Tenor 1 (mix)",
       "voice": "tenor1",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_4.mp3"
     },
     {
-      "label": "Tenor 2",
+      "label": "Tenor 2 (mix)",
       "voice": "tenor2",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_6.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Oto%20dzie%C5%84%20wesela%20pe%C5%82en/Oto_dzien_wesela_pd_5.mp3"
@@ -278,25 +278,25 @@
       "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/chrystus-zmartwychwstal-jest-bas.mp3"
     },
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_2.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_3.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Chrystus%20zmartwychwsta%C5%82%20jest/Chrystus_zmartwychwstal_jest_pd_4.mp3"
@@ -343,25 +343,25 @@
       "file": "/Pie%C5%9B%C5%84%20o%20zmartwychwstaniu/piesn-o-zmartwychwstaniu-bas.mp3"
     },
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/mp3/Piesn-o-zmartwychwstaniu_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/mp3/Piesn-o-zmartwychwstaniu_pd_2.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/mp3/Piesn-o-zmartwychwstaniu_pd_3.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/mp3/Piesn-o-zmartwychwstaniu_pd_4.mp3"
@@ -414,25 +414,25 @@
       "file": "/To%20co%20odkrywacie%20w%20chlebie/to-co-odkrywacie-bas.mp3"
     },
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_2.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_3.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/To%20co%20odkrywacie%20w%20chlebie/To%20co%20odkrywacie_pd_4.mp3"
@@ -484,25 +484,25 @@
       "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/ile-razy-bas.mp3"
     },
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_2.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_3.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Ile%20razy%20to%20Cia%C5%82o%20spo%C5%BCywamy/Ile-razy_pd_4.mp3"
@@ -549,25 +549,25 @@
       "file": "/Tak%20bowiem%20B%C3%B3g/tak-bowiem-bog-bas.mp3"
     },
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_2.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_3.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Tak%20bowiem%20B%C3%B3g/Tak-Bowiem-Bóg_pd_4.mp3"
@@ -615,34 +615,28 @@
       "file": "/Odszed%C5%82%20Pasterz%20od%20nas/odszedl-pasterz-bas.mp3"
     },
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_2.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_3.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Odszed%C5%82%20Pasterz%20od%20nas/Odszedl_pasterz_pd_4.mp3"
-    },
-    {
-      "label": "Sopran",
-      "voice": "soprano",
-      "type": "single",
-      "file": "/Odszed%C5%82%20Pasterz%20od%20nas/163.%20Odszed%C5%82%20Pasterz%20od%20nas%20%E2%80%93%20Wielki%20Tydzie%C5%84.mp3"
     }
   ]
 },
@@ -668,25 +662,25 @@
   },
   "tracks": [
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/mp3/Widzialem_wode_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/mp3/Widzialem_wode_pd_2.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/mp3/Widzialem_wode_pd_3.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/mp3/Widzialem_wode_pd_4.mp3"
@@ -763,25 +757,25 @@
       "file": "/mp3/otrzyjcie-juz-lzy-placzacy-botor-bass.mp3"
     },  
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_3.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_4.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Otrzyjcie%20ju%C5%BC%20%C5%82zy%20p%C5%82acz%C4%85cy/Otrzyjcie_juz_lzy_placzacy-REHERSAL-PIANO_pd_5.mp3"
@@ -875,25 +869,25 @@
       "file": "/Kyrie%20XI/kyrie-xi-bas.mp3"
     },
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/Kyrie%20XI/mix-kyrie-xi-sopran.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Kyrie%20XI/mix-kyrie-xi-alt.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/Kyrie%20XI/mix-kyrie-xi-tenor.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Kyrie%20XI/mix-kyrie-xi-bas.mp3"
@@ -990,7 +984,7 @@
     {
       "label": "Sopran",
       "voice": "soprano",
-      "type": "mix",
+      "type": "single",
       "file": "/Oto%20Bo%C5%BCy%20Baranek/uczta-baranka-soprano.mp3"
     },
     {
@@ -1036,31 +1030,31 @@
   
   "tracks": [
     {
-      "label": "Sopran 1",
+      "label": "Sopran 1 (mix)",
       "voice": "soprano1",
       "type": "mix",
       "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_3.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_4.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_6.mp3"
     },
     {
-      "label": "Sopran 2",
+      "label": "Sopran 2 (mix)",
       "voice": "soprano2",
       "type": "mix",
       "file": "/Ubi%20Caritas%20Gjejlo/Ubi_Caritas_Gjejlo_pd_2.mp3"
@@ -1149,31 +1143,31 @@
       "file": "/Amen/amen-soprano-2.mp3"
     },
     {
-      "label": "Sopran 1",
+      "label": "Sopran 1 (mix)",
       "voice": "soprano1",
       "type": "mix",
       "file": "/Amen/mix-amen-soprano-1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Amen/mix-amen-alto.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/Amen/mix-amen-tenor.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Amen/mix-amen-bass.mp3"
     },
     {
-      "label": "Sopran 2",
+      "label": "Sopran 2 (mix)",
       "voice": "soprano2",
       "type": "mix",
       "file": "/Amen/mix-amen-soprano-2.mp3"
@@ -1277,31 +1271,31 @@
   },	
   "tracks": [
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_2.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_3.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_4.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_5.mp3"
     },
     {
-      "label": "Sopran + zwrotki solo",
+      "label": "Sopran + zwrotki solo (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/Anima%20Christi/Anima_Christi__Marco_Frisina_pd_1.mp3"
@@ -1351,25 +1345,25 @@
  },	
   "tracks": [
     {
-      "label": "Sopran",
+      "label": "Sopran (mix)",
       "voice": "soprano",
       "type": "mix",
       "file": "/mp3/Agnus_Dei_pd_1.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt (mix)",
       "voice": "alto",
       "type": "mix",
       "file": "/mp3/Agnus_Dei_pd_3.mp3"
     },
     {
-      "label": "Tenor",
+      "label": "Tenor (mix)",
       "voice": "tenor",
       "type": "mix",
       "file": "/mp3/Agnus_Dei_pd_4.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/mp3/Agnus_Dei_pd_5.mp3"
@@ -1855,37 +1849,37 @@
  },	
   "tracks": [
     {
-      "label": "Sopran 1",
+      "label": "Sopran 1 (mix)",
       "voice": "soprano1",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd1.mp3"
     },
     {
-      "label": "Sopran 2",
+      "label": "Sopran 2 (mix)",
       "voice": "soprano2",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd2.mp3"
     },
     {
-      "label": "Alt",
+      "label": "Alt" (mix),
       "voice": "alto",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd3.mp3"
     },
     {
-      "label": "Tenor 1",
+      "label": "Tenor 1 (mix)",
       "voice": "tenor1",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd4.mp3"
     },
     {
-      "label": "Tenor 2",
+      "label": "Tenor 2 (mix)",
       "voice": "tenor2",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd5.mp3"
     },
     {
-      "label": "Bas",
+      "label": "Bas (mix)",
       "voice": "bass",
       "type": "mix",
       "file": "/mp3/Boska_dobroci_mix_pd6.mp3"

@@ -792,309 +792,382 @@
         return true;
     }
 
-    // ========================================
-    // DOWNLOAD PANEL FUNCTIONS
-    // ========================================
+// ========================================
+// DOWNLOAD PANEL FUNCTIONS
+// ========================================
 
-    function buildDownloadFilters() {
-        const voices = new Set();
-        songsData.forEach(song => {
-            song.tracks.forEach(t => {
-                const baseVoice = t.voice.replace(/[0-9]/g, '');
-                voices.add(baseVoice);
-            });
+function buildDownloadFilters() {
+    const voices = new Set();
+    songsData.forEach(song => {
+        song.tracks.forEach(t => {
+            const baseVoice = t.voice.replace(/[0-9]/g, '');
+            voices.add(baseVoice);
         });
+    });
 
-        const sortedVoices = Array.from(voices).sort((a, b) => {
-            const order = ['soprano', 'alto', 'tenor', 'bass', 'unisono'];
-            return (order.indexOf(a) === -1 ? 99 : order.indexOf(a)) - (order.indexOf(b) === -1 ? 99 : order.indexOf(b));
+    const sortedVoices = Array.from(voices).sort((a, b) => {
+        const order = ['soprano', 'alto', 'tenor', 'bass', 'unisono'];
+        return (order.indexOf(a) === -1 ? 99 : order.indexOf(a)) - (order.indexOf(b) === -1 ? 99 : order.indexOf(b));
+    });
+
+    const allBtn = document.createElement('button');
+    allBtn.className = 'download-voice-btn active';
+    allBtn.dataset.voice = 'all';
+    allBtn.textContent = 'Wszystkie';
+    dom.downloadVoiceFilters.appendChild(allBtn);
+
+    sortedVoices.forEach(voice => {
+        const info = getVoiceInfo(voice);
+        const btn = document.createElement('button');
+        btn.className = 'download-voice-btn';
+        btn.dataset.voice = voice;
+        btn.textContent = `${info.emoji} ${info.label}`;
+        dom.downloadVoiceFilters.appendChild(btn);
+    });
+}
+
+function openDownloadPanel() {
+    dom.downloadPanel.classList.add('open');
+    dom.downloadPanelOverlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+    renderDownloadSongsList();
+}
+
+function closeDownloadPanel() {
+    dom.downloadPanel.classList.remove('open');
+    dom.downloadPanelOverlay.classList.remove('visible');
+    document.body.style.overflow = '';
+}
+
+function getDownloadFilteredTracks(tracks) {
+    if (downloadFilters.voices.has('all')) {
+        return tracks;
+    }
+    return tracks.filter(track => {
+        const baseVoice = track.voice.replace(/[0-9]/g, '');
+        return downloadFilters.voices.has(baseVoice);
+    });
+}
+
+function getVisibleDownloadKeys() {
+    const filtered = getFilteredSongs();
+    const keys = new Set();
+    filtered.forEach(song => {
+        const filteredTracks = getDownloadFilteredTracks(song.tracks);
+        filteredTracks.forEach(track => {
+            keys.add(`${song.id}|${track.file}`);
         });
+    });
+    return keys;
+}
 
-        // Add "All" button
-        const allBtn = document.createElement('button');
-        allBtn.className = 'download-voice-btn active';
-        allBtn.dataset.voice = 'all';
-        allBtn.textContent = 'Wszystkie';
-        dom.downloadVoiceFilters.appendChild(allBtn);
-
-        sortedVoices.forEach(voice => {
-            const info = getVoiceInfo(voice);
-            const btn = document.createElement('button');
-            btn.className = 'download-voice-btn';
-            btn.dataset.voice = voice;
-            btn.textContent = `${info.emoji} ${info.label}`;
-            dom.downloadVoiceFilters.appendChild(btn);
-        });
-    }
-
-    function openDownloadPanel() {
-        dom.downloadPanel.classList.add('open');
-        dom.downloadPanelOverlay.classList.add('visible');
-        document.body.style.overflow = 'hidden';
-        renderDownloadSongsList();
-    }
-
-    function closeDownloadPanel() {
-        dom.downloadPanel.classList.remove('open');
-        dom.downloadPanelOverlay.classList.remove('visible');
-        document.body.style.overflow = '';
-    }
-
-    function getDownloadFilteredTracks(tracks) {
-        if (downloadFilters.voices.has('all')) {
-            return tracks;
+function cleanupSelectedDownloads() {
+    const visibleKeys = getVisibleDownloadKeys();
+    const toRemove = [];
+    selectedDownloads.forEach(key => {
+        if (!visibleKeys.has(key)) {
+            toRemove.push(key);
         }
-        return tracks.filter(track => {
-            const baseVoice = track.voice.replace(/[0-9]/g, '');
-            return downloadFilters.voices.has(baseVoice);
-        });
-    }
+    });
+    toRemove.forEach(key => selectedDownloads.delete(key));
+}
 
-    function renderDownloadSongsList() {
-        // Apply main filters
-        const filtered = getFilteredSongs();
+function renderDownloadSongsList() {
+    cleanupSelectedDownloads();
+    
+    const filtered = getFilteredSongs();
 
-        dom.downloadSongsList.innerHTML = filtered.map(song => {
-            const filteredTracks = getDownloadFilteredTracks(song.tracks);
-            if (filteredTracks.length === 0) return '';
+    dom.downloadSongsList.innerHTML = filtered.map(song => {
+        const filteredTracks = getDownloadFilteredTracks(song.tracks);
+        if (filteredTracks.length === 0) return '';
 
-            const tracksHtml = filteredTracks.map(track => {
-                const trackKey = `${song.id}|${track.file}`;
-                const isChecked = selectedDownloads.has(trackKey);
-                return `
-                    <div class="download-track-item">
-                        <input type="checkbox" class="download-track-checkbox" 
-                               data-song-id="${song.id}" 
-                               data-file="${track.file}"
-                               ${isChecked ? 'checked' : ''}>
-                        <span class="download-track-label">${track.label}</span>
-                        <span class="download-track-type ${track.type}">${track.type}</span>
-                    </div>
-                `;
-            }).join('');
-
-            const allTracksSelected = filteredTracks.every(t => selectedDownloads.has(`${song.id}|${t.file}`));
-            const someTracksSelected = filteredTracks.some(t => selectedDownloads.has(`${song.id}|${t.file}`));
-
+        const tracksHtml = filteredTracks.map(track => {
+            const trackKey = `${song.id}|${track.file}`;
+            const isChecked = selectedDownloads.has(trackKey);
             return `
-                <div class="download-song-item" data-song-id="${song.id}">
-                    <div class="download-song-header">
-                        <input type="checkbox" class="download-song-checkbox" 
-                               data-song-id="${song.id}"
-                               ${allTracksSelected ? 'checked' : ''}
-                               ${someTracksSelected && !allTracksSelected ? 'indeterminate' : ''}>
-                        <span class="download-song-title">${song.title}</span>
-                        <span class="download-song-count">${filteredTracks.length}</span>
-                        <button class="download-song-expand">▼</button>
-                    </div>
-                    <div class="download-song-tracks">${tracksHtml}</div>
+                <div class="download-track-item">
+                    <input type="checkbox" class="download-track-checkbox" 
+                           data-song-id="${song.id}" 
+                           data-file="${track.file}"
+                           ${isChecked ? 'checked' : ''}>
+                    <span class="download-track-label">${track.label}</span>
+                    <span class="download-track-type ${track.type}">${track.type}</span>
                 </div>
             `;
-        }).filter(Boolean).join('');
+        }).join('');
 
-        // Set indeterminate state
-        dom.downloadSongsList.querySelectorAll('.download-song-checkbox').forEach(cb => {
-            const songId = cb.dataset.songId;
-            const song = filtered.find(s => s.id === songId);
-            if (song) {
-                const filteredTracks = getDownloadFilteredTracks(song.tracks);
-                const selectedCount = filteredTracks.filter(t => selectedDownloads.has(`${songId}|${t.file}`)).length;
-                cb.indeterminate = selectedCount > 0 && selectedCount < filteredTracks.length;
-            }
-        });
+        const allTracksSelected = filteredTracks.every(t => selectedDownloads.has(`${song.id}|${t.file}`));
+        const someTracksSelected = filteredTracks.some(t => selectedDownloads.has(`${song.id}|${t.file}`));
 
-        updateDownloadCount();
-    }
+        return `
+            <div class="download-song-item" data-song-id="${song.id}">
+                <div class="download-song-header">
+                    <input type="checkbox" class="download-song-checkbox" 
+                           data-song-id="${song.id}"
+                           ${allTracksSelected ? 'checked' : ''}>
+                    <span class="download-song-title">${song.title}</span>
+                    <span class="download-song-count">${filteredTracks.length}</span>
+                    <button class="download-song-expand">▼</button>
+                </div>
+                <div class="download-song-tracks">${tracksHtml}</div>
+            </div>
+        `;
+    }).filter(Boolean).join('');
 
-    function updateDownloadCount() {
-        const count = selectedDownloads.size;
-        dom.downloadSelectedCount.textContent = count;
-        dom.downloadStartBtn.disabled = count === 0;
-    }
-
-    function selectAllDownloads() {
-        const filtered = getFilteredSongs();
-        filtered.forEach(song => {
+    dom.downloadSongsList.querySelectorAll('.download-song-checkbox').forEach(cb => {
+        const songId = cb.dataset.songId;
+        const song = filtered.find(s => s.id === songId);
+        if (song) {
             const filteredTracks = getDownloadFilteredTracks(song.tracks);
-            filteredTracks.forEach(track => {
-                selectedDownloads.add(`${song.id}|${track.file}`);
-            });
+            const selectedCount = filteredTracks.filter(t => selectedDownloads.has(`${songId}|${t.file}`)).length;
+            cb.indeterminate = selectedCount > 0 && selectedCount < filteredTracks.length;
+        }
+    });
+
+    updateDownloadCount();
+}
+
+function updateDownloadCount() {
+    const count = selectedDownloads.size;
+    dom.downloadSelectedCount.textContent = count;
+    dom.downloadStartBtn.disabled = count === 0;
+}
+
+function selectAllDownloads() {
+    const filtered = getFilteredSongs();
+    filtered.forEach(song => {
+        const filteredTracks = getDownloadFilteredTracks(song.tracks);
+        filteredTracks.forEach(track => {
+            selectedDownloads.add(`${song.id}|${track.file}`);
         });
-        renderDownloadSongsList();
+    });
+    renderDownloadSongsList();
+}
+
+function selectNoneDownloads() {
+    selectedDownloads.clear();
+    renderDownloadSongsList();
+}
+
+function sanitizeFilename(name) {
+    return name.replace(/[<>:"/\\|?*]/g, '-').replace(/\s+/g, ' ').trim();
+}
+
+async function fetchFileAsBlob(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
     }
+    return await response.blob();
+}
 
-    function selectNoneDownloads() {
-        selectedDownloads.clear();
-        renderDownloadSongsList();
-    }
+async function startDownload() {
+    if (selectedDownloads.size === 0) return;
 
-    async function startDownload() {
-        if (selectedDownloads.size === 0) return;
-
-        const files = [];
-        selectedDownloads.forEach(key => {
-            const [songId, file] = key.split('|');
-            const song = songsData.find(s => s.id === songId);
-            if (song) {
-                const track = song.tracks.find(t => t.file === file);
-                if (track) {
-                    files.push({
-                        url: resolveUrl(file),
-                        name: `${song.title} - ${track.label}.mp3`
-                    });
-                }
-            }
-        });
-
-        if (files.length === 0) return;
-
-        dom.downloadProgress.style.display = 'flex';
-        dom.downloadStartBtn.disabled = true;
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            
-            // Update progress
-            const progress = ((i + 1) / files.length) * 100;
-            dom.downloadProgressFill.style.width = progress + '%';
-            dom.downloadProgressText.textContent = `${i + 1} / ${files.length}`;
-
-            // Download file
-            try {
-                const link = document.createElement('a');
-                link.href = file.url;
-                link.download = file.name;
-                link.style.display = 'none';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-
-                // Wait between downloads to avoid browser blocking
-                if (i < files.length - 1) {
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                }
-            } catch (e) {
-                console.error('Download error:', e);
+    const files = [];
+    selectedDownloads.forEach(key => {
+        const [songId, file] = key.split('|');
+        const song = songsData.find(s => s.id === songId);
+        if (song) {
+            const track = song.tracks.find(t => t.file === file);
+            if (track) {
+                const ext = file.split('.').pop() || 'mp3';
+                const filename = sanitizeFilename(`${song.title} - ${track.label}.${ext}`);
+                files.push({
+                    url: resolveUrl(file),
+                    name: filename,
+                    folder: sanitizeFilename(song.title)
+                });
             }
         }
+    });
 
-        // Reset after completion
-        setTimeout(() => {
-            dom.downloadProgress.style.display = 'none';
-            dom.downloadProgressFill.style.width = '0%';
-            dom.downloadStartBtn.disabled = false;
-        }, 1000);
+    if (files.length === 0) return;
+
+    // Pojedynczy plik - pobierz bezpośrednio
+    if (files.length === 1) {
+        const file = files[0];
+        const link = document.createElement('a');
+        link.href = file.url;
+        link.download = file.name;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        return;
     }
 
-    function initDownloadEvents() {
-        // FAB click
-        dom.downloadFab.addEventListener('click', openDownloadPanel);
+    // Wiele plików - pakuj do ZIP
+    dom.downloadProgress.style.display = 'flex';
+    dom.downloadStartBtn.disabled = true;
+    dom.downloadProgressText.textContent = `0 / ${files.length}`;
+    dom.downloadProgressFill.style.width = '0%';
 
-        // Close panel
-        dom.downloadPanelClose.addEventListener('click', closeDownloadPanel);
-        dom.downloadPanelOverlay.addEventListener('click', closeDownloadPanel);
+    try {
+        const zip = new JSZip();
+        let completed = 0;
+        let failed = 0;
 
-        // Voice filters in download panel
-        dom.downloadVoiceFilters.addEventListener('click', e => {
-            const btn = e.target.closest('.download-voice-btn');
-            if (!btn) return;
-
-            const voice = btn.dataset.voice;
-
-            if (voice === 'all') {
-                downloadFilters.voices.clear();
-                downloadFilters.voices.add('all');
-                dom.downloadVoiceFilters.querySelectorAll('.download-voice-btn').forEach(b => {
-                    b.classList.toggle('active', b.dataset.voice === 'all');
-                });
-            } else {
-                downloadFilters.voices.delete('all');
-                if (downloadFilters.voices.has(voice)) {
-                    downloadFilters.voices.delete(voice);
-                } else {
-                    downloadFilters.voices.add(voice);
+        // Pobierz pliki równolegle w grupach po 3
+        const batchSize = 3;
+        for (let i = 0; i < files.length; i += batchSize) {
+            const batch = files.slice(i, i + batchSize);
+            
+            await Promise.all(batch.map(async (file) => {
+                try {
+                    const blob = await fetchFileAsBlob(file.url);
+                    // Dodaj do folderu z nazwą utworu
+                    zip.file(`${file.folder}/${file.name}`, blob);
+                } catch (e) {
+                    console.error(`Błąd pobierania ${file.name}:`, e);
+                    failed++;
                 }
+                completed++;
                 
-                if (downloadFilters.voices.size === 0) {
-                    downloadFilters.voices.add('all');
-                }
+                const progress = (completed / files.length) * 100;
+                dom.downloadProgressFill.style.width = progress + '%';
+                dom.downloadProgressText.textContent = `${completed} / ${files.length}`;
+            }));
+        }
 
-                dom.downloadVoiceFilters.querySelectorAll('.download-voice-btn').forEach(b => {
-                    if (b.dataset.voice === 'all') {
-                        b.classList.toggle('active', downloadFilters.voices.has('all'));
+        // Generuj ZIP
+        dom.downloadProgressText.textContent = 'Pakowanie...';
+        
+        const zipBlob = await zip.generateAsync({ 
+            type: 'blob',
+            compression: 'DEFLATE',
+            compressionOptions: { level: 6 }
+        }, (metadata) => {
+            dom.downloadProgressFill.style.width = metadata.percent + '%';
+        });
+
+        // Pobierz ZIP
+        const timestamp = new Date().toISOString().slice(0, 10);
+        const zipFilename = `chor-materialy-${timestamp}.zip`;
+        
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(zipBlob);
+        link.download = zipFilename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+
+        if (failed > 0) {
+            dom.downloadProgressText.textContent = `Pobrano ${completed - failed}/${files.length} (${failed} błędów)`;
+        } else {
+            dom.downloadProgressText.textContent = 'Gotowe!';
+        }
+
+    } catch (e) {
+        console.error('Błąd tworzenia ZIP:', e);
+        dom.downloadProgressText.textContent = 'Błąd pobierania';
+    }
+
+    // Reset po chwili
+    setTimeout(() => {
+        dom.downloadProgress.style.display = 'none';
+        dom.downloadProgressFill.style.width = '0%';
+        dom.downloadStartBtn.disabled = selectedDownloads.size === 0;
+    }, 2000);
+}
+
+function initDownloadEvents() {
+    dom.downloadFab.addEventListener('click', openDownloadPanel);
+    dom.downloadPanelClose.addEventListener('click', closeDownloadPanel);
+    dom.downloadPanelOverlay.addEventListener('click', closeDownloadPanel);
+
+    dom.downloadVoiceFilters.addEventListener('click', e => {
+        const btn = e.target.closest('.download-voice-btn');
+        if (!btn) return;
+
+        const voice = btn.dataset.voice;
+
+        if (voice === 'all') {
+            downloadFilters.voices.clear();
+            downloadFilters.voices.add('all');
+            dom.downloadVoiceFilters.querySelectorAll('.download-voice-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.voice === 'all');
+            });
+        } else {
+            downloadFilters.voices.delete('all');
+            if (downloadFilters.voices.has(voice)) {
+                downloadFilters.voices.delete(voice);
+            } else {
+                downloadFilters.voices.add(voice);
+            }
+            
+            if (downloadFilters.voices.size === 0) {
+                downloadFilters.voices.add('all');
+            }
+
+            dom.downloadVoiceFilters.querySelectorAll('.download-voice-btn').forEach(b => {
+                if (b.dataset.voice === 'all') {
+                    b.classList.toggle('active', downloadFilters.voices.has('all'));
+                } else {
+                    b.classList.toggle('active', downloadFilters.voices.has(b.dataset.voice));
+                }
+            });
+        }
+
+        renderDownloadSongsList();
+    });
+
+    dom.downloadSongsList.addEventListener('click', e => {
+        const expandBtn = e.target.closest('.download-song-expand');
+        if (expandBtn) {
+            const songItem = expandBtn.closest('.download-song-item');
+            songItem.classList.toggle('expanded');
+            return;
+        }
+
+        const header = e.target.closest('.download-song-header');
+        if (header && !e.target.closest('input')) {
+            const songItem = header.closest('.download-song-item');
+            songItem.classList.toggle('expanded');
+            return;
+        }
+    });
+
+    dom.downloadSongsList.addEventListener('change', e => {
+        if (e.target.classList.contains('download-song-checkbox')) {
+            const songId = e.target.dataset.songId;
+            const isChecked = e.target.checked;
+            const song = getFilteredSongs().find(s => s.id === songId);
+            
+            if (song) {
+                const filteredTracks = getDownloadFilteredTracks(song.tracks);
+                filteredTracks.forEach(track => {
+                    const key = `${songId}|${track.file}`;
+                    if (isChecked) {
+                        selectedDownloads.add(key);
                     } else {
-                        b.classList.toggle('active', downloadFilters.voices.has(b.dataset.voice));
+                        selectedDownloads.delete(key);
                     }
                 });
-            }
-
-            renderDownloadSongsList();
-        });
-
-        // Song list interactions
-        dom.downloadSongsList.addEventListener('click', e => {
-            // Expand button
-            const expandBtn = e.target.closest('.download-song-expand');
-            if (expandBtn) {
-                const songItem = expandBtn.closest('.download-song-item');
-                songItem.classList.toggle('expanded');
-                return;
-            }
-
-            // Song header click (expand)
-            const header = e.target.closest('.download-song-header');
-            if (header && !e.target.closest('input')) {
-                const songItem = header.closest('.download-song-item');
-                songItem.classList.toggle('expanded');
-                return;
-            }
-        });
-
-        // Checkbox changes
-        dom.downloadSongsList.addEventListener('change', e => {
-            // Song checkbox
-            if (e.target.classList.contains('download-song-checkbox')) {
-                const songId = e.target.dataset.songId;
-                const isChecked = e.target.checked;
-                const song = getFilteredSongs().find(s => s.id === songId);
-                
-                if (song) {
-                    const filteredTracks = getDownloadFilteredTracks(song.tracks);
-                    filteredTracks.forEach(track => {
-                        const key = `${songId}|${track.file}`;
-                        if (isChecked) {
-                            selectedDownloads.add(key);
-                        } else {
-                            selectedDownloads.delete(key);
-                        }
-                    });
-                    renderDownloadSongsList();
-                }
-                return;
-            }
-
-            // Track checkbox
-            if (e.target.classList.contains('download-track-checkbox')) {
-                const songId = e.target.dataset.songId;
-                const file = e.target.dataset.file;
-                const key = `${songId}|${file}`;
-                
-                if (e.target.checked) {
-                    selectedDownloads.add(key);
-                } else {
-                    selectedDownloads.delete(key);
-                }
                 renderDownloadSongsList();
             }
-        });
+            return;
+        }
 
-        // Select all / none
-        dom.downloadSelectAll.addEventListener('click', selectAllDownloads);
-        dom.downloadSelectNone.addEventListener('click', selectNoneDownloads);
+        if (e.target.classList.contains('download-track-checkbox')) {
+            const songId = e.target.dataset.songId;
+            const file = e.target.dataset.file;
+            const key = `${songId}|${file}`;
+            
+            if (e.target.checked) {
+                selectedDownloads.add(key);
+            } else {
+                selectedDownloads.delete(key);
+            }
+            renderDownloadSongsList();
+        }
+    });
 
-        // Start download
-        dom.downloadStartBtn.addEventListener('click', startDownload);
-    }
+    dom.downloadSelectAll.addEventListener('click', selectAllDownloads);
+    dom.downloadSelectNone.addEventListener('click', selectNoneDownloads);
+    dom.downloadStartBtn.addEventListener('click', startDownload);
+}
 
     function initEvents() {
         let searchTimeout;

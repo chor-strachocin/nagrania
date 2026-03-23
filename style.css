@@ -1426,3 +1426,520 @@ main {
         display: none;
     }
 }
+
+/* ===========================================
+   FOOTER
+   =========================================== */
+.site-footer {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    padding: 24px 20px;
+    margin-top: 40px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+
+.footer-update {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+.footer-update time {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.footer-copyright {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+.footer-contact a {
+    color: var(--accent-light);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+}
+
+.footer-contact a:hover {
+    color: var(--text-bright);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* ===========================================
+   DOWNLOAD FAB (Floating Action Button)
+   =========================================== */
+.download-fab {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: var(--accent);
+    border: none;
+    border-radius: 50%;
+    color: var(--text-bright);
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+    transition: all 0.3s ease;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(108, 92, 231, 0.6);
+}
+
+.download-fab:active {
+    transform: scale(0.95);
+}
+
+/* Ukryj FAB gdy player jest widoczny na mobile */
+@media (max-width: 768px) {
+    .download-fab {
+        bottom: 20px;
+        right: 16px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
+    body.player-active .download-fab {
+        bottom: 100px;
+    }
+}
+
+/* ===========================================
+   DOWNLOAD PANEL
+   =========================================== */
+.download-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 450px;
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: var(--bg);
+    border-left: 1px solid var(--border);
+    z-index: 2500;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.download-panel.open {
+    transform: translateX(0);
+}
+
+.download-panel-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2400;
+}
+
+.download-panel-overlay.visible {
+    display: block;
+}
+
+/* Header */
+.download-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.download-panel-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin: 0;
+}
+
+.download-panel-close {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.download-panel-close:hover {
+    background: #e74c3c;
+    border-color: #e74c3c;
+    color: var(--text-bright);
+}
+
+/* Body */
+.download-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Sections */
+.download-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.download-section-pdf {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(108, 92, 231, 0.05) 100%);
+    border-color: var(--accent);
+}
+
+.download-section-header {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* PDF Download Button */
+.download-pdf-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-bright);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.download-pdf-btn:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+}
+
+.download-pdf-btn .download-icon {
+    font-size: 1.2rem;
+}
+
+/* Filters in download panel */
+.download-filters {
+    margin-bottom: 16px;
+}
+
+.download-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.download-filter-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.download-voice-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.download-voice-btn {
+    padding: 6px 12px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.download-voice-btn:hover {
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.download-voice-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-bright);
+}
+
+.download-voice-btn[data-voice="soprano"].active { background: var(--soprano); border-color: var(--soprano); }
+.download-voice-btn[data-voice="alto"].active { background: var(--alto); border-color: var(--alto); color: #1a1a24; }
+.download-voice-btn[data-voice="tenor"].active { background: var(--tenor); border-color: var(--tenor); color: #1a1a24; }
+.download-voice-btn[data-voice="bass"].active { background: var(--bass); border-color: var(--bass); }
+
+/* Songs list */
+.download-songs-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+}
+
+.download-song-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.download-song-item:last-child {
+    border-bottom: none;
+}
+
+.download-song-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.download-song-header:hover {
+    background: var(--bg-card-hover);
+}
+
+.download-song-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.download-song-title {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.download-song-count {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    background: var(--bg-filter);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.download-song-expand {
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.download-song-item.expanded .download-song-expand {
+    transform: rotate(180deg);
+}
+
+.download-song-tracks {
+    display: none;
+    padding: 0 12px 10px 40px;
+}
+
+.download-song-item.expanded .download-song-tracks {
+    display: block;
+}
+
+.download-track-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+}
+
+.download-track-checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.download-track-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+
+.download-track-type {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    margin-left: auto;
+}
+
+.download-track-type.single { background: rgba(108, 92, 231, 0.15); color: var(--accent-light); }
+.download-track-type.mix { background: rgba(190, 75, 219, 0.15); color: var(--mix); }
+
+/* Summary */
+.download-summary {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.download-count {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    text-align: center;
+}
+
+.download-count strong {
+    color: var(--accent-light);
+    font-size: 1.1rem;
+}
+
+.download-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.download-select-all-btn,
+.download-select-none-btn {
+    padding: 6px 12px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.download-select-all-btn:hover,
+.download-select-none-btn:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.download-start-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-bright);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.download-start-btn:hover:not(:disabled) {
+    background: var(--accent-light);
+}
+
+.download-start-btn:disabled {
+    background: var(--bg-filter);
+    color: var(--text-dim);
+    cursor: not-allowed;
+}
+
+/* Progress */
+.download-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.download-progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-filter);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.download-progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.download-progress-text {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    min-width: 60px;
+    text-align: right;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .download-panel {
+        width: 100%;
+    }
+
+    .download-songs-list {
+        max-height: 250px;
+    }
+}

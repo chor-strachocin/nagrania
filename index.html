@@ -147,6 +147,86 @@
         <button class="player-close" id="player-close">✕</button>
     </div>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-update">
+                <span>Ostatnia aktualizacja:</span>
+                <time id="last-update">2025-01-15 18:30</time>
+            </div>
+            <div class="footer-copyright">
+                © 2026 Krzysztof Stępień
+            </div>
+            <div class="footer-contact">
+                <a href="mailto:chor@fundacja.onjest.pl">📧 chor@fundacja.onjest.pl</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Download Panel -->
+    <div class="download-panel" id="download-panel">
+        <div class="download-panel-header">
+            <h2>📥 Pobieranie materiałów</h2>
+            <button class="download-panel-close" id="download-panel-close" aria-label="Zamknij">✕</button>
+        </div>
+        <div class="download-panel-body">
+            <!-- Sekcja nut PDF -->
+            <div class="download-section download-section-pdf">
+                <div class="download-section-header">
+                    <span>📄 Nuty (wszystkie)</span>
+                </div>
+                <a href="https://pub-14992ccbb14b4c84a26df90b7cedd48f.r2.dev/Nuty/pdf-download_merged.pdf" download class="download-pdf-btn">
+                    <span class="download-icon">📥</span>
+                    <span>Pobierz nuty PDF</span>
+                </a>
+            </div>
+
+            <!-- Filtry w panelu pobierania -->
+            <div class="download-section">
+                <div class="download-section-header">
+                    <span>🎵 Nagrania audio</span>
+                </div>
+                
+                <div class="download-filters">
+                    <div class="download-filter-group">
+                        <label>Głosy:</label>
+                        <div class="download-voice-filters" id="download-voice-filters"></div>
+                    </div>
+                </div>
+
+                <!-- Lista utworów do pobrania -->
+                <div class="download-songs-list" id="download-songs-list"></div>
+
+                <!-- Podsumowanie i przycisk pobierania -->
+                <div class="download-summary">
+                    <div class="download-count">
+                        Wybrano: <strong id="download-selected-count">0</strong> plików
+                    </div>
+                    <div class="download-actions">
+                        <button class="download-select-all-btn" id="download-select-all">Zaznacz wszystkie</button>
+                        <button class="download-select-none-btn" id="download-select-none">Odznacz wszystkie</button>
+                    </div>
+                    <button class="download-start-btn" id="download-start-btn" disabled>
+                        <span class="download-icon">📥</span>
+                        <span>Pobierz zaznaczone</span>
+                    </button>
+                    <div class="download-progress" id="download-progress" style="display: none;">
+                        <div class="download-progress-bar">
+                            <div class="download-progress-fill" id="download-progress-fill"></div>
+                        </div>
+                        <span class="download-progress-text" id="download-progress-text">0 / 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="download-panel-overlay" id="download-panel-overlay"></div>
+
+    <!-- Przycisk otwierania panelu pobierania (floating) -->
+    <button class="download-fab" id="download-fab" title="Pobierz materiały">
+        📥
+    </button>
+
     <audio id="audio-element"></audio>
     <script src="app.js"></script>
 </body>

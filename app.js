@@ -14,6 +14,12 @@
     let currentSong = null;
     let playableTracksList = [];
 
+    // Download panel state
+    let downloadFilters = {
+        voices: new Set(['all'])
+    };
+    let selectedDownloads = new Set();
+
     const dom = {
         search: document.getElementById('search'),
         voiceFilters: document.getElementById('voice-filters'),
@@ -63,7 +69,21 @@
         sheetsPlayerDuration: document.getElementById('sheets-player-duration'),
         sheetsPlayerVolume: document.getElementById('sheets-player-volume'),
         toolbar: document.getElementById('toolbar'),
-        sheetsNextPageHint: document.getElementById('sheets-next-page-hint')
+        sheetsNextPageHint: document.getElementById('sheets-next-page-hint'),
+        // Download panel elements
+        downloadFab: document.getElementById('download-fab'),
+        downloadPanel: document.getElementById('download-panel'),
+        downloadPanelClose: document.getElementById('download-panel-close'),
+        downloadPanelOverlay: document.getElementById('download-panel-overlay'),
+        downloadVoiceFilters: document.getElementById('download-voice-filters'),
+        downloadSongsList: document.getElementById('download-songs-list'),
+        downloadSelectedCount: document.getElementById('download-selected-count'),
+        downloadSelectAll: document.getElementById('download-select-all'),
+        downloadSelectNone: document.getElementById('download-select-none'),
+        downloadStartBtn: document.getElementById('download-start-btn'),
+        downloadProgress: document.getElementById('download-progress'),
+        downloadProgressFill: document.getElementById('download-progress-fill'),
+        downloadProgressText: document.getElementById('download-progress-text')
     };
 
     const voiceConfig = {
@@ -291,6 +311,7 @@
             baseUrl = data.baseUrl || '';
             songsData = data.songs || [];
             buildFilters();
+            buildDownloadFilters();
             applyUrlParams();
             updateActiveFiltersDisplay();
             render();
@@ -300,72 +321,69 @@
         }
     }
 
-function buildFilters() {
-    const voices = new Set();
-    const tagsSet = new Set();
-    songsData.forEach(song => {
-        song.tracks.forEach(t => {
-            // Grupuj głosy - dodaj tylko główny głos (bez numerów)
-            const baseVoice = t.voice.replace(/[0-9]/g, '');
-            voices.add(baseVoice);
+    function buildFilters() {
+        const voices = new Set();
+        const tagsSet = new Set();
+        songsData.forEach(song => {
+            song.tracks.forEach(t => {
+                const baseVoice = t.voice.replace(/[0-9]/g, '');
+                voices.add(baseVoice);
+            });
+            (song.tags || []).forEach(t => tagsSet.add(normalizeTag(t)));
         });
-        (song.tags || []).forEach(t => tagsSet.add(normalizeTag(t)));
-    });
-    
-    // Sortuj tylko główne głosy
-    const sortedVoices = Array.from(voices).sort((a, b) => {
-        const order = ['soprano', 'alto', 'tenor', 'bass', 'unisono'];
-        return (order.indexOf(a) === -1 ? 99 : order.indexOf(a)) - (order.indexOf(b) === -1 ? 99 : order.indexOf(b));
-    });
-    
-    sortedVoices.forEach(voice => {
-        const info = getVoiceInfo(voice);
-        const btn = document.createElement('button');
-        btn.className = 'filter-btn';
-        btn.dataset.voice = voice;
-        btn.textContent = `${info.emoji} ${info.label}`;
-        dom.voiceFilters.appendChild(btn);
-    });
-    
-    if (tagsSet.size > 0) {
-        const allTagBtn = document.createElement('button');
-        allTagBtn.className = 'filter-btn active';
-        allTagBtn.dataset.tag = 'all';
-        allTagBtn.textContent = 'Wszystkie';
-        dom.tagFilters.appendChild(allTagBtn);
-        Array.from(tagsSet).sort((a, b) => a.localeCompare(b, 'pl')).forEach(tag => {
+        
+        const sortedVoices = Array.from(voices).sort((a, b) => {
+            const order = ['soprano', 'alto', 'tenor', 'bass', 'unisono'];
+            return (order.indexOf(a) === -1 ? 99 : order.indexOf(a)) - (order.indexOf(b) === -1 ? 99 : order.indexOf(b));
+        });
+        
+        sortedVoices.forEach(voice => {
+            const info = getVoiceInfo(voice);
             const btn = document.createElement('button');
             btn.className = 'filter-btn';
-            btn.dataset.tag = tag;
-            btn.textContent = tag;
-            dom.tagFilters.appendChild(btn);
+            btn.dataset.voice = voice;
+            btn.textContent = `${info.emoji} ${info.label}`;
+            dom.voiceFilters.appendChild(btn);
         });
-    } else {
-        dom.tagFilters.parentElement.style.display = 'none';
+        
+        if (tagsSet.size > 0) {
+            const allTagBtn = document.createElement('button');
+            allTagBtn.className = 'filter-btn active';
+            allTagBtn.dataset.tag = 'all';
+            allTagBtn.textContent = 'Wszystkie';
+            dom.tagFilters.appendChild(allTagBtn);
+            Array.from(tagsSet).sort((a, b) => a.localeCompare(b, 'pl')).forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.dataset.tag = tag;
+                btn.textContent = tag;
+                dom.tagFilters.appendChild(btn);
+            });
+        } else {
+            dom.tagFilters.parentElement.style.display = 'none';
+        }
     }
-}
 
-function filterTracks(tracks) {
-    return tracks.filter(track => {
-        const isUnisono = track.type === 'unisono' || track.voice === 'unisono';
-        
-        if (isUnisono) {
-            return !currentFilters.hideUnisono;
-        }
-        
-        // Filtrowanie po głosie - grupuj S/S1/S2 itd.
-        if (currentFilters.voice !== 'all') {
-            const trackBaseVoice = track.voice.replace(/[0-9]/g, '');
-            if (trackBaseVoice !== currentFilters.voice) {
-                return false;
+    function filterTracks(tracks) {
+        return tracks.filter(track => {
+            const isUnisono = track.type === 'unisono' || track.voice === 'unisono';
+            
+            if (isUnisono) {
+                return !currentFilters.hideUnisono;
             }
-        }
-        
-        if (currentFilters.type !== 'all' && track.type !== currentFilters.type) return false;
-        
-        return true;
-    });
-}
+            
+            if (currentFilters.voice !== 'all') {
+                const trackBaseVoice = track.voice.replace(/[0-9]/g, '');
+                if (trackBaseVoice !== currentFilters.voice) {
+                    return false;
+                }
+            }
+            
+            if (currentFilters.type !== 'all' && track.type !== currentFilters.type) return false;
+            
+            return true;
+        });
+    }
 
     function getFilteredSongs() {
         const filtered = songsData.map(song => {
@@ -389,155 +407,139 @@ function filterTracks(tracks) {
         return filtered;
     }
 
-function getVoiceComposition(tracks) {
-    // Wyciągnij unikalne głosy
-    const voices = [...new Set(tracks.map(t => t.voice))];
-    
-    // Sortuj według voiceOrder
-    voices.sort((a, b) => (voiceOrder[a] ?? 999) - (voiceOrder[b] ?? 999));
-    
-    // Jeśli tylko unisono
-    if (voices.length === 1 && voices[0] === 'unisono') {
-        return 'Unisono';
+    function getVoiceComposition(tracks) {
+        const voices = [...new Set(tracks.map(t => t.voice))];
+        voices.sort((a, b) => (voiceOrder[a] ?? 999) - (voiceOrder[b] ?? 999));
+        
+        if (voices.length === 1 && voices[0] === 'unisono') {
+            return 'Unisono';
+        }
+        
+        const shortNames = {
+            soprano: 'S', soprano1: 'S1', soprano2: 'S2',
+            alto: 'A', alto1: 'A1', alto2: 'A2',
+            tenor: 'T', tenor1: 'T1', tenor2: 'T2',
+            bass: 'B', bass1: 'B1', bass2: 'B2',
+            unisono: 'Uni'
+        };
+        
+        return voices
+            .filter(v => v !== 'unisono')
+            .map(v => shortNames[v] || v.toUpperCase())
+            .join(' ');
     }
-    
-    // Skróty dla głosów
-    const shortNames = {
-        soprano: 'S',
-        soprano1: 'S1',
-        soprano2: 'S2',
-        alto: 'A',
-        alto1: 'A1',
-        alto2: 'A2',
-        tenor: 'T',
-        tenor1: 'T1',
-        tenor2: 'T2',
-        bass: 'B',
-        bass1: 'B1',
-        bass2: 'B2',
-        unisono: 'Uni'
-    };
-    
-    // Filtruj unisono z głównej listy i zamień na skróty
-    return voices
-        .filter(v => v !== 'unisono')
-        .map(v => shortNames[v] || v.toUpperCase())
-        .join(' ');
-}
 
-
-function render(scrollToResults = false) {
-    const filtered = getFilteredSongs();
-    playableTracksList = [];
-    filtered.forEach(song => {
-        song.tracks.forEach(track => {
-            playableTracksList.push({ song, track });
+    function render(scrollToResults = false) {
+        const filtered = getFilteredSongs();
+        playableTracksList = [];
+        filtered.forEach(song => {
+            song.tracks.forEach(track => {
+                playableTracksList.push({ song, track });
+            });
         });
-    });
-    if (filtered.length === 0) {
-        dom.songsGrid.innerHTML = '';
-        dom.emptyState.style.display = 'block';
-        return;
-    }
-    dom.emptyState.style.display = 'none';
-    dom.songsGrid.innerHTML = filtered.map(song => {
-        const tracksHtml = song.tracks.map(track => {
-            const iconClass = getTrackIconClass(track);
-            const emoji = getTrackEmoji(track);
-            const isPlaying = currentTrack && currentSong && currentSong.id === song.id && currentTrack.file === track.file;
-            const playingClass = isPlaying ? 'playing' : '';
-            const typeBadge = track.type !== 'single' ? `<span class="track-type-badge ${track.type}">${track.type}</span>` : '';
-            const description = track.description ? `<div class="track-description">${track.description}</div>` : '';
-            return `
-                <div class="track-item ${playingClass}" data-song-id="${song.id}" data-file="${track.file}">
-                    <div class="track-icon ${iconClass}">${isPlaying ? '⏸' : emoji}</div>
-                    <div class="track-info">
-                        <div class="track-label">${track.label}</div>
-                        ${description}
+        if (filtered.length === 0) {
+            dom.songsGrid.innerHTML = '';
+            dom.emptyState.style.display = 'block';
+            return;
+        }
+        dom.emptyState.style.display = 'none';
+        dom.songsGrid.innerHTML = filtered.map(song => {
+            const tracksHtml = song.tracks.map(track => {
+                const iconClass = getTrackIconClass(track);
+                const emoji = getTrackEmoji(track);
+                const isPlaying = currentTrack && currentSong && currentSong.id === song.id && currentTrack.file === track.file;
+                const playingClass = isPlaying ? 'playing' : '';
+                const typeBadge = track.type !== 'single' ? `<span class="track-type-badge ${track.type}">${track.type}</span>` : '';
+                const description = track.description ? `<div class="track-description">${track.description}</div>` : '';
+                return `
+                    <div class="track-item ${playingClass}" data-song-id="${song.id}" data-file="${track.file}">
+                        <div class="track-icon ${iconClass}">${isPlaying ? '⏸' : emoji}</div>
+                        <div class="track-info">
+                            <div class="track-label">${track.label}</div>
+                            ${description}
+                        </div>
+                        ${typeBadge}
                     </div>
-                    ${typeBadge}
+                `;
+            }).join('');
+            const tagsHtml = (song.tags || []).map(t => {
+                const normalized = normalizeTag(t);
+                return `<span class="tag" data-tag="${normalized}">${normalized}</span>`;
+            }).join('');
+            const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
+            const footerHtml = hasSheets ? `
+                <div class="song-footer">
+                    <button class="show-sheets-btn" data-song-id="${song.id}">📄 Pokaż nuty</button>
+                </div>
+            ` : '';
+            
+            const originalSong = songsData.find(s => s.id === song.id);
+            const voiceComposition = getVoiceComposition(originalSong ? originalSong.tracks : song.tracks);
+            
+            return `
+                <div class="song-card" data-song-id="${song.id}">
+                    <div class="song-header">
+                        <div class="song-header-row">
+                            <div class="song-header-info" data-song-id="${song.id}">
+                                <div class="song-title">${song.title}</div>
+                                ${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
+                                <div class="song-voices">${voiceComposition}</div>
+                                <div class="song-tags">${tagsHtml}</div>
+                            </div>
+                            <button class="song-expand-btn" data-song-id="${song.id}" aria-label="Rozwiń utwór">
+                                <span class="arrow">▼</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="song-collapsible">
+                        <div class="track-list">${tracksHtml}</div>
+                        ${footerHtml}
+                    </div>
                 </div>
             `;
         }).join('');
-        const tagsHtml = (song.tags || []).map(t => {
-            const normalized = normalizeTag(t);
-            return `<span class="tag" data-tag="${normalized}">${normalized}</span>`;
-        }).join('');
-        const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
-        const footerHtml = hasSheets ? `
-            <div class="song-footer">
-                <button class="show-sheets-btn" data-song-id="${song.id}">📄 Pokaż nuty</button>
-            </div>
-        ` : '';
-        
-        // Skład głosowy (z oryginalnych tracks, nie filtrowanych)
-        const originalSong = songsData.find(s => s.id === song.id);
-        const voiceComposition = getVoiceComposition(originalSong ? originalSong.tracks : song.tracks);
-        
-        return `
-            <div class="song-card" data-song-id="${song.id}">
-                <div class="song-header">
-                    <div class="song-header-row">
-                        <div class="song-header-info" data-song-id="${song.id}">
-                            <div class="song-title">${song.title}</div>
-                            ${song.composer ? `<div class="song-composer">${song.composer}</div>` : ''}
-                            <div class="song-voices">${voiceComposition}</div>
-                            <div class="song-tags">${tagsHtml}</div>
-                        </div>
-                        <button class="song-expand-btn" data-song-id="${song.id}" aria-label="Rozwiń utwór">
-                            <span class="arrow">▼</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="song-collapsible">
-                    <div class="track-list">${tracksHtml}</div>
-                    ${footerHtml}
-                </div>
-            </div>
-        `;
-    }).join('');
 
-    if (scrollToResults && filtered.length > 0) {
-        const toolbarHeight = dom.toolbar ? dom.toolbar.offsetHeight : 70;
-        const targetScrollTop = dom.songsGrid.offsetTop - toolbarHeight - 10;
-        window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
+        if (scrollToResults && filtered.length > 0) {
+            const toolbarHeight = dom.toolbar ? dom.toolbar.offsetHeight : 70;
+            const targetScrollTop = dom.songsGrid.offsetTop - toolbarHeight - 10;
+            window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
+        }
     }
-}
 
-	function playTrack(songId, file) {
-		const song = songsData.find(s => s.id === songId);
-		if (!song) return;
-		const track = song.tracks.find(t => t.file === file);
-		if (!track) return;
-		if (currentTrack && currentSong && currentSong.id === songId && currentTrack.file === file) {
-			if (dom.audioElement.paused) {
-				dom.audioElement.play();
-			} else {
-				dom.audioElement.pause();
-			}
-			return;
-		}
-		currentSong = song;
-		currentTrack = track;
-		dom.audioElement.src = resolveUrl(file);
-		dom.audioElement.play().catch(() => {});
-		updatePlayerUI();
-		updateSheetsPlayerUI();
-		
-		// ZMIANA: Pokaż główny panel tylko gdy nuty NIE są otwarte
-		const sheetsOpen = dom.sheetsModal.classList.contains('visible');
-		if (!sheetsOpen) {
-			dom.audioPlayer.classList.add('visible');
-		}
-		
-		const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
-		dom.playerSheetsBtn.style.display = hasSheets ? 'flex' : 'none';
-		render();
-		if (sheetsOpen) {
-			renderSheetsTracks();
-		}
-	}
-	
+    function playTrack(songId, file) {
+        const song = songsData.find(s => s.id === songId);
+        if (!song) return;
+        const track = song.tracks.find(t => t.file === file);
+        if (!track) return;
+        if (currentTrack && currentSong && currentSong.id === songId && currentTrack.file === file) {
+            if (dom.audioElement.paused) {
+                dom.audioElement.play();
+            } else {
+                dom.audioElement.pause();
+            }
+            return;
+        }
+        currentSong = song;
+        currentTrack = track;
+        dom.audioElement.src = resolveUrl(file);
+        dom.audioElement.play().catch(() => {});
+        updatePlayerUI();
+        updateSheetsPlayerUI();
+        
+        const sheetsOpen = dom.sheetsModal.classList.contains('visible');
+        if (!sheetsOpen) {
+            dom.audioPlayer.classList.add('visible');
+            document.body.classList.add('player-active');
+        }
+        
+        const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
+        dom.playerSheetsBtn.style.display = hasSheets ? 'flex' : 'none';
+        render();
+        if (sheetsOpen) {
+            renderSheetsTracks();
+        }
+    }
+
     function playPrevNext(direction) {
         if (!currentTrack || playableTracksList.length === 0) return;
         const idx = playableTracksList.findIndex(item => item.song.id === currentSong.id && item.track.file === currentTrack.file);
@@ -609,34 +611,32 @@ function render(scrollToResults = false) {
         return pages.map(p => resolveUrl(p));
     }
 
-    // Sprawdza czy użytkownik doscrollował do końca strony nut
-function checkScrollForNextPageHint() {
-    if (!currentSheetsSong || currentSheetPages.length === 0) {
-        hideNextPageHint();
-        return;
+    function checkScrollForNextPageHint() {
+        if (!currentSheetsSong || currentSheetPages.length === 0) {
+            hideNextPageHint();
+            return;
+        }
+
+        if (currentSheetPage >= currentSheetPages.length - 1) {
+            hideNextPageHint();
+            return;
+        }
+
+        const container = dom.sheetsImageContainer;
+        const scrollTop = container.scrollTop;
+        const scrollHeight = container.scrollHeight;
+        const clientHeight = container.clientHeight;
+
+        const threshold = isMobile() ? 200 : 100;
+        const isNearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
+
+        if (isNearBottom) {
+            showNextPageHint();
+        } else {
+            hideNextPageHint();
+        }
     }
 
-    // Ukryj na ostatniej stronie
-    if (currentSheetPage >= currentSheetPages.length - 1) {
-        hideNextPageHint();
-        return;
-    }
-
-    const container = dom.sheetsImageContainer;
-    const scrollTop = container.scrollTop;
-    const scrollHeight = container.scrollHeight;
-    const clientHeight = container.clientHeight;
-
-    // Na mobile 200px, na desktop 100px
-    const threshold = isMobile() ? 200 : 100;
-    const isNearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-
-    if (isNearBottom) {
-        showNextPageHint();
-    } else {
-        hideNextPageHint();
-    }
-}
     function showNextPageHint() {
         if (dom.sheetsNextPageHint) {
             dom.sheetsNextPageHint.classList.add('visible');
@@ -650,40 +650,39 @@ function checkScrollForNextPageHint() {
         }
     }
 
-function openSheets(songId) {
-    const song = songsData.find(s => s.id === songId);
-    if (!song || !song.sheets || !song.sheets.pages || song.sheets.pages.length === 0) return;
+    function openSheets(songId) {
+        const song = songsData.find(s => s.id === songId);
+        if (!song || !song.sheets || !song.sheets.pages || song.sheets.pages.length === 0) return;
 
-    currentSheetsSong = song;
-    currentSheetPages = getSheetPages(song);
-    currentSheetPage = 0;
+        currentSheetsSong = song;
+        currentSheetPages = getSheetPages(song);
+        currentSheetPage = 0;
 
-    dom.sheetsModalTitle.textContent = song.title + ' – Nuty';
-    dom.sheetsModal.classList.add('visible');
-    document.body.style.overflow = 'hidden';
+        dom.sheetsModalTitle.textContent = song.title + ' – Nuty';
+        dom.sheetsModal.classList.add('visible');
+        document.body.style.overflow = 'hidden';
 
-    // ZMIANA 2: Ukryj główny panel odtwarzania gdy otwarte nuty
-    dom.audioPlayer.classList.remove('visible');
+        dom.audioPlayer.classList.remove('visible');
 
-    renderSheet();
-    renderSheetsPagination();
-    renderSheetsTracks();
-    updateSheetsPlayerUI();
-    updateNextPageHintVisibility();
-}
-
-function closeSheets() {
-    dom.sheetsModal.classList.remove('visible');
-    document.body.style.overflow = '';
-    currentSheetsSong = null;
-    currentSheetPages = [];
-    hideNextPageHint();
-
-    // Przywróć główny panel odtwarzania jeśli coś jest odtwarzane
-    if (currentTrack && currentSong) {
-        dom.audioPlayer.classList.add('visible');
+        renderSheet();
+        renderSheetsPagination();
+        renderSheetsTracks();
+        updateSheetsPlayerUI();
+        updateNextPageHintVisibility();
     }
-}
+
+    function closeSheets() {
+        dom.sheetsModal.classList.remove('visible');
+        document.body.style.overflow = '';
+        currentSheetsSong = null;
+        currentSheetPages = [];
+        hideNextPageHint();
+
+        if (currentTrack && currentSong) {
+            dom.audioPlayer.classList.add('visible');
+        }
+    }
+
     function handleSheetImageError() {
         if (!currentSheetsSong) return;
 
@@ -698,14 +697,12 @@ function closeSheets() {
         }
     }
 
-    // Aktualizuje widoczność przycisku hint w zależności od strony
     function updateNextPageHintVisibility() {
         if (!currentSheetsSong || currentSheetPages.length === 0) {
             hideNextPageHint();
             return;
         }
 
-        // Ukryj na ostatniej stronie
         if (currentSheetPage >= currentSheetPages.length - 1) {
             if (dom.sheetsNextPageHint) {
                 dom.sheetsNextPageHint.classList.add('hidden');
@@ -715,7 +712,6 @@ function closeSheets() {
             if (dom.sheetsNextPageHint) {
                 dom.sheetsNextPageHint.classList.remove('hidden');
             }
-            // Sprawdź scroll dopiero po załadowaniu obrazu
             hideNextPageHint();
         }
     }
@@ -736,7 +732,6 @@ function closeSheets() {
             dot.classList.toggle('active', i === currentSheetPage);
         });
 
-        // Ukryj hint przy zmianie strony, potem sprawdź po załadowaniu obrazu
         hideNextPageHint();
         updateNextPageHintVisibility();
     }
@@ -797,6 +792,310 @@ function closeSheets() {
         return true;
     }
 
+    // ========================================
+    // DOWNLOAD PANEL FUNCTIONS
+    // ========================================
+
+    function buildDownloadFilters() {
+        const voices = new Set();
+        songsData.forEach(song => {
+            song.tracks.forEach(t => {
+                const baseVoice = t.voice.replace(/[0-9]/g, '');
+                voices.add(baseVoice);
+            });
+        });
+
+        const sortedVoices = Array.from(voices).sort((a, b) => {
+            const order = ['soprano', 'alto', 'tenor', 'bass', 'unisono'];
+            return (order.indexOf(a) === -1 ? 99 : order.indexOf(a)) - (order.indexOf(b) === -1 ? 99 : order.indexOf(b));
+        });
+
+        // Add "All" button
+        const allBtn = document.createElement('button');
+        allBtn.className = 'download-voice-btn active';
+        allBtn.dataset.voice = 'all';
+        allBtn.textContent = 'Wszystkie';
+        dom.downloadVoiceFilters.appendChild(allBtn);
+
+        sortedVoices.forEach(voice => {
+            const info = getVoiceInfo(voice);
+            const btn = document.createElement('button');
+            btn.className = 'download-voice-btn';
+            btn.dataset.voice = voice;
+            btn.textContent = `${info.emoji} ${info.label}`;
+            dom.downloadVoiceFilters.appendChild(btn);
+        });
+    }
+
+    function openDownloadPanel() {
+        dom.downloadPanel.classList.add('open');
+        dom.downloadPanelOverlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+        renderDownloadSongsList();
+    }
+
+    function closeDownloadPanel() {
+        dom.downloadPanel.classList.remove('open');
+        dom.downloadPanelOverlay.classList.remove('visible');
+        document.body.style.overflow = '';
+    }
+
+    function getDownloadFilteredTracks(tracks) {
+        if (downloadFilters.voices.has('all')) {
+            return tracks;
+        }
+        return tracks.filter(track => {
+            const baseVoice = track.voice.replace(/[0-9]/g, '');
+            return downloadFilters.voices.has(baseVoice);
+        });
+    }
+
+    function renderDownloadSongsList() {
+        // Apply main filters
+        const filtered = getFilteredSongs();
+
+        dom.downloadSongsList.innerHTML = filtered.map(song => {
+            const filteredTracks = getDownloadFilteredTracks(song.tracks);
+            if (filteredTracks.length === 0) return '';
+
+            const tracksHtml = filteredTracks.map(track => {
+                const trackKey = `${song.id}|${track.file}`;
+                const isChecked = selectedDownloads.has(trackKey);
+                return `
+                    <div class="download-track-item">
+                        <input type="checkbox" class="download-track-checkbox" 
+                               data-song-id="${song.id}" 
+                               data-file="${track.file}"
+                               ${isChecked ? 'checked' : ''}>
+                        <span class="download-track-label">${track.label}</span>
+                        <span class="download-track-type ${track.type}">${track.type}</span>
+                    </div>
+                `;
+            }).join('');
+
+            const allTracksSelected = filteredTracks.every(t => selectedDownloads.has(`${song.id}|${t.file}`));
+            const someTracksSelected = filteredTracks.some(t => selectedDownloads.has(`${song.id}|${t.file}`));
+
+            return `
+                <div class="download-song-item" data-song-id="${song.id}">
+                    <div class="download-song-header">
+                        <input type="checkbox" class="download-song-checkbox" 
+                               data-song-id="${song.id}"
+                               ${allTracksSelected ? 'checked' : ''}
+                               ${someTracksSelected && !allTracksSelected ? 'indeterminate' : ''}>
+                        <span class="download-song-title">${song.title}</span>
+                        <span class="download-song-count">${filteredTracks.length}</span>
+                        <button class="download-song-expand">▼</button>
+                    </div>
+                    <div class="download-song-tracks">${tracksHtml}</div>
+                </div>
+            `;
+        }).filter(Boolean).join('');
+
+        // Set indeterminate state
+        dom.downloadSongsList.querySelectorAll('.download-song-checkbox').forEach(cb => {
+            const songId = cb.dataset.songId;
+            const song = filtered.find(s => s.id === songId);
+            if (song) {
+                const filteredTracks = getDownloadFilteredTracks(song.tracks);
+                const selectedCount = filteredTracks.filter(t => selectedDownloads.has(`${songId}|${t.file}`)).length;
+                cb.indeterminate = selectedCount > 0 && selectedCount < filteredTracks.length;
+            }
+        });
+
+        updateDownloadCount();
+    }
+
+    function updateDownloadCount() {
+        const count = selectedDownloads.size;
+        dom.downloadSelectedCount.textContent = count;
+        dom.downloadStartBtn.disabled = count === 0;
+    }
+
+    function selectAllDownloads() {
+        const filtered = getFilteredSongs();
+        filtered.forEach(song => {
+            const filteredTracks = getDownloadFilteredTracks(song.tracks);
+            filteredTracks.forEach(track => {
+                selectedDownloads.add(`${song.id}|${track.file}`);
+            });
+        });
+        renderDownloadSongsList();
+    }
+
+    function selectNoneDownloads() {
+        selectedDownloads.clear();
+        renderDownloadSongsList();
+    }
+
+    async function startDownload() {
+        if (selectedDownloads.size === 0) return;
+
+        const files = [];
+        selectedDownloads.forEach(key => {
+            const [songId, file] = key.split('|');
+            const song = songsData.find(s => s.id === songId);
+            if (song) {
+                const track = song.tracks.find(t => t.file === file);
+                if (track) {
+                    files.push({
+                        url: resolveUrl(file),
+                        name: `${song.title} - ${track.label}.mp3`
+                    });
+                }
+            }
+        });
+
+        if (files.length === 0) return;
+
+        dom.downloadProgress.style.display = 'flex';
+        dom.downloadStartBtn.disabled = true;
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            
+            // Update progress
+            const progress = ((i + 1) / files.length) * 100;
+            dom.downloadProgressFill.style.width = progress + '%';
+            dom.downloadProgressText.textContent = `${i + 1} / ${files.length}`;
+
+            // Download file
+            try {
+                const link = document.createElement('a');
+                link.href = file.url;
+                link.download = file.name;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Wait between downloads to avoid browser blocking
+                if (i < files.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+            } catch (e) {
+                console.error('Download error:', e);
+            }
+        }
+
+        // Reset after completion
+        setTimeout(() => {
+            dom.downloadProgress.style.display = 'none';
+            dom.downloadProgressFill.style.width = '0%';
+            dom.downloadStartBtn.disabled = false;
+        }, 1000);
+    }
+
+    function initDownloadEvents() {
+        // FAB click
+        dom.downloadFab.addEventListener('click', openDownloadPanel);
+
+        // Close panel
+        dom.downloadPanelClose.addEventListener('click', closeDownloadPanel);
+        dom.downloadPanelOverlay.addEventListener('click', closeDownloadPanel);
+
+        // Voice filters in download panel
+        dom.downloadVoiceFilters.addEventListener('click', e => {
+            const btn = e.target.closest('.download-voice-btn');
+            if (!btn) return;
+
+            const voice = btn.dataset.voice;
+
+            if (voice === 'all') {
+                downloadFilters.voices.clear();
+                downloadFilters.voices.add('all');
+                dom.downloadVoiceFilters.querySelectorAll('.download-voice-btn').forEach(b => {
+                    b.classList.toggle('active', b.dataset.voice === 'all');
+                });
+            } else {
+                downloadFilters.voices.delete('all');
+                if (downloadFilters.voices.has(voice)) {
+                    downloadFilters.voices.delete(voice);
+                } else {
+                    downloadFilters.voices.add(voice);
+                }
+                
+                if (downloadFilters.voices.size === 0) {
+                    downloadFilters.voices.add('all');
+                }
+
+                dom.downloadVoiceFilters.querySelectorAll('.download-voice-btn').forEach(b => {
+                    if (b.dataset.voice === 'all') {
+                        b.classList.toggle('active', downloadFilters.voices.has('all'));
+                    } else {
+                        b.classList.toggle('active', downloadFilters.voices.has(b.dataset.voice));
+                    }
+                });
+            }
+
+            renderDownloadSongsList();
+        });
+
+        // Song list interactions
+        dom.downloadSongsList.addEventListener('click', e => {
+            // Expand button
+            const expandBtn = e.target.closest('.download-song-expand');
+            if (expandBtn) {
+                const songItem = expandBtn.closest('.download-song-item');
+                songItem.classList.toggle('expanded');
+                return;
+            }
+
+            // Song header click (expand)
+            const header = e.target.closest('.download-song-header');
+            if (header && !e.target.closest('input')) {
+                const songItem = header.closest('.download-song-item');
+                songItem.classList.toggle('expanded');
+                return;
+            }
+        });
+
+        // Checkbox changes
+        dom.downloadSongsList.addEventListener('change', e => {
+            // Song checkbox
+            if (e.target.classList.contains('download-song-checkbox')) {
+                const songId = e.target.dataset.songId;
+                const isChecked = e.target.checked;
+                const song = getFilteredSongs().find(s => s.id === songId);
+                
+                if (song) {
+                    const filteredTracks = getDownloadFilteredTracks(song.tracks);
+                    filteredTracks.forEach(track => {
+                        const key = `${songId}|${track.file}`;
+                        if (isChecked) {
+                            selectedDownloads.add(key);
+                        } else {
+                            selectedDownloads.delete(key);
+                        }
+                    });
+                    renderDownloadSongsList();
+                }
+                return;
+            }
+
+            // Track checkbox
+            if (e.target.classList.contains('download-track-checkbox')) {
+                const songId = e.target.dataset.songId;
+                const file = e.target.dataset.file;
+                const key = `${songId}|${file}`;
+                
+                if (e.target.checked) {
+                    selectedDownloads.add(key);
+                } else {
+                    selectedDownloads.delete(key);
+                }
+                renderDownloadSongsList();
+            }
+        });
+
+        // Select all / none
+        dom.downloadSelectAll.addEventListener('click', selectAllDownloads);
+        dom.downloadSelectNone.addEventListener('click', selectNoneDownloads);
+
+        // Start download
+        dom.downloadStartBtn.addEventListener('click', startDownload);
+    }
+
     function initEvents() {
         let searchTimeout;
         dom.search.addEventListener('input', () => {
@@ -841,59 +1140,55 @@ function closeSheets() {
             render();
         });
 
-dom.songsGrid.addEventListener('click', e => {
-    const tag = e.target.closest('.tag');
-    if (tag) {
-        e.stopPropagation();
-        currentFilters.tag = tag.dataset.tag;
-        setActiveFilterButton(dom.tagFilters, 'tag', tag.dataset.tag);
-        updateUrl();
-        updateActiveFiltersDisplay();
-        render();
-        return;
-    }
-
-    // ZMIANA 1: Obsługa przycisku rozwijania na mobile
-    const expandBtn = e.target.closest('.song-expand-btn');
-    if (expandBtn) {
-        e.stopPropagation();
-        const songCard = expandBtn.closest('.song-card');
-        if (songCard) {
-            songCard.classList.toggle('expanded');
-        }
-        return;
-    }
-
-    // ZMIANA 2: Kliknięcie na tytuł/header info - otwiera nuty i puszcza pierwszy track
-    const headerInfo = e.target.closest('.song-header-info');
-    if (headerInfo) {
-        e.stopPropagation();
-        const songId = headerInfo.dataset.songId;
-        const song = songsData.find(s => s.id === songId);
-        if (song) {
-            // Otwórz nuty jeśli są dostępne
-            const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
-            if (hasSheets) {
-                openSheets(songId);
+        dom.songsGrid.addEventListener('click', e => {
+            const tag = e.target.closest('.tag');
+            if (tag) {
+                e.stopPropagation();
+                currentFilters.tag = tag.dataset.tag;
+                setActiveFilterButton(dom.tagFilters, 'tag', tag.dataset.tag);
+                updateUrl();
+                updateActiveFiltersDisplay();
+                render();
+                return;
             }
-            // Odtwórz pierwszy dostępny track
-            playFirstTrackOfSong(song);
-        }
-        return;
-    }
 
-    const trackItem = e.target.closest('.track-item');
-    if (trackItem) {
-        playTrack(trackItem.dataset.songId, trackItem.dataset.file);
-        return;
-    }
+            const expandBtn = e.target.closest('.song-expand-btn');
+            if (expandBtn) {
+                e.stopPropagation();
+                const songCard = expandBtn.closest('.song-card');
+                if (songCard) {
+                    songCard.classList.toggle('expanded');
+                }
+                return;
+            }
 
-    const sheetsBtn = e.target.closest('.show-sheets-btn');
-    if (sheetsBtn) {
-        openSheets(sheetsBtn.dataset.songId);
-        return;
-    }
-});
+            const headerInfo = e.target.closest('.song-header-info');
+            if (headerInfo) {
+                e.stopPropagation();
+                const songId = headerInfo.dataset.songId;
+                const song = songsData.find(s => s.id === songId);
+                if (song) {
+                    const hasSheets = song.sheets && song.sheets.pages && song.sheets.pages.length > 0;
+                    if (hasSheets) {
+                        openSheets(songId);
+                    }
+                    playFirstTrackOfSong(song);
+                }
+                return;
+            }
+
+            const trackItem = e.target.closest('.track-item');
+            if (trackItem) {
+                playTrack(trackItem.dataset.songId, trackItem.dataset.file);
+                return;
+            }
+
+            const sheetsBtn = e.target.closest('.show-sheets-btn');
+            if (sheetsBtn) {
+                openSheets(sheetsBtn.dataset.songId);
+                return;
+            }
+        });
 
         dom.hideUnisono.addEventListener('change', () => {
             currentFilters.hideUnisono = dom.hideUnisono.checked;
@@ -936,6 +1231,7 @@ dom.songsGrid.addEventListener('click', e => {
             dom.audioElement.pause();
             dom.audioElement.src = '';
             dom.audioPlayer.classList.remove('visible');
+            document.body.classList.remove('player-active');
             currentTrack = null;
             currentSong = null;
             render();
@@ -993,20 +1289,16 @@ dom.songsGrid.addEventListener('click', e => {
         dom.sheetsNext.addEventListener('click', nextSheet);
         dom.sheetsImage.addEventListener('error', handleSheetImageError);
 
-        // Sprawdź scroll po załadowaniu obrazu nut
         dom.sheetsImage.addEventListener('load', () => {
-            // Daj chwilę na wyrenderowanie
             setTimeout(() => {
                 checkScrollForNextPageHint();
             }, 100);
         });
 
-        // Obsługa scrollowania w kontenerze nut
         dom.sheetsImageContainer.addEventListener('scroll', () => {
             checkScrollForNextPageHint();
         });
 
-        // Kliknięcie w strzałkę "następna strona"
         if (dom.sheetsNextPageHint) {
             dom.sheetsNextPageHint.addEventListener('click', () => {
                 nextSheet();
@@ -1109,6 +1401,13 @@ dom.songsGrid.addEventListener('click', e => {
                 return;
             }
 
+            if (dom.downloadPanel.classList.contains('open')) {
+                if (e.code === 'Escape') {
+                    closeDownloadPanel();
+                }
+                return;
+            }
+
             switch (e.code) {
                 case 'Escape':
                     closeFiltersDrawer();
@@ -1149,6 +1448,9 @@ dom.songsGrid.addEventListener('click', e => {
                 }
             }
         });
+
+        // Initialize download events
+        initDownloadEvents();
     }
 
     initEvents();

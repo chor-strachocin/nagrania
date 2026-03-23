@@ -839,13 +839,13 @@ function formatDate(date) {
 // ========================================
 
 // Download panel state - rozszerzone filtry
-let downloadFilters = {
+	downloadFilters = {
     voice: 'all',
     type: 'all',
     tag: 'all',
     hideUnisono: false
 };
-let selectedDownloads = new Set();
+	selectedDownloads = new Set();
 
 function buildDownloadFilters() {
     const voices = new Set();

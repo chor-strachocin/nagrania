@@ -315,6 +315,7 @@
             applyUrlParams();
             updateActiveFiltersDisplay();
             render();
+			updateLastModifiedDate();
         } catch (e) {
             console.error('Błąd ładowania songs.json:', e);
             dom.songsGrid.innerHTML = '<p style="color: var(--text-dim); padding: 40px; text-align:center;">Nie udało się załadować danych.</p>';
@@ -793,6 +794,43 @@
     }
 
 // ========================================
+// LAST UPDATE DATE
+// ========================================
+
+async function updateLastModifiedDate() {
+    const el = document.getElementById('last-update');
+    if (!el) return;
+
+    // Sprawdź czy jest wstawiona data z build-time
+    const buildTime = el.dataset.buildTime;
+    if (buildTime && buildTime !== '__BUILD_TIME__') {
+        el.textContent = buildTime;
+        return;
+    }
+
+    // Fallback - pobierz datę modyfikacji songs.json
+    try {
+        const response = await fetch('songs.json', { method: 'HEAD' });
+        const lastModified = response.headers.get('Last-Modified');
+        if (lastModified) {
+            const date = new Date(lastModified);
+            el.textContent = formatDate(date);
+        } else {
+            // Ostatni fallback - obecna data
+            el.textContent = formatDate(new Date());
+        }
+    } catch (e) {
+        console.error('Nie można pobrać daty aktualizacji:', e);
+        el.textContent = '-';
+    }
+}
+
+function formatDate(date) {
+    const pad = n => n.toString().padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
+// ========================================
 // DOWNLOAD PANEL FUNCTIONS
 // ========================================
 
@@ -950,15 +988,22 @@ function selectNoneDownloads() {
 }
 
 function sanitizeFilename(name) {
-    return name.replace(/[<>:"/\\|?*]/g, '-').replace(/\s+/g, ' ').trim();
+    return name
+        .replace(/[<>:"/\\|?*]/g, '-')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .substring(0, 100);
 }
 
-async function fetchFileAsBlob(url) {
-    const response = await fetch(url);
+async function fetchFileAsArrayBuffer(url) {
+    const response = await fetch(url, {
+        mode: 'cors',
+        credentials: 'omit'
+    });
     if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
     }
-    return await response.blob();
+    return await response.arrayBuffer();
 }
 
 async function startDownload() {
@@ -966,13 +1011,15 @@ async function startDownload() {
 
     const files = [];
     selectedDownloads.forEach(key => {
-        const [songId, file] = key.split('|');
+        const pipeIndex = key.indexOf('|');
+        const songId = key.substring(0, pipeIndex);
+        const file = key.substring(pipeIndex + 1);
         const song = songsData.find(s => s.id === songId);
         if (song) {
             const track = song.tracks.find(t => t.file === file);
             if (track) {
                 const ext = file.split('.').pop() || 'mp3';
-                const filename = sanitizeFilename(`${song.title} - ${track.label}.${ext}`);
+                const filename = sanitizeFilename(`${song.title} - ${track.label}`) + '.' + ext;
                 files.push({
                     url: resolveUrl(file),
                     name: filename,
@@ -987,13 +1034,33 @@ async function startDownload() {
     // Pojedynczy plik - pobierz bezpośrednio
     if (files.length === 1) {
         const file = files[0];
-        const link = document.createElement('a');
-        link.href = file.url;
-        link.download = file.name;
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        try {
+            // Próbuj pobrać i zapisać z właściwą nazwą
+            const response = await fetch(file.url);
+            const blob = await response.blob();
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = file.name;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+        } catch (e) {
+            // Fallback - bezpośredni link
+            const link = document.createElement('a');
+            link.href = file.url;
+            link.download = file.name;
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        return;
+    }
+
+    // Sprawdź czy JSZip jest dostępny
+    if (typeof JSZip === 'undefined') {
+        alert('Błąd: Biblioteka JSZip nie jest załadowana. Pobieranie wielu plików niemożliwe.');
         return;
     }
 
@@ -1003,45 +1070,67 @@ async function startDownload() {
     dom.downloadProgressText.textContent = `0 / ${files.length}`;
     dom.downloadProgressFill.style.width = '0%';
 
-    try {
-        const zip = new JSZip();
-        let completed = 0;
-        let failed = 0;
+    const zip = new JSZip();
+    let completed = 0;
+    let failed = 0;
+    const errors = [];
 
-        // Pobierz pliki równolegle w grupach po 3
-        const batchSize = 3;
-        for (let i = 0; i < files.length; i += batchSize) {
-            const batch = files.slice(i, i + batchSize);
+    // Pobieraj pliki sekwencyjnie aby uniknąć problemów
+    for (const file of files) {
+        try {
+            dom.downloadProgressText.textContent = `Pobieranie ${completed + 1} / ${files.length}`;
             
-            await Promise.all(batch.map(async (file) => {
-                try {
-                    const blob = await fetchFileAsBlob(file.url);
-                    // Dodaj do folderu z nazwą utworu
-                    zip.file(`${file.folder}/${file.name}`, blob);
-                } catch (e) {
-                    console.error(`Błąd pobierania ${file.name}:`, e);
-                    failed++;
-                }
-                completed++;
-                
-                const progress = (completed / files.length) * 100;
-                dom.downloadProgressFill.style.width = progress + '%';
-                dom.downloadProgressText.textContent = `${completed} / ${files.length}`;
-            }));
+            const arrayBuffer = await fetchFileAsArrayBuffer(file.url);
+            
+            if (arrayBuffer && arrayBuffer.byteLength > 0) {
+                zip.file(`${file.folder}/${file.name}`, arrayBuffer);
+            } else {
+                throw new Error('Pusty plik');
+            }
+        } catch (e) {
+            console.error(`Błąd pobierania ${file.name}:`, e);
+            errors.push(file.name);
+            failed++;
         }
+        
+        completed++;
+        const progress = (completed / files.length) * 90; // 90% na pobieranie
+        dom.downloadProgressFill.style.width = progress + '%';
+    }
 
-        // Generuj ZIP
-        dom.downloadProgressText.textContent = 'Pakowanie...';
+    // Sprawdź czy cokolwiek pobrano
+    if (Object.keys(zip.files).length === 0) {
+        dom.downloadProgressText.textContent = 'Błąd: Nie udało się pobrać plików';
+        
+        // Pokaż szczegóły błędu
+        console.error('Wszystkie pobierania zakończyły się błędem. Prawdopodobnie problem z CORS.');
+        console.log('Sprawdź czy R2 bucket ma ustawione odpowiednie CORS rules.');
+        
+        setTimeout(() => {
+            dom.downloadProgress.style.display = 'none';
+            dom.downloadProgressFill.style.width = '0%';
+            dom.downloadStartBtn.disabled = selectedDownloads.size === 0;
+            
+            // Zaproponuj alternatywne pobieranie
+            if (confirm(`Nie udało się utworzyć archiwum ZIP (problem z CORS).\n\nCzy chcesz pobrać pliki pojedynczo?`)) {
+                downloadFilesSequentially(files);
+            }
+        }, 2000);
+        return;
+    }
+
+    try {
+        dom.downloadProgressText.textContent = 'Tworzenie archiwum ZIP...';
         
         const zipBlob = await zip.generateAsync({ 
             type: 'blob',
             compression: 'DEFLATE',
-            compressionOptions: { level: 6 }
+            compressionOptions: { level: 5 }
         }, (metadata) => {
-            dom.downloadProgressFill.style.width = metadata.percent + '%';
+            const progress = 90 + (metadata.percent / 10); // ostatnie 10%
+            dom.downloadProgressFill.style.width = progress + '%';
         });
 
-        // Pobierz ZIP
         const timestamp = new Date().toISOString().slice(0, 10);
         const zipFilename = `chor-materialy-${timestamp}.zip`;
         
@@ -1051,25 +1140,56 @@ async function startDownload() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        URL.revokeObjectURL(link.href);
+        
+        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 
         if (failed > 0) {
-            dom.downloadProgressText.textContent = `Pobrano ${completed - failed}/${files.length} (${failed} błędów)`;
+            dom.downloadProgressText.textContent = `Pobrano ${completed - failed}/${files.length}`;
         } else {
-            dom.downloadProgressText.textContent = 'Gotowe!';
+            dom.downloadProgressText.textContent = 'Gotowe! ✓';
         }
 
     } catch (e) {
         console.error('Błąd tworzenia ZIP:', e);
-        dom.downloadProgressText.textContent = 'Błąd pobierania';
+        dom.downloadProgressText.textContent = 'Błąd tworzenia archiwum';
     }
 
-    // Reset po chwili
     setTimeout(() => {
         dom.downloadProgress.style.display = 'none';
         dom.downloadProgressFill.style.width = '0%';
         dom.downloadStartBtn.disabled = selectedDownloads.size === 0;
-    }, 2000);
+    }, 2500);
+}
+
+// Fallback - pobieranie plików po kolei
+async function downloadFilesSequentially(files) {
+    dom.downloadProgress.style.display = 'flex';
+    dom.downloadStartBtn.disabled = true;
+    
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        dom.downloadProgressText.textContent = `${i + 1} / ${files.length}`;
+        dom.downloadProgressFill.style.width = ((i + 1) / files.length * 100) + '%';
+        
+        const link = document.createElement('a');
+        link.href = file.url;
+        link.download = file.name;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Czekaj między pobieraniami
+        await new Promise(resolve => setTimeout(resolve, 800));
+    }
+    
+    dom.downloadProgressText.textContent = 'Gotowe!';
+    
+    setTimeout(() => {
+        dom.downloadProgress.style.display = 'none';
+        dom.downloadProgressFill.style.width = '0%';
+        dom.downloadStartBtn.disabled = selectedDownloads.size === 0;
+    }, 1500);
 }
 
 function initDownloadEvents() {

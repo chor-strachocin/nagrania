@@ -1943,3 +1943,147 @@ main {
         max-height: 250px;
     }
 }
+
+/* Download Section Header with button */
+.download-section-header {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.download-sync-filters-btn {
+    padding: 4px 10px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.download-sync-filters-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-bright);
+}
+
+/* Download Filters */
+.download-filters {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.download-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.download-filter-group > label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.download-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.download-filter-btn {
+    padding: 5px 10px;
+    background: var(--bg-filter);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.download-filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.download-filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text-bright);
+}
+
+/* Voice colors */
+.download-filter-btn[data-voice="soprano"].active { background: var(--soprano); border-color: var(--soprano); }
+.download-filter-btn[data-voice="alto"].active { background: var(--alto); border-color: var(--alto); color: #1a1a24; }
+.download-filter-btn[data-voice="tenor"].active { background: var(--tenor); border-color: var(--tenor); color: #1a1a24; }
+.download-filter-btn[data-voice="bass"].active { background: var(--bass); border-color: var(--bass); }
+.download-filter-btn[data-voice="unisono"].active { background: var(--unisono); border-color: var(--unisono); }
+
+/* Type colors */
+.download-filter-btn[data-type="single"].active { background: var(--accent); border-color: var(--accent); }
+.download-filter-btn[data-type="mix"].active { background: var(--mix); border-color: var(--mix); }
+.download-filter-btn[data-type="unisono"].active { background: var(--unisono); border-color: var(--unisono); }
+
+/* Checkbox in download panel */
+.download-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 0.85rem;
+    padding: 4px 0;
+}
+
+.download-checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+/* Scrollable tags */
+.download-filter-buttons.scrollable {
+    max-height: 80px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.download-filter-buttons.scrollable::-webkit-scrollbar {
+    width: 4px;
+}
+
+.download-filter-buttons.scrollable::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+.download-filter-buttons.scrollable::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+}
+
+.download-filter-buttons.scrollable::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+.download-empty {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}

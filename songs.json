@@ -67,6 +67,126 @@
         }
       ]
     },
+	
+    {
+      "id": "ktorys-za-nas-cierpial-rany",
+      "title": "Któryś za nas cierpiał rany",
+      "composer": "trad. / Krzysztof Stępień",
+      "tags": ["pasyjne", "triduum 2026", "wielki piątek", "droga krzyżowa"],
+	  "sheets": {
+		  "pages": [
+			"/Nuty/ktorys-za-nas-cierpial-rany.png"
+		  ]
+  },
+
+      "tracks": [
+        {
+          "label": "Sopran",
+          "voice": "soprano",
+          "type": "single",
+          "file": "/mp3/ktorys-za-nas-cierpial-rany-soprano.mp3"
+        },
+        {
+          "label": "Alt",
+          "voice": "alto",
+          "type": "single",
+          "file": "/mp3/ktorys-za-nas-cierpial-rany-alto.mp3"
+        },
+        {
+          "label": "Tenor",
+          "voice": "tenor",
+          "type": "single",
+          "file": "/mp3/ktorys-za-nas-cierpial-rany-tenor.mp3"
+        },
+        {
+          "label": "Bas",
+          "voice": "bass",
+          "type": "single",
+          "file": "/mp3/ktorys-za-nas-cierpial-rany-bass.mp3"
+        }
+      ]  
+    },	
+	
+    {
+      "id": "w-swe-ramiona-mnie-wez",
+      "title": "W swe ramiona mnie weź",
+      "composer": "Jacek Gałuszka / Krzysztof Stępień",
+      "tags": ["pasyjne", "triduum 2026", "wielki piątek", "droga krzyżowa"],
+	  "sheets": {
+		  "pages": [
+			"/Nuty/w-swe-ramiona-mnie-wez.png"
+		  ]
+  },
+
+      "tracks": [
+        {
+          "label": "Sopran",
+          "voice": "soprano",
+          "type": "single",
+          "file": "/mp3/w-swe-ramiona-mnie-wez-soprano.mp3"
+        },
+        {
+          "label": "Alt",
+          "voice": "alto",
+          "type": "single",
+          "file": "/mp3/w-swe-ramiona-mnie-wez-alto.mp3"
+        },
+        {
+          "label": "Tenor",
+          "voice": "tenor",
+          "type": "single",
+          "file": "/mp3/w-swe-ramiona-mnie-wez-tenor.mp3"
+        },
+        {
+          "label": "Bas",
+          "voice": "bass",
+          "type": "single",
+          "file": "/mp3/w-swe-ramiona-mnie-wez-bass.mp3"
+        }
+       ] 
+    },		
+	
+    {
+      "id": "rozmyslajmy-dzis-wierni-chrzescijanie",
+      "title": "Rozmyślajmy dziś, wierni chrześcijanie",
+      "composer": "Tomasz Kozubek",
+      "tags": ["pasyjne", "triduum 2026", "wielki piątek", "droga krzyżowa", "niedziela palmowa"],
+	  "sheets": {
+		  "pages": [
+			"/Nuty/rozmyslajmy-dzis.png"
+		  ]
+  },
+
+      "tracks": [
+        {
+          "label": "Sopran",
+          "voice": "soprano",
+          "type": "single",
+          "file": "/mp3/rozmyslajmy-dzis-soprano.mp3"
+        },
+        {
+          "label": "Alt",
+          "voice": "alto",
+          "type": "single",
+          "file": "/mp3/rozmyslajmy-dzis-alto.mp3"
+        },
+        {
+          "label": "Tenor",
+          "voice": "tenor",
+          "type": "single",
+          "file": "/mp3/rozmyslajmy-dzis-tenor.mp3"
+        },
+        {
+          "label": "Bas",
+          "voice": "bass",
+          "type": "single",
+          "file": "/mp3/rozmyslajmy-dzis-bass.mp3"
+        }
+       ] 
+    },		
+		
+	
+	
 	{
 	  "id": "chwala-badz-ojcu-i-synowi",
 	  "title": "Chwała bądź Ojcu i Synowi",
@@ -376,7 +496,8 @@
   "tags": [
     "eucharystyczne",
     "wielki piątek",
-    "triduum 2026"
+    "triduum 2026",
+	"niedziela palmowa"
   ],
 
    "sheets": {
@@ -516,7 +637,8 @@
   "composer": "Piotr Pałka",
   "tags": [
     "wielki piątek",
-    "triduum 2026"
+    "triduum 2026",
+	"niedziela palmowa"
   ],
   "sheets": {
 	  "pages": [
@@ -903,7 +1025,8 @@
     "wielki czwartek",
     "wielki piątek",
     "wielki post",
-    "triduum 2026"
+    "triduum 2026",
+	"niedziela palmowa"
   ],
   "sheets": {
 	  "pages": [
@@ -1512,7 +1635,8 @@
   "tags": [
     "wielki piątek",
     "Triduum 2026",
-	"pasyjne"
+	"pasyjne",
+	"niedziela palmowa"
   ],
   "sheets": {
 	  "pages": [

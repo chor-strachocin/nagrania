@@ -2055,7 +2055,8 @@
   "tags": [
     "wigilia paschalna",
     "Triduum 2026",
-	"wielkanoc"
+	"wielkanoc",
+	"niedziela dobrego pasterza"
   ],
   "sheets": {
 	  "pages": [
@@ -2211,7 +2212,7 @@
   "composer": "Jacek Sykulski",
   "tags": [
     "wigilia paschalna",
-    "Triduum 2026"
+    "Triduum 2026", "niedziela dobrego pasterza"
   ],
   "sheets": {
 	  "pages": [
@@ -2242,6 +2243,135 @@
       "voice": "bass",
       "type": "single",
       "file": "/mp3/alleluja-jamnenskie-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "pasterzem-moim-jest-pan",
+  "title": "Pasterzem moim jest Pan (O Panie, Tyś moim Pasterzem)",
+  "composer": "Jerzy Kosko / Marek Pawełek",
+  "tags": [
+	"niedziela dobrego pasterza"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/Pasterzem_moim_jest_Pan_PAWELEK-1.png",
+		"/Nuty/Pasterzem_moim_jest_Pan_PAWELEK-2.png",
+		"/Nuty/Pasterzem_moim_jest_Pan_PAWELEK-3.png",
+		"/Nuty/Pasterzem_moim_jest_Pan_PAWELEK-4.png"
+	  ],
+	  "mobilePages": [
+		"/Nuty/Pasterzem_moim_jest_Pan_PAWELEK-mobile-1.png",
+		"/Nuty/Pasterzem_moim_jest_Pan_PAWELEK-mobile-2.png",
+		"/Nuty/Pasterzem_moim_jest_Pan_PAWELEK-mobile-3.png"
+	  ]
+  },
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/o-panie-tys-moim-pasterzem-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/o-panie-tys-moim-pasterzem-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/o-panie-tys-moim-pasterzem-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/o-panie-tys-moim-pasterzem-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "o-filii-et-filiae",
+  "title": "O filii et filiae",
+  "composer": "anon. / Tomasz Kmita-Skarsgård",
+  "tags": [
+		"wielkanoc", "niedziela dobrego pasterza"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/o-filii-et-filiae.png"
+	  ]
+  },
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/o-filii-et-filiae-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/o-filii-et-filiae-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/o-filii-et-filiae-tenor-.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/o-filii-et-filiae-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "dzieki-ci-panie",
+  "title": "Dzięki Ci, Panie",
+  "composer": "Paweł Bębenek",
+  "tags": [
+		"eucharystyczne", 
+		"niedziela dobrego pasterza"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/dzieki-ci-panie.png"
+	  ]
+  },
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/dzieki-ci-panie-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/dzieki-ci-panie-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/dzieki-ci-panie-tenor-.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/dzieki-ci-panie-bass.mp3"
     }
   ]
 }

@@ -569,7 +569,8 @@
   "tags": [
     "eucharystyczne",
     "wielki czwartek",
-    "Triduum 2026"
+    "Triduum 2026",
+	"boze cialo 2026"
   ],
   "sheets": {
 	  "pages": [
@@ -2341,7 +2342,8 @@
   "composer": "Paweł Bębenek",
   "tags": [
 		"eucharystyczne", 
-		"niedziela dobrego pasterza"
+		"niedziela dobrego pasterza",
+		"boze cialo 2026"
   ],
   "sheets": {
 	  "pages": [
@@ -2374,8 +2376,139 @@
       "file": "/mp3/dzieki-ci-panie-bass.mp3"
     }
   ]
-}
+},
 
+{
+  "id": "alleluja-na-bloniach",
+  "title": "Alleluja na błoniach",
+  "composer": "Piotr Pałka",
+  "tags": [
+	"boze cialo 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/alleluja-na-bloniach-1.png",
+		"/Nuty/alleluja-na-bloniach-2.png"
+	  ],
+	  "mobilePages": [
+		"/Nuty/alleluja-na-bloniach-mobile-1.png",
+		"/Nuty/alleluja-na-bloniach-mobile-2.png"
+	  ]
+  },
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/alleluja-na-bloniach-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/alleluja-na-bloniach-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/alleluja-na-bloniach-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/alleluja-na-bloniach-bass.mp3"
+    }
+  ]
+},
+
+{
+  "id": "twoje-cialo-jest-prawdziwym-pokarmem",
+  "title": "Twoje Ciało jest prawdziwym pokarmem",
+  "composer": "Jakub Tomalak",
+  "tags": [
+	"boze cialo 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/twoje-cialo-jest-prawdziwym-pokarmem.png"
+	  ]
+  },
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/twoje-cialo-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/twoje-cialo-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/twoje-cialo-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/twoje-cialo-bass.mp3"
+    }
+  ]
+},
+
+
+{
+  "id": "skladamy-ci-ojcze",
+  "title": "Składamy Ci, Ojcze",
+  "composer": "Alberico Vitalini / Krzysztof Stępień",
+  "tags": [
+	"boze cialo 2026"
+  ],
+  "sheets": {
+	  "pages": [
+		"/Nuty/skladamy-ci-ojcze-1.png",
+		"/Nuty/skladamy-ci-ojcze-2.png",
+		"/Nuty/skladamy-ci-ojcze-3.png"
+	  ],
+	  "mobilePages": [
+		"/Nuty/skladamy-ci-ojcze-mobile-1.png", 
+		"/Nuty/skladamy-ci-ojcze-mobile-2.png" 
+	  ]
+  },
+  "tracks": [
+    {
+      "label": "Sopran",
+      "voice": "soprano",
+      "type": "single",
+      "file": "/mp3/skladamy-ci,-ojcze-soprano.mp3"
+    },
+    {
+      "label": "Alt",
+      "voice": "alto",
+      "type": "single",
+      "file": "/mp3/skladamy-ci-ojcze-alto.mp3"
+    },
+    {
+      "label": "Tenor",
+      "voice": "tenor",
+      "type": "single",
+      "file": "/mp3/skladamy-ci-ojcze-tenor.mp3"
+    },
+    {
+      "label": "Bas",
+      "voice": "bass",
+      "type": "single",
+      "file": "/mp3/skladamy-ci-ojcze-bass.mp3"
+    }
+  ]
+}
 
 
   ]
